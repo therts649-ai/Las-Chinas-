@@ -39,7 +39,8 @@ body {
   font-size: 1.0625rem;
   line-height: 1.6;
   color: var(--chocolate);
-  background: transparent;
+  background: var(--rubor);
+  isolation: isolate;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
@@ -175,7 +176,7 @@ p { margin: 0; text-wrap: pretty; }
 
 .nav {
   position: fixed;
-  top: 14px;
+  top: calc(14px + env(safe-area-inset-top, 0px));
   left: 50%;
   transform: translateX(-50%);
   z-index: 20;
@@ -604,7 +605,7 @@ main { display: block; }
 .fab {
   position: fixed;
   right: 18px;
-  bottom: 18px;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
   z-index: 20;
   width: 60px;
   height: 60px;
