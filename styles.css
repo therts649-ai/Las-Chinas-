@@ -245,16 +245,18 @@ h2.script { font-size: clamp(2rem, 4.4vw, 3rem); }
   position: absolute;
   z-index: -1;
   right: 0;
-  top: 0;
-  bottom: 0;
-  width: min(64%, 900px);
+  top: 50%;
+  translate: 0 -46%;
+  /* Mismo formato que la foto para que no se recorte ninguna hermana */
+  width: min(62%, 980px);
+  aspect-ratio: 940 / 820;
   margin: 0;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%, #000 85%, transparent 100%), linear-gradient(180deg, #000 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 90%, transparent 100%), linear-gradient(180deg, #000 70%, transparent 100%);
   -webkit-mask-composite: source-in;
-          mask-image: linear-gradient(90deg, transparent 0%, #000 30%, #000 85%, transparent 100%), linear-gradient(180deg, #000 70%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 90%, transparent 100%), linear-gradient(180deg, #000 70%, transparent 100%);
           mask-composite: intersect;
 }
-.hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
 
 .hero__hearts { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
 .fheart {
@@ -876,9 +878,6 @@ h2.script { font-size: clamp(2rem, 4.4vw, 3rem); }
 }
 
 @media (max-width: 700px) {
-  .hero { padding: 110px var(--gutter) 130px; align-items: end; min-height: 100svh; }
-  .hero__photo { width: 100%; top: 0; bottom: 34%; -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent); mask-image: linear-gradient(180deg, #000 55%, transparent); }
-  .hero__note { top: 13%; right: 12px; font-size: 1.4rem; }
   .hero__list { grid-template-columns: 1fr 1fr; gap: 8px 12px; }
   .hero__list li { font-size: .85rem; }
   .hero__down { display: none; }
@@ -891,6 +890,25 @@ h2.script { font-size: clamp(2rem, 4.4vw, 3rem); }
   .insta__grid { grid-template-columns: repeat(3, 1fr); }
   .visit__card--map { grid-template-columns: 1fr; }
   .about__note { right: 0; }
+}
+
+@media (max-width: 1000px) {
+  /* En celular y tableta la foto va completa arriba (se ven las tres hermanas) y el texto debajo */
+  .hero { padding: 72px 0 120px; align-items: start; min-height: 0; }
+  .hero__photo {
+    position: relative;
+    inset: auto;
+    translate: none;
+    width: 100%;
+    aspect-ratio: 940 / 820;
+    margin-bottom: -22%;
+    -webkit-mask-image: linear-gradient(180deg, #000 62%, transparent);
+            mask-image: linear-gradient(180deg, #000 62%, transparent);
+  }
+  .hero__photo img { object-position: 50% 50%; }
+  .hero__content { padding: 0 var(--gutter); }
+  .hero__note { top: 84px; right: 10px; font-size: 1.25rem; }
+  .hero__down { display: none; }
 }
 
 /* ---------- Coreografía (solo con movimiento permitido) ---------- */
