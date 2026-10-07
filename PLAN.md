@@ -47,6 +47,35 @@ Configurador paso a paso con vista previa, precio aproximado y resumen enviado p
 - tabla por tamaño, más extras (capas, fruta, decoración);
 - se muestra como "desde $___" y el precio final se confirma por WhatsApp.
 
+## Experiencia de inicio: un plano secuencia
+Los cuatro conceptos aprobados se unen en un solo recorrido continuo, sin cortes. Cada uno tiene un papel:
+
+| # | Etapa | Qué pasa | Cómo avanza | Técnica |
+|---|---|---|---|---|
+| 1 | **Gelatina líquida** (A) | La pantalla es gelatina rosa líquida que se ondula, salpica y deja estelas al mover el dedo o el mouse. A los ~4 s "cuaja" y forma el logo. | Sola, en unos 5 s; un toque la adelanta | Simulación de fluido WebGL |
+| 2 | **A través de la gelatina** (D) | La gelatina cuajada se vuelve translúcida: detrás se ve el inicio refractado, con burbujas y fresas suspendidas. Tiembla al tocarla. | Primer scroll o toque: la atraviesas | Shader de refracción sobre la escena |
+| 3 | **Mundo en capas** (C) | El inicio: cocina rosa con luces, las tres hermanas, gelatinas y fresas flotando al frente. Cada capa se mueve a su propia profundidad con el giroscopio o el mouse. Aparecen el título y los botones. | Reposo; al bajar, la cámara avanza entre las capas y las fresas pasan por delante | Capas recortadas con GSAP (2.5D) |
+| 4 | **Cine con scroll** (B) | La cámara sigue de frente y **entra en la gelatina del centro**; sin corte comienza la deconstrucción: se separa, flota, se vuelve a unir y termina en la rebanada. | El scroll controla el video, hacia adelante y hacia atrás | Video IA cuadro por cuadro sincronizado con el scroll |
+
+**Reglas para que envuelva sin cansar:**
+- La entrada (1 y 2) dura como máximo 6 s, sale una vez por visita y siempre se puede saltar.
+- El menú y el botón de WhatsApp están visibles desde la etapa 3.
+- Carga progresiva:
+  - la etapa 1 no necesita fotos, así que arranca al instante;
+  - mientras juegas, se cargan las capas y el video.
+- En celular: giroscopio (con permiso en iPhone), menos partículas y resolución adaptada para mantener 60 cuadros por segundo.
+- Con "reducir movimiento": sin entrada; inicio con foto fija y video con controles.
+
+**Material con IA para el plano secuencia:**
+| Archivo | Descripción | Medidas |
+|---|---|---|
+| Capa fondo | Cocina rosa con luces desenfocadas, sin personas | 2400×1600 |
+| Capa hermanas | Las tres hermanas con mandiles rosas, fondo liso verde o gris para recortar | 2400×1600 |
+| Capa gelatinas | Gelatinas de fresa, fresa con crema, uva y mango sobre la mesa, fondo liso | 2400×1200 |
+| Fresas y gotas sueltas | 6–8 fresas, mitades y cubitos de gelatina, cada uno aislado sobre fondo liso | 800×800 c/u |
+| Video "entrar a la gelatina" | Cámara fija que avanza lento hacia la gelatina central hasta entrar en su interior rojo translúcido | 6–8 s, 1080p |
+| Video deconstrucción | El que ya tenemos (se puede regenerar en mayor calidad) | 10 s, 1080p |
+
 ## Sistema de diseño
 - **Colores:** rosa intenso, frambuesa oscuro y rosa muy claro, como en el diseño de referencia del cliente.
 - **Tipografía:**
@@ -57,7 +86,7 @@ Configurador paso a paso con vista previa, precio aproximado y resumen enviado p
 
 ## Sistema de movimiento (tres niveles)
 1. **Momento estrella (uno por página):**
-   - Inicio: la gelatina que se deconstruye con el scroll;
+   - Inicio: el plano secuencia de entrada (ver arriba);
    - Configurador: la vista previa que se arma capa por capa.
 2. **Transiciones:**
    - al cambiar de página, la gelatina "se derrite" hacia la siguiente;
