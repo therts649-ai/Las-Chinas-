@@ -1,0 +1,12 @@
+{
+  "name": "las-chinas",
+  "private": true,
+  "description": "Página de Las Chinas, gelatinas personalizadas",
+  "scripts": {
+    "build": "esbuild src/gelatina3d.js --bundle --minify --format=esm --target=es2020 --outfile=assets/js/gelatina3d.js"
+  },
+  "devDependencies": {
+    "esbuild": "0.24.2",
+    "three": "0.186.1"
+  }
+}

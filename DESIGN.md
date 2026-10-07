@@ -1,51 +1,38 @@
 # Diseño de Las Chinas
 
 ## Mundo visual
-Repostería real y antojable: **la fotografía es la protagonista**. Nada de ilustraciones de caricatura para los productos. Si todavía no hay foto de un producto, se muestra un espacio elegante con "Foto próximamente".
+Pastelería fina: **marfil y vino**. Fondo marfil con un toque rosado y luz cálida que respira, títulos en Bodoni Moda con palabras en itálica vino, líneas finas doradas y secciones oscuras en vino profundo. La fotografía y la gelatina 3D aportan el rojo fresa. Las fotos van dentro de arcos, como ventanas de vitrina.
 
-El fondo es un degradado rubor → durazno con luz suave y grano fino tipo papel fotográfico. Encima van bloques rojo fresa (vitrina detrás de la foto, franja de festejos, "Cómo pedir" con foto de fresas teñida de rojo) y un pie color vino.
-
-## Color (tomado de la foto de fresa con leche)
+## Color
 | Token | Valor | Uso |
 |---|---|---|
-| `--rubor` | `#F7CDD3` | Fondo, inicio del degradado |
-| `--durazno` | `#FCDDCB` | Fondo, final del degradado |
-| `--crema` | `#FFF7F1` | Tarjetas, texto sobre rojo |
-| `--nata` | `#F9E9DF` | Fondos de foto pendiente |
-| `--fresa` | `#C8102E` | Marca, botones, franja |
-| `--fresa-oscura` | `#8E0A22` | Texto pequeño en rojo sobre rubor, sombras |
-| `--vino` | `#4E0716` | Pie de página |
-| `--chocolate` | `#3A1F1D` | Texto principal |
-
-## Fotografía
-- Estilo de referencia: `assets/gelatina-fresa-leche-*.webp`. Luz natural, fondo rosa suave, mármol blanco, fruta fresca alrededor, mucho brillo en la gelatina.
-- Las fotos nuevas van en `assets/` en WebP, en dos tamaños (800 y 1400 px de ancho).
+| `--marfil` | `#F7F0EA` | Fondo principal |
+| `--marfil-2` | `#EFE3DA` | Superficies secundarias |
+| `--blanco` | `#FFFDFB` | Tarjetas, marcos |
+| `--rosado` | `#F1DCD8` | Luz cálida del fondo |
+| `--vino` | `#5B0F1F` | Botones, itálicas, acentos |
+| `--vino-2` / `--vino-3` | `#3E0915` / `#2A0610` | Títulos, "Cómo pedir", pie |
+| `--dorado` / `--dorado-claro` | `#B08D57` / `#D9C29A` | Solo líneas y detalles (no texto pequeño sobre marfil) |
+| `--dorado-texto` | `#7A5A2E` | Etiquetas doradas legibles sobre marfil |
+| `--tinta` / `--tinta-suave` | `#2A1416` / `#6A4F4F` | Texto |
 
 ## Tipografía
-- **Títulos:** Gluten (redonda y suave, se siente como gelatina).
+- **Títulos:** Bodoni Moda (con itálica para las palabras clave).
 - **Texto:** Figtree.
 
-## Movimiento
-Nivel de movimiento alto (taste-skill: 8/10), con reglas de impeccable/animate y Emil Kowalski.
-
-- **Momento principal (entrada, ~2 s):** el bloque fresa entra girando y la foto "se llena" de abajo hacia arriba como un molde, con un acercamiento que se asienta. Al final la foto tiembla como gelatina y aparece el sello giratorio con el logo. Al mismo tiempo, el título rebota palabra por palabra.
-- **Apoyo:**
-  - La foto se inclina en 3D hacia el cursor con un resorte y tiembla al tocarla.
-  - Franja de festejos (la única marquesina; se pausa al pasar el mouse).
-  - Polaroids que caen y se quedan pegadas.
-  - Fotos del catálogo que se revelan de abajo hacia arriba.
-  - Íconos de los pasos que brincan.
-  - Paralaje en la foto de fondo de "Cómo pedir".
-  - Borde derretido que fluye.
-  - WhatsApp que entra al final y late 3 veces.
-- **Curvas:** `--ease-out` para entradas. Resortes `linear()` solo para lo que es "gelatina".
-- Los ciclos infinitos se pausan fuera de pantalla.
-- **Reducir movimiento:** la página aparece completa y quieta.
+## Movimiento (taste-skill 8/10, reglas de impeccable y Emil Kowalski)
+- **Telón de entrada** (1 vez por visita, se salta con clic o tecla): logo, nombre y línea dorada; el telón sube.
+- **Inicio:** palabras que suben desde su máscara, el arco se abre desde el centro, la foto se asienta, cruza un destello y la gelatina tiembla. Con mouse, la vitrina se inclina en 3D y el brillo sigue al cursor.
+- **Deconstrucción 3D** (`src/gelatina3d.js`, Three.js): la escena se queda fija mientras bajas y la gelatina, modelada en 3D, se eleva, se parte en gajos, las piezas, fresas y un remolino de leche giran alrededor, se vuelve a unir capa por capa, cae al plato con rebote y termina con una rebanada que muestra el interior. Las 8 etapas se resaltan al lado.
+- **Franja de festejos** que corre sola y se adelanta con el scroll.
+- **Vitrina horizontal:** el catálogo se queda fijo y las gelatinas pasan de lado al bajar (en celular se deslizan con el dedo).
+- **Pasos:** números que suben de su máscara y una línea dorada que se dibuja.
+- **Llamado final** con botón imán; destello dorado en los botones.
+- **Reducir movimiento:** sin telón, sin fijados y sin escena animada; la página aparece completa y quieta (la 3D muestra una sola imagen con la rebanada).
 
 ## Logo
-Logo preliminar en `assets/logo-preliminar-160.webp` (barra) y `assets/logo-preliminar-480.webp` (pie). Para cambiarlo, reemplaza esos archivos.
+Logo oficial en `assets/logo-160.webp` y `assets/logo-480.webp`.
 
 ## Reglas de las skills que seguimos
-- Nada de tres tarjetas idénticas en fila; el catálogo usa tamaños variados.
 - Sin etiquetas pequeñas sobre los títulos, sin texto con degradado y sin nombres o testimonios inventados.
-- Íconos de Phosphor, no emojis.
+- Íconos de Phosphor, no emojis. Una sola marquesina.

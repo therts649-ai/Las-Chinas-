@@ -2,16 +2,26 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Las Chinas | Gelatinas personalizadas</title>
   <meta name="description" content="Gelatinas personalizadas hechas a mano por tres hermanas. Pide la tuya por WhatsApp.">
-  <meta name="theme-color" content="#F7CDD3">
+  <meta name="theme-color" content="#F7F0EA">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Gluten:wght@500;700;800&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/gelatina-fresa-leche-1400.webp" imagesrcset="assets/gelatina-fresa-leche-800.webp 800w, assets/gelatina-fresa-leche-1400.webp 1400w" imagesizes="(max-width: 860px) 92vw, 600px">
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/gelatina-fresa-leche-1400.webp" imagesrcset="assets/gelatina-fresa-leche-800.webp 800w, assets/gelatina-fresa-leche-1400.webp 1400w" imagesizes="(max-width: 860px) 92vw, 620px">
   <link rel="stylesheet" href="styles.css">
-  <script>document.documentElement.classList.add('js')</script>
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add('js');
+      // El telón de entrada solo se muestra la primera vez de cada visita.
+      try {
+        if (sessionStorage.getItem('lc-intro')) d.classList.add('no-intro');
+        else sessionStorage.setItem('lc-intro', '1');
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <!-- Íconos de Phosphor (MIT) -->
@@ -28,12 +38,21 @@
     </defs>
   </svg>
 
+  <!-- Telón de entrada -->
+  <div class="intro" aria-hidden="true">
+    <div class="intro__content">
+      <img class="intro__logo" src="assets/logo-480.webp" width="140" height="140" alt="">
+      <span class="intro__name">Las Chinas</span>
+      <span class="intro__line"></span>
+    </div>
+  </div>
+
   <a class="skip" href="#gelatinas">Saltar al catálogo</a>
 
   <header class="nav">
     <a class="logo" href="#inicio" aria-label="Las Chinas, inicio">
-      <!-- LOGO PRELIMINAR: reemplazar assets/logo-preliminar-*.webp por el definitivo -->
-      <img class="logo__img" src="assets/logo-preliminar-160.webp" width="48" height="48" alt="">
+      <!-- Logo oficial -->
+      <img class="logo__img" src="assets/logo-160.webp" width="44" height="44" alt="">
       <span class="logo__word">Las Chinas</span>
     </a>
     <nav class="nav__links" aria-label="Secciones">
@@ -49,144 +68,185 @@
   <main>
     <section class="hero" id="inicio">
       <div class="hero__text">
-        <h1 class="hero__title"><span class="w" style="--i:0">Gelatinas</span> <span class="w" style="--i:1">hechas</span> <span class="w" style="--i:2">a</span> <span class="w" style="--i:3">la</span> <span class="w" style="--i:4">medida</span> <span class="w" style="--i:5">de</span> <span class="w" style="--i:6">tu</span> <span class="w" style="--i:7">festejo</span></h1>
+        <h1 class="hero__title"><span class="m"><span class="w" style="--i:0">Gelatinas</span></span> <span class="m"><span class="w" style="--i:1">hechas</span></span> <span class="m"><span class="w" style="--i:2"><em>a</em></span></span> <span class="m"><span class="w" style="--i:3"><em>la</em></span></span> <span class="m"><span class="w" style="--i:4"><em>medida</em></span></span> <span class="m"><span class="w" style="--i:5">de</span></span> <span class="m"><span class="w" style="--i:6">tu</span></span> <span class="m"><span class="w" style="--i:7">festejo</span></span></h1>
+        <span class="hero__rule" aria-hidden="true"></span>
         <p class="lead">Somos tres hermanas y hacemos cada gelatina sobre pedido, con fruta de verdad y los sabores, colores y nombre que tú elijas.</p>
         <div class="hero__actions">
-          <a class="btn btn--jelly" data-wa="Hola Las Chinas, quiero pedir una gelatina personalizada." href="#">
+          <a class="btn btn--shine" data-wa="Hola Las Chinas, quiero pedir una gelatina personalizada." href="#">
             <svg class="icon" aria-hidden="true"><use href="#i-whatsapp-logo"/></svg> Pide la tuya por WhatsApp
           </a>
-          <a class="link" href="#gelatinas">Ver gelatinas <svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
+          <a class="link" href="#gelatinas">Ver la vitrina <svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
         </div>
       </div>
 
       <figure class="hero__art">
-        <div class="hero__stage" aria-hidden="true"></div>
+        <span class="hero__halo" aria-hidden="true"></span>
         <button class="hero__photo" type="button" aria-label="Hacer temblar la gelatina">
           <span class="hero__tilt">
-            <img src="assets/gelatina-fresa-leche-1400.webp"
-                 srcset="assets/gelatina-fresa-leche-800.webp 800w, assets/gelatina-fresa-leche-1400.webp 1400w"
-                 sizes="(max-width: 860px) 92vw, 600px"
-                 width="1400" height="933" fetchpriority="high"
-                 alt="Gelatina de fresa con leche, con rebanadas de fresa natural, sobre un plato blanco">
+            <span class="hero__arch">
+              <img src="assets/gelatina-fresa-leche-1400.webp"
+                   srcset="assets/gelatina-fresa-leche-800.webp 800w, assets/gelatina-fresa-leche-1400.webp 1400w"
+                   sizes="(max-width: 860px) 92vw, 620px"
+                   width="1400" height="933" fetchpriority="high"
+                   alt="Gelatina de fresa con leche, con rebanadas de fresa natural, sobre un plato blanco">
+              <span class="hero__glint" aria-hidden="true"></span>
+              <span class="hero__shine" aria-hidden="true"></span>
+            </span>
           </span>
         </button>
         <div class="badge" aria-hidden="true">
           <svg class="badge__ring" viewBox="0 0 120 120">
             <text><textPath href="#badge-circle" textLength="270" lengthAdjust="spacing">gelatinas hechas a mano por tres hermanas</textPath></text>
           </svg>
-          <img class="badge__logo" src="assets/logo-preliminar-160.webp" width="64" height="64" alt="">
+          <img class="badge__logo" src="assets/logo-160.webp" width="64" height="64" alt="">
         </div>
-        <figcaption>Fresa con leche. <span class="hint">Tócala.</span></figcaption>
+        <figcaption><span class="caption-label">Fresa con leche</span> <span class="hint">Tócala</span></figcaption>
       </figure>
     </section>
 
     <section class="marquee" aria-label="Festejos para los que preparamos gelatinas">
-      <div class="marquee__track">
-        <ul class="marquee__list"><li>Cumpleaños</li><li class="sep" aria-hidden="true"></li><li>Baby showers</li><li class="sep" aria-hidden="true"></li><li>Bautizos</li><li class="sep" aria-hidden="true"></li><li>XV años</li><li class="sep" aria-hidden="true"></li><li>Reuniones</li><li class="sep" aria-hidden="true"></li></ul>
-        <ul class="marquee__list" aria-hidden="true"><li>Cumpleaños</li><li class="sep" aria-hidden="true"></li><li>Baby showers</li><li class="sep" aria-hidden="true"></li><li>Bautizos</li><li class="sep" aria-hidden="true"></li><li>XV años</li><li class="sep" aria-hidden="true"></li><li>Reuniones</li><li class="sep" aria-hidden="true"></li></ul>
+      <div class="marquee__drift">
+        <div class="marquee__track">
+          <ul class="marquee__list"><li>Cumpleaños</li><li class="sep" aria-hidden="true"></li><li>Baby showers</li><li class="sep" aria-hidden="true"></li><li>Bautizos</li><li class="sep" aria-hidden="true"></li><li>XV años</li><li class="sep" aria-hidden="true"></li><li>Reuniones</li><li class="sep" aria-hidden="true"></li><li>Bodas</li><li class="sep" aria-hidden="true"></li></ul>
+          <ul class="marquee__list" aria-hidden="true"><li>Cumpleaños</li><li class="sep" aria-hidden="true"></li><li>Baby showers</li><li class="sep" aria-hidden="true"></li><li>Bautizos</li><li class="sep" aria-hidden="true"></li><li>XV años</li><li class="sep" aria-hidden="true"></li><li>Reuniones</li><li class="sep" aria-hidden="true"></li><li>Bodas</li><li class="sep" aria-hidden="true"></li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="deco" aria-labelledby="deco-title">
+      <div class="deco__sticky">
+        <div class="deco__stage">
+          <div class="deco__frame">
+            <img class="deco__fallback" src="assets/gelatina-fresa-leche-800.webp" width="800" height="533" loading="lazy" alt="Gelatina de fresa con leche con rebanadas de fresa">
+          </div>
+          <div class="deco__progress" aria-hidden="true"><span></span></div>
+        </div>
+        <div class="deco__text">
+          <h2 id="deco-title">Una gelatina, <em>capa por capa</em></h2>
+          <ol class="deco__steps">
+          <li class="deco__step"><span class="deco__num" aria-hidden="true">1</span><div><h3>Completa y brillante</h3><p>Así llega a tu mesa: entera, firme y con brillo.</p></div></li>
+          <li class="deco__step"><span class="deco__num" aria-hidden="true">2</span><div><h3>Se eleva y se segmenta</h3><p>La capa de fresa se levanta y se separa en gajos.</p></div></li>
+          <li class="deco__step"><span class="deco__num" aria-hidden="true">3</span><div><h3>Las capas se separan</h3><p>Cada trozo de gelatina y de fruta se aparta suavemente.</p></div></li>
+          <li class="deco__step"><span class="deco__num" aria-hidden="true">4</span><div><h3>Todo flota alrededor</h3><p>Fresas, gelatina y leche giran alrededor del centro.</p></div></li>
+          <li class="deco__step"><span class="deco__num" aria-hidden="true">5</span><div><h3>Se vuelve a unir</h3><p>Las piezas regresan capa por capa a su lugar.</p></div></li>
+          <li class="deco__step"><span class="deco__num" aria-hidden="true">6</span><div><h3>Se reconstruye</h3><p>La capa de fresa baja y abraza la base de leche.</p></div></li>
+          <li class="deco__step"><span class="deco__num" aria-hidden="true">7</span><div><h3>Lista para tu festejo</h3><p>Otra vez completa, como recién desmoldada.</p></div></li>
+          <li class="deco__step"><span class="deco__num" aria-hidden="true">8</span><div><h3>Una rebanada por dentro</h3><p>Fresa natural en cada capa, de arriba a abajo.</p></div></li>
+          </ol>
+        </div>
       </div>
     </section>
 
     <section class="sisters" id="nosotras" aria-labelledby="nosotras-title">
       <div class="sisters__intro">
-        <h2 id="nosotras-title">Tres hermanas, una cocina</h2>
+        <h2 id="nosotras-title">Tres hermanas, <em>una cocina</em></h2>
         <p>Las Chinas nació en casa, entre moldes, sabores y festejos de la familia. Hoy preparamos gelatinas personalizadas para que tu mesa de postres se vea tan bonita como sabe.</p>
       </div>
       <ul class="polaroids">
-        <li class="polaroid reveal" style="--tilt:-3deg; --tone:#C8102E">
+        <li class="polaroid reveal" style="--tilt:-3deg">
           <div class="polaroid__photo"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg><span>Foto pendiente</span></div>
           <p class="polaroid__name">La mayor</p>
         </li>
-        <li class="polaroid reveal" style="--tilt:2deg; --tone:#F4A259">
+        <li class="polaroid reveal" style="--tilt:2deg">
           <div class="polaroid__photo"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg><span>Foto pendiente</span></div>
           <p class="polaroid__name">La de en medio</p>
         </li>
-        <li class="polaroid reveal" style="--tilt:-1.5deg; --tone:#E86A8A">
+        <li class="polaroid reveal" style="--tilt:-1.5deg">
           <div class="polaroid__photo"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg><span>Foto pendiente</span></div>
           <p class="polaroid__name">La más chica</p>
         </li>
       </ul>
     </section>
 
-    <section class="catalog" id="gelatinas" aria-labelledby="gelatinas-title">
-      <div class="catalog__head">
-        <h2 id="gelatinas-title">Gelatinas personalizadas</h2>
-        <p>Elige una idea y la adaptamos a tu fiesta. Todas se cotizan por WhatsApp según tamaño y decoración.</p>
-      </div>
-
-      <div class="bento">
-        <article class="card card--feature reveal">
-          <div class="card__photo">
-            <img src="assets/gelatina-fresa-leche-800.webp"
-                 srcset="assets/gelatina-fresa-leche-800.webp 800w, assets/gelatina-fresa-leche-1400.webp 1400w"
-                 sizes="(max-width: 860px) 92vw, 640px"
-                 width="800" height="533" loading="lazy"
-                 alt="Gelatina de fresa con leche con rebanadas de fresa">
+    <section class="vitrina" id="gelatinas" aria-labelledby="gelatinas-title">
+      <div class="vitrina__sticky">
+        <div class="vitrina__track">
+          <div class="vitrina__intro">
+            <h2 id="gelatinas-title">Nuestra <em>vitrina</em></h2>
+            <p>Gelatinas personalizadas: elige una idea y la adaptamos a tu fiesta. Todas se cotizan por WhatsApp según tamaño y decoración.</p>
+            <span class="vitrina__hint" aria-hidden="true">Sigue bajando <svg class="icon"><use href="#i-arrow-down"/></svg></span>
           </div>
-          <div class="card__body">
-            <h3>Fresa con leche</h3>
-            <p>Base cremosa de leche con trocitos de fresa y una capa brillante de gelatina de fresa con rebanadas de fruta natural.</p>
-            <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar una gelatina de fresa con leche." href="#">Cotizar esta</a>
-          </div>
-        </article>
-        <article class="card reveal" style="--tone:#F4A259">
-          <div class="card__photo card__photo--pending">
+          <article class="pcard pcard--star">
+            <div class="pcard__photo">
+              <img src="assets/gelatina-fresa-leche-800.webp"
+                   srcset="assets/gelatina-fresa-leche-800.webp 800w, assets/gelatina-fresa-leche-1400.webp 1400w"
+                   sizes="(max-width: 860px) 80vw, 420px"
+                   width="800" height="533" loading="lazy"
+                   alt="Gelatina de fresa con leche con rebanadas de fresa">
+            </div>
+            <div class="pcard__body">
+              <h3>Fresa con leche</h3>
+              <p>Base cremosa de leche con trocitos de fresa y una capa brillante de gelatina de fresa con fruta natural.</p>
+              <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar una gelatina de fresa con leche." href="#">Cotizar</a>
+            </div>
+          </article>
+        <article class="pcard" style="--tone:#B08D57">
+          <div class="pcard__photo pcard__photo--pending">
             <svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg>
             <span>Foto próximamente</span>
           </div>
-          <div class="card__body">
+          <div class="pcard__body">
             <h3>De cumpleaños con nombre</h3>
             <p>Con el nombre o la edad de quien festeja, en sus sabores favoritos.</p>
-            <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar una gelatina de cumpleaños con nombre." href="#">Cotizar esta</a>
+            <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar una gelatina de cumpleaños con nombre." href="#">Cotizar</a>
           </div>
         </article>
-        <article class="card reveal" style="--tone:#8A3CF5">
-          <div class="card__photo card__photo--pending">
+        <article class="pcard" style="--tone:#8A5A7A">
+          <div class="pcard__photo pcard__photo--pending">
             <svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg>
             <span>Foto próximamente</span>
           </div>
-          <div class="card__body">
+          <div class="pcard__body">
             <h3>Mosaico de colores</h3>
             <p>Cubitos de sabores con los colores de tu fiesta.</p>
-            <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar una gelatina mosaico." href="#">Cotizar esta</a>
+            <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar una gelatina mosaico." href="#">Cotizar</a>
           </div>
         </article>
-        <article class="card reveal card--wide" style="--tone:#2FB89A">
-          <div class="card__photo card__photo--pending">
+        <article class="pcard" style="--tone:#5B0F1F">
+          <div class="pcard__photo pcard__photo--pending">
             <svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg>
             <span>Foto próximamente</span>
           </div>
-          <div class="card__body">
+          <div class="pcard__body">
             <h3>Mini gelatinas en vasito</h3>
             <p>Porciones individuales para mesa de postres, recuerditos o fiestas infantiles.</p>
-            <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar mini gelatinas en vasito." href="#">Cotizar esta</a>
+            <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar mini gelatinas en vasito." href="#">Cotizar</a>
           </div>
         </article>
+        </div>
       </div>
     </section>
 
     <section class="steps" id="como-pedir" aria-labelledby="pedir-title">
       <div class="steps__bg" aria-hidden="true"></div>
       <div class="steps__inner">
-        <h2 id="pedir-title">Así de fácil se pide</h2>
+        <h2 id="pedir-title">Así de fácil <em>se pide</em></h2>
+        <div class="steps__line" aria-hidden="true"><span></span></div>
         <ol class="steps__list">
           <li class="step reveal">
-            <svg class="icon" aria-hidden="true"><use href="#i-chat-circle-dots"/></svg>
+            <span class="step__num" aria-hidden="true">1</span>
             <h3>Escríbenos</h3>
             <p>Cuéntanos la fecha, para cuántas personas y qué idea tienes.</p>
           </li>
           <li class="step reveal">
-            <svg class="icon" aria-hidden="true"><use href="#i-palette"/></svg>
+            <span class="step__num" aria-hidden="true">2</span>
             <h3>La diseñamos juntas</h3>
             <p>Elegimos sabores, colores, tamaño y si lleva nombre o decoración.</p>
           </li>
           <li class="step reveal">
-            <svg class="icon" aria-hidden="true"><use href="#i-confetti"/></svg>
+            <span class="step__num" aria-hidden="true">3</span>
             <h3>Lista para tu festejo</h3>
             <p>La preparamos fresca para el día que la necesitas.</p>
           </li>
         </ol>
-        <a class="btn btn--light" data-wa="Hola Las Chinas, quiero hacer un pedido." href="#">
+      </div>
+    </section>
+
+    <section class="cta" aria-labelledby="cta-title">
+      <h2 id="cta-title">¿Tienes un festejo <em>en puerta?</em></h2>
+      <p>Cuéntanos la fecha y tu idea. Te respondemos por WhatsApp.</p>
+      <div class="magnet">
+        <a class="btn btn--big btn--shine" data-wa="Hola Las Chinas, quiero hacer un pedido." href="#">
           <svg class="icon" aria-hidden="true"><use href="#i-whatsapp-logo"/></svg> Escribir por WhatsApp
         </a>
       </div>
@@ -194,7 +254,8 @@
   </main>
 
   <footer class="footer">
-    <img class="footer__logo" src="assets/logo-preliminar-480.webp" width="200" height="200" alt="Logo de Las Chinas" loading="lazy">
+    <img class="footer__logo" src="assets/logo-480.webp" width="180" height="180" alt="Logo de Las Chinas" loading="lazy">
+    <p class="footer__name">Las Chinas</p>
     <p>Gelatinas personalizadas hechas a mano por tres hermanas.</p>
     <p class="footer__small">© 2026 Las Chinas</p>
   </footer>
@@ -204,5 +265,6 @@
   </a>
 
   <script src="script.js"></script>
+  <script type="module" src="assets/js/gelatina3d.js"></script>
 </body>
 </html>
