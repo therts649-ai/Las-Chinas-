@@ -1,0 +1,14 @@
+{
+  "name": "las-chinas",
+  "private": true,
+  "description": "Sitio de Las Chinas, gelatinas artesanales",
+  "scripts": {
+    "texturas": "python3 3d/texturas.py",
+    "modelo": "python3 3d/modelo.py",
+    "build:3d": "esbuild 3d/escena.js --bundle --minify --format=esm --target=es2020 --outfile=assets/js/escena3d.js"
+  },
+  "devDependencies": {
+    "esbuild": "0.24.2",
+    "three": "0.186.1"
+  }
+}

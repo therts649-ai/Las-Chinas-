@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Las Chinas | Prueba de realismo 3D</title>
+  <meta name="robots" content="noindex">
+  <meta name="assets" content="../assets/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@1,700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    html, body { margin: 0; height: 100%; background: #f2c3c8; overflow: hidden; font-family: "Poppins", system-ui, sans-serif; color: #5A0F33; }
+    .escena { position: fixed; inset: 0; }
+    .escena canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+    .rotulo { position: fixed; left: 0; right: 0; top: calc(22px + env(safe-area-inset-top, 0px)); text-align: center; pointer-events: none; }
+    .rotulo h1 { margin: 0; font: italic 700 clamp(1.8rem, 5vw, 2.8rem)/1 "Lobster Two", cursive; color: #A3124D; }
+    .rotulo p { margin: 8px 0 0; font-size: .9rem; opacity: .8; }
+    .cargando { position: fixed; inset: 0; display: grid; place-items: center; font-size: .95rem; transition: opacity .6s ease; }
+    .is-ready .cargando { opacity: 0; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <div class="escena" aria-label="Gelatina de fresa con leche en 3D. Arrastra para girarla y tócala para que tiemble." role="img"></div>
+  <div class="rotulo">
+    <h1>Fresa con leche</h1>
+    <p>Arrastra para girarla · tócala para que tiemble</p>
+  </div>
+  <p class="cargando">Preparando la gelatina…</p>
+  <script type="module" src="../assets/js/escena3d.js"></script>
+</body>
+</html>
