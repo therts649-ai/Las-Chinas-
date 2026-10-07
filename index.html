@@ -68,8 +68,15 @@
 
   <!-- Presentación de entrada -->
   <div class="intro" aria-hidden="true">
-    <img class="intro__logo" src="assets/logo-480.webp" width="160" height="160" alt="">
-    <p class="intro__phrase"><span style="--i:0">Tres</span> <span style="--i:1">hermanas,</span> <span style="--i:2">un</span> <span style="--i:3">mismo</span> <span style="--i:4">sabor</span></p>
+    <div class="intro__stage">
+      <span class="intro__ring"></span><span class="intro__ring"></span>
+      <span class="intro__drop"></span>
+      <img class="intro__logo" src="assets/logo-480.webp" width="160" height="160" alt="">
+    </div>
+    <p class="intro__phrase"><span>Tres</span> <span>hermanas,</span> <span>un</span> <span>mismo</span> <span>sabor</span></p>
+    <svg class="intro__drips" viewBox="0 0 1200 140" preserveAspectRatio="none">
+      <path class="drip" d="M0 0 H1200 V40 C1150 40 1140 55 1130 40 C1100 0 1060 30 1000 30 C960 30 950 110 930 110 C910 110 905 30 860 30 C800 30 790 60 760 60 C730 60 720 30 660 30 C610 30 600 140 575 140 C550 140 545 30 500 30 C450 30 440 75 410 75 C380 75 370 30 320 30 C270 30 262 120 240 120 C218 120 212 30 170 30 C120 30 110 55 80 55 C50 55 40 30 0 30 Z"/>
+    </svg>
   </div>
 
   <a class="skip" href="#sabores">Saltar a los sabores</a>
@@ -124,6 +131,14 @@
       </div>
       <p class="hero__note" aria-hidden="true">Tres hermanas,<br>un mismo sabor <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></p>
       <a class="hero__down" href="#sabores" aria-label="Bajar a los sabores"><svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
+      <svg class="hero__drips" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0 H1200 V8 C1180 8 1172 26 1150 26 C1128 26 1122 8 1090 8 Z"/>
+        <path class="hd" d="M930 0 C960 0 968 10 968 40 C968 64 955 74 945 74 C935 74 922 64 922 40 C922 10 900 0 930 0 Z"/>
+        <path class="hd" d="M560 0 C590 0 596 12 596 52 C596 78 584 88 574 88 C564 88 552 78 552 52 C552 12 530 0 560 0 Z"/>
+        <path class="hd" d="M240 0 C268 0 274 10 274 34 C274 54 263 62 254 62 C245 62 234 54 234 34 C234 10 212 0 240 0 Z"/>
+        <path class="hd" d="M1080 0 C1100 0 1104 8 1104 24 C1104 38 1096 44 1090 44 C1084 44 1076 38 1076 24 C1076 8 1060 0 1080 0 Z"/>
+        <path class="hd" d="M400 0 C418 0 422 8 422 22 C422 34 415 40 409 40 C403 40 396 34 396 22 C396 8 382 0 400 0 Z"/>
+      </svg>
     </section>
 
     <section class="cats" aria-label="Categorías">
@@ -137,6 +152,35 @@
         <li><button class="cat" type="button" data-cat="eventos" aria-pressed="false"><span class="cat__icon"><svg class="icon" aria-hidden="true"><use href="#i-gift"/></svg></span><span>Eventos</span></button></li>
         <li><button class="cat" type="button" data-cat="personalizadas" aria-pressed="false"><span class="cat__icon"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></span><span>Personalizadas</span></button></li>
       </ul>
+    </section>
+
+    <section class="cine" id="capa-por-capa" aria-labelledby="cine-title">
+      <div class="cine__pin">
+        <canvas class="cine__canvas" aria-hidden="true"></canvas>
+        <video class="cine__video" muted playsinline loop preload="none" poster="assets/video/deconstruccion-poster.webp" width="880" height="630" aria-label="Video: una gelatina de fresa con leche se separa en capas, flota, se vuelve a armar y termina con una rebanada">
+          <source src="assets/video/deconstruccion.webm" type="video/webm">
+          <source src="assets/video/deconstruccion.mp4" type="video/mp4">
+        </video>
+        <h2 id="cine-title" class="cine__title script">Una gelatina, capa por capa</h2>
+        <ol class="cine__steps">
+          <li data-at="0">Completa y brillante</li>
+          <li data-at="0.12">Se abre con un toque de leche</li>
+          <li data-at="0.2">Las capas se separan</li>
+          <li data-at="0.3">Todo flota alrededor</li>
+          <li data-at="0.54">Se vuelve a unir, capa por capa</li>
+          <li data-at="0.7">Se reconstruye y brilla</li>
+          <li data-at="0.86">Una rebanada por dentro</li>
+        </ol>
+        <div class="cine__progress" aria-hidden="true"><span></span></div>
+        <p class="cine__hint" aria-hidden="true">Sigue bajando <svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg></p>
+      </div>
+    </section>
+
+    <section class="marquee" aria-label="Festejos para los que preparamos gelatinas">
+      <div class="marquee__track">
+        <ul class="marquee__list"><li>Cumpleaños</li><li class="sep" aria-hidden="true"></li><li>Baby showers</li><li class="sep" aria-hidden="true"></li><li>Bautizos</li><li class="sep" aria-hidden="true"></li><li>XV años</li><li class="sep" aria-hidden="true"></li><li>Bodas</li><li class="sep" aria-hidden="true"></li><li>Reuniones</li><li class="sep" aria-hidden="true"></li><li>Mesas de postres</li><li class="sep" aria-hidden="true"></li></ul>
+        <ul class="marquee__list" aria-hidden="true"><li>Cumpleaños</li><li class="sep" aria-hidden="true"></li><li>Baby showers</li><li class="sep" aria-hidden="true"></li><li>Bautizos</li><li class="sep" aria-hidden="true"></li><li>XV años</li><li class="sep" aria-hidden="true"></li><li>Bodas</li><li class="sep" aria-hidden="true"></li><li>Reuniones</li><li class="sep" aria-hidden="true"></li><li>Mesas de postres</li><li class="sep" aria-hidden="true"></li></ul>
+      </div>
     </section>
 
     <section class="flavors" id="sabores" aria-labelledby="sabores-title">
@@ -222,30 +266,6 @@
         <p class="special__lead">Hacemos tus ideas realidad <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></p>
         <p>Cumpleaños, eventos, detalles o lo que imagines. Personalizamos sabores, colores y presentaciones.</p>
         <a class="btn btn--light" data-wa="Hola Las Chinas, quiero cotizar un pedido especial." href="#">Solicitar pedido <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-      </div>
-    </section>
-
-    <section class="deco" aria-labelledby="deco-title" hidden>
-      <div class="deco__inner">
-        <div class="deco__stage">
-          <video class="deco__video" muted playsinline loop preload="metadata" poster="assets/video/deconstruccion-poster.webp" width="880" height="630" aria-label="Video: una gelatina de fresa con leche se separa en capas con un remolino de leche, flota, se vuelve a armar y termina con una rebanada">
-            <source src="assets/video/deconstruccion.webm" type="video/webm">
-            <source src="assets/video/deconstruccion.mp4" type="video/mp4">
-          </video>
-          <div class="deco__progress" aria-hidden="true"><span></span></div>
-        </div>
-        <div class="deco__text">
-          <h2 id="deco-title" class="script">Una gelatina, capa por capa</h2>
-          <ol class="deco__steps">
-            <li class="deco__step" data-t="0"><span class="deco__num">1</span><h3>Completa y brillante</h3></li>
-            <li class="deco__step" data-t="1.0"><span class="deco__num">2</span><h3>Se abre con un toque de leche</h3></li>
-            <li class="deco__step" data-t="1.6"><span class="deco__num">3</span><h3>Las capas se separan</h3></li>
-            <li class="deco__step" data-t="2.6"><span class="deco__num">4</span><h3>Todo flota alrededor</h3></li>
-            <li class="deco__step" data-t="5.2"><span class="deco__num">5</span><h3>Se vuelve a unir, capa por capa</h3></li>
-            <li class="deco__step" data-t="6.8"><span class="deco__num">6</span><h3>Se reconstruye y brilla</h3></li>
-            <li class="deco__step" data-t="8.4"><span class="deco__num">7</span><h3>Una rebanada por dentro</h3></li>
-          </ol>
-        </div>
       </div>
     </section>
 

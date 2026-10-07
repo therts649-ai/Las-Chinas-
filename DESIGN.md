@@ -19,13 +19,14 @@ Rosa glamoroso, tal como el diseño de referencia del cliente: hero frambuesa os
 - **Texto:** Poppins.
 
 ## Movimiento y 3D (GSAP + WebGL)
-- **Presentación de entrada** (una vez por visita, se salta con clic): logo y la frase "Tres hermanas, un mismo sabor" palabra por palabra; luego se abre en círculo.
-- **Hero:** entrada coreografiada con GSAP; capas con profundidad que siguen al mouse; corazones y luces que flotan; al bajar, la foto se aleja y el texto sube.
-- **Gelatina 3D realista** (`assets/js/jelly.js`): la foto real de cada sabor se deforma como gelatina al pasar el mouse o tocarla, con brillo húmedo que sigue al cursor. Tiembla una vez al aparecer. Sin WebGL usa un temblor CSS.
-- **Tarjetas** con inclinación 3D; títulos script que se escriben al aparecer; banners con paralaje.
-- **Carrito:** la foto vuela al carrito al agregar; el contador rebota.
-- **Video** de la deconstrucción con etapas sincronizadas.
-- **Reducir movimiento:** sin presentación, sin GSAP ni efecto gelatina; todo aparece quieto.
+- **Entrada** (una vez por visita, un toque la adelanta): cae una gota de gelatina, rebota aplastándose con ondas, se transforma en el logo, se escribe "Tres hermanas, un mismo sabor" y la cortina sube escurriendo con gotas que se estiran.
+- **Hero:** las letras de "Gelatinas artesanales" caen y rebotan una por una; la foto de las hermanas tiembla como gelatina al terminar y al tocarla; tocar el hero lanza corazones; capas con profundidad que siguen al mouse; el borde inferior escurre con gotas que se estiran.
+- **Gelatina capa por capa:** la sección se queda fija y el video real avanza y retrocede con el scroll (120 cuadros en `assets/video/cuadros/`), con la frase de cada etapa. En celular la gelatina va grande al centro.
+- **Franja de festejos** que corre sola y se acelera con la velocidad del scroll.
+- **Sabores:** la foto real tiembla como gelatina al pasar el mouse o tocarla (`assets/js/jelly.js`); tarjetas con inclinación 3D.
+- **Carrito:** la foto vuela al carrito, salen corazones del botón y el contador rebota.
+- Títulos script que se escriben al aparecer; banners con paralaje.
+- **Reducir movimiento:** sin entrada ni animaciones; la escena del scroll se cambia por el video con controles.
 
 ## Pedidos
 Carrito guardado en el navegador; "Enviar pedido por WhatsApp" arma el mensaje con productos, cantidades y total.
