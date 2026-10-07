@@ -113,12 +113,12 @@
       </div>
     </section>
 
-    <!-- Deconstrucción en video. La sección se muestra sola cuando existe
-         assets/video/deconstruccion.mp4 (y opcionalmente .webm). -->
+    <!-- Deconstrucción en video (assets/video/). Cada etapa marca en data-t
+         el segundo del video en que empieza. -->
     <section class="deco" aria-labelledby="deco-title" hidden>
       <div class="deco__inner">
         <div class="deco__stage">
-          <video class="deco__video" muted playsinline loop preload="metadata" poster="assets/gelatina-fresa-leche-800.webp" aria-label="Video: una gelatina de fresa con leche se separa en capas, flota, se vuelve a armar y termina con una rebanada">
+          <video class="deco__video" muted playsinline loop preload="metadata" poster="assets/video/deconstruccion-poster.webp" width="880" height="630" aria-label="Video: una gelatina de fresa con leche se separa en capas con un remolino de leche, flota, se vuelve a armar y termina con una rebanada">
             <source src="assets/video/deconstruccion.webm" type="video/webm">
             <source src="assets/video/deconstruccion.mp4" type="video/mp4">
           </video>
@@ -127,14 +127,13 @@
         <div class="deco__text">
           <h2 id="deco-title">Una gelatina, <em>capa por capa</em></h2>
           <ol class="deco__steps">
-            <li class="deco__step"><span class="deco__num" aria-hidden="true">1</span><h3>Completa y brillante</h3></li>
-            <li class="deco__step"><span class="deco__num" aria-hidden="true">2</span><h3>Se eleva y se segmenta</h3></li>
-            <li class="deco__step"><span class="deco__num" aria-hidden="true">3</span><h3>Las capas se separan</h3></li>
-            <li class="deco__step"><span class="deco__num" aria-hidden="true">4</span><h3>Todo flota alrededor</h3></li>
-            <li class="deco__step"><span class="deco__num" aria-hidden="true">5</span><h3>Se vuelve a unir</h3></li>
-            <li class="deco__step"><span class="deco__num" aria-hidden="true">6</span><h3>Se reconstruye</h3></li>
-            <li class="deco__step"><span class="deco__num" aria-hidden="true">7</span><h3>Lista para tu festejo</h3></li>
-            <li class="deco__step"><span class="deco__num" aria-hidden="true">8</span><h3>Una rebanada por dentro</h3></li>
+            <li class="deco__step" data-t="0"><span class="deco__num" aria-hidden="true">1</span><h3>Completa y brillante</h3></li>
+            <li class="deco__step" data-t="1.0"><span class="deco__num" aria-hidden="true">2</span><h3>Se abre con un toque de leche</h3></li>
+            <li class="deco__step" data-t="1.6"><span class="deco__num" aria-hidden="true">3</span><h3>Las capas se separan</h3></li>
+            <li class="deco__step" data-t="2.6"><span class="deco__num" aria-hidden="true">4</span><h3>Todo flota alrededor</h3></li>
+            <li class="deco__step" data-t="5.2"><span class="deco__num" aria-hidden="true">5</span><h3>Se vuelve a unir, capa por capa</h3></li>
+            <li class="deco__step" data-t="6.8"><span class="deco__num" aria-hidden="true">6</span><h3>Se reconstruye y brilla</h3></li>
+            <li class="deco__step" data-t="8.4"><span class="deco__num" aria-hidden="true">7</span><h3>Una rebanada por dentro</h3></li>
           </ol>
         </div>
       </div>

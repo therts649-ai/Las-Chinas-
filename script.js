@@ -105,8 +105,11 @@ if (deco && decoVideo) {
 
   const sync = () => {
     const d = decoVideo.duration || 1;
-    const f = Math.min(decoVideo.currentTime / d, 0.9999);
-    const idx = Math.floor(f * decoSteps.length);
+    const t = decoVideo.currentTime;
+    const f = Math.min(t / d, 1);
+    // La etapa activa es la última cuyo segundo de inicio (data-t) ya pasó.
+    let idx = 0;
+    decoSteps.forEach((el, i) => { if (t >= parseFloat(el.dataset.t || 0)) idx = i; });
     decoSteps.forEach((el, i) => el.classList.toggle('is-active', i === idx));
     if (decoBar) decoBar.style.transform = `scaleX(${f.toFixed(4)})`;
     if (!decoVideo.paused) requestAnimationFrame(sync);

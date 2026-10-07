@@ -20,7 +20,6 @@ Personas que están organizando un festejo y buscan un postre bonito y hecho a m
 - Cada tipo de gelatina abre WhatsApp con un mensaje ya escrito para ese tipo.
 
 ## Pendientes
-- [ ] Video de la deconstrucción: `assets/video/deconstruccion.mp4` (y `.webm`). La sección aparece sola cuando el archivo existe.
 - [ ] Número de WhatsApp real.
 - [ ] Fotos de cada gelatina del catálogo (hay una de fresa con leche; faltan cumpleaños, mosaico y vasitos) con el mismo estilo.
 - [ ] Fotos y nombres de las tres hermanas.

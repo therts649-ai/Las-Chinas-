@@ -471,7 +471,7 @@ main { display: block; }
   margin: 0 auto;
   padding: clamp(72px, 10vw, 128px) var(--gutter);
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: clamp(28px, 5vw, 72px);
   align-items: center;
 }
@@ -479,9 +479,10 @@ main { display: block; }
 .deco__video {
   width: 100%;
   max-width: 100%;
-  aspect-ratio: 4 / 5;
+  height: auto;
+  aspect-ratio: 88 / 63;
   object-fit: cover;
-  border-radius: 999px 999px 28px 28px;
+  border-radius: 50% 50% 28px 28px / 30% 30% 28px 28px;
   background: var(--marfil-2);
   box-shadow: inset 0 0 0 1px rgba(176, 141, 87, .45), var(--shadow);
 }
@@ -506,7 +507,7 @@ main { display: block; }
 
 @media (max-width: 860px) {
   .deco__inner { grid-template-columns: 1fr; padding-inline: 0; gap: 20px; }
-  .deco__video { border-radius: 0; box-shadow: none; aspect-ratio: 4 / 5; }
+  .deco__video { border-radius: 0; box-shadow: none; }
   .deco__progress { margin-inline: var(--gutter); }
   .deco__text { padding-inline: var(--gutter); }
   /* En el celular solo se ve la etapa que está pasando */
