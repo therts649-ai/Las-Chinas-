@@ -20,7 +20,7 @@ Personas que están organizando un festejo y buscan un postre bonito y hecho a m
 - Cada tipo de gelatina abre WhatsApp con un mensaje ya escrito para ese tipo.
 
 ## Pendientes
-- [ ] Logo (por ahora hay un logotipo improvisado con texto).
+- [ ] Logo definitivo (hay uno preliminar en `assets/`).
 - [ ] Número de WhatsApp real.
 - [ ] Fotos reales de las gelatinas (por ahora son ilustraciones).
 - [ ] Fotos y nombres de las tres hermanas.

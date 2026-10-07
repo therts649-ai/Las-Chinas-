@@ -11,12 +11,15 @@
   --uva: #8E5BD9;
   --limon: #B9D95B;
   --menta: #6FD0B8;
-  --whatsapp: #1FAF55;
+  --whatsapp: #15803D;
 
   --font-display: "Gluten", "Figtree", system-ui, sans-serif;
   --font-body: "Figtree", system-ui, sans-serif;
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  /* Resortes (amortiguamiento 0.42 y 0.7) convertidos a curvas linear() */
+  --spring-bouncy: linear(0, 0.035, 0.126, 0.257, 0.411, 0.572, 0.729, 0.871, 0.993, 1.090, 1.161, 1.207, 1.230, 1.233, 1.219, 1.194, 1.161, 1.124, 1.087, 1.051, 1.019, 0.993, 0.972, 0.958, 0.949, 0.946, 0.946, 0.951, 0.957, 0.965, 0.974, 0.983, 0.991, 0.998, 1.004, 1.008, 1.011, 1.012, 1.013, 1.012, 1);
+  --spring-soft: linear(0, 0.033, 0.115, 0.226, 0.350, 0.474, 0.591, 0.697, 0.787, 0.862, 0.922, 0.967, 1.000, 1.023, 1.036, 1.044, 1.046, 1.045, 1.041, 1.036, 1.030, 1.025, 1.019, 1.014, 1);
   --radius: 28px;
   --shadow: 0 18px 40px -18px rgba(150, 50, 80, .35), 0 4px 12px -4px rgba(150, 50, 80, .12);
   --gutter: clamp(16px, 4vw, 48px);
@@ -25,6 +28,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
+  overflow-x: clip;
   scroll-behavior: smooth;
   background: var(--rosa);
 }
@@ -36,7 +40,7 @@ body {
   line-height: 1.6;
   color: var(--chocolate);
   background: transparent;
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -165,7 +169,7 @@ p { margin: 0; text-wrap: pretty; }
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 8px 8px 8px 18px;
+  padding: 8px;
   border-radius: 999px;
   background: rgba(255, 248, 243, .78);
   backdrop-filter: blur(14px) saturate(1.4);
@@ -179,6 +183,23 @@ p { margin: 0; text-wrap: pretty; }
   gap: 10px;
   color: var(--chocolate);
   text-decoration: none;
+}
+.logo__img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px -4px rgba(150, 50, 80, .45);
+  transition: rotate 600ms var(--spring-bouncy);
+}
+@media (hover: hover) and (pointer: fine) {
+  .logo:hover .logo__img { rotate: -12deg; }
+}
+.footer__logo {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 8px;
+  border-radius: 50%;
+  box-shadow: 0 18px 32px -14px rgba(0, 0, 0, .35);
 }
 .logo__mark {
   display: inline-flex;
@@ -242,6 +263,7 @@ main { display: block; }
 }
 
 .hero__art {
+  position: relative;
   margin: 0;
   display: grid;
   justify-items: center;
@@ -253,10 +275,15 @@ main { display: block; }
   cursor: pointer;
   width: min(460px, 100%);
   border-radius: 40px;
-  animation: drop 700ms var(--ease-out) both;
+  position: relative;
+  z-index: 1;
+}
+.mold { opacity: 0; }
+.hero__lean {
+  display: block;
+  transform-origin: 50% 92%;
 }
 .hero__jelly:focus-visible { outline: 3px solid var(--fresa); outline-offset: 6px; }
-.hero__jelly .jelly { animation: jiggle 1100ms 380ms ease-out both; }
 
 .hero__art figcaption {
   font-weight: 500;
@@ -265,10 +292,6 @@ main { display: block; }
 }
 .hint { color: var(--fresa); font-weight: 700; }
 
-@keyframes drop {
-  from { opacity: 0; transform: translateY(-48px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
 
 /* Gelatina: se aplasta desde la base y rebota hasta quedarse quieta */
 .jelly {
@@ -320,7 +343,8 @@ main { display: block; }
   padding: 12px 12px 16px;
   border-radius: 10px;
   box-shadow: var(--shadow);
-  transform: rotate(var(--tilt));
+  rotate: var(--tilt);
+  transition: rotate 500ms var(--spring-soft), scale 500ms var(--spring-soft);
 }
 .polaroid:nth-child(2) { margin-top: 40px; }
 .polaroid__photo {
@@ -330,10 +354,10 @@ main { display: block; }
   place-content: center;
   justify-items: center;
   gap: 6px;
-  color: #fff;
+  color: var(--chocolate);
   font-size: .85rem;
   font-weight: 600;
-  background: linear-gradient(160deg, color-mix(in srgb, var(--tone) 70%, #fff), var(--tone));
+  background: linear-gradient(160deg, color-mix(in srgb, var(--tone) 35%, #fff), color-mix(in srgb, var(--tone) 60%, #fff));
 }
 .polaroid__photo .icon { font-size: 2rem; opacity: .9; }
 .polaroid__photo span { padding: 0 6px; text-align: center; line-height: 1.2; }
@@ -415,14 +439,12 @@ main { display: block; }
   to   { transform: scale(.9, 1.08) rotate(3deg); }
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .card:hover .jelly { animation: jiggle-soft 520ms ease-out; }
-}
 
 /* ---------- Cómo pedir ---------- */
 
 .steps {
   position: relative;
+  overflow-x: clip;
   background: var(--fresa);
   color: #fff;
   padding: clamp(80px, 12vw, 140px) var(--gutter) clamp(72px, 10vw, 120px);
@@ -455,6 +477,7 @@ main { display: block; }
 .step:nth-child(2) { margin-top: 32px; }
 .step:nth-child(3) { margin-top: 64px; }
 .step .icon {
+  display: block;
   width: 64px;
   height: 64px;
   padding: 16px;
@@ -500,27 +523,18 @@ main { display: block; }
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(31, 175, 85, .55);
-  animation: ping 2.4s 1.5s var(--ease-out) 3;
+  border: 2px solid var(--whatsapp);
+  opacity: 0;
+  pointer-events: none;
 }
 .fab:active { transform: scale(0.94); }
 @media (hover: hover) and (pointer: fine) {
   .fab:hover { transform: scale(1.06); }
 }
 @keyframes ping {
-  from { box-shadow: 0 0 0 0 rgba(31, 175, 85, .55); }
-  to   { box-shadow: 0 0 0 18px rgba(31, 175, 85, 0); }
+  from { opacity: .7; transform: scale(1); }
+  to   { opacity: 0; transform: scale(1.6); }
 }
-
-/* ---------- Aparición al hacer scroll (solo con JS) ---------- */
-
-.js .reveal {
-  opacity: 0;
-  translate: 0 24px;
-  transition: opacity 600ms var(--ease-out), translate 700ms var(--ease-out);
-  transition-delay: calc(var(--i, 0) * 80ms);
-}
-.js .reveal.is-in { opacity: 1; translate: 0 0; }
 
 /* ---------- Celular ---------- */
 
@@ -546,15 +560,224 @@ main { display: block; }
   .step:nth-child(n) { margin-top: 0; }
 }
 
-/* ---------- Movimiento reducido: sin temblores ni desplazamientos ---------- */
+/* ---------- Franja de festejos ---------- */
 
+.marquee {
+  position: relative;
+  z-index: 2;
+  margin: 8px -4vw 0;
+  padding: 18px 0;
+  background: var(--crema);
+  rotate: -2deg;
+  overflow: hidden;
+  box-shadow: 0 14px 30px -18px rgba(150, 50, 80, .4);
+}
+.marquee__track { display: flex; width: max-content; }
+.marquee__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding-right: 28px;
+}
+.marquee__list li {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  line-height: 1;
+  padding-top: 6px;
+  white-space: nowrap;
+}
+.marquee__list .sep { padding-top: 0; }
+.marquee__list .logo__mark { width: 22px; height: 22px; border-radius: 8px 8px 5px 5px; display: flex; }
+
+/* ---------- Cubitos flotantes del inicio ---------- */
+
+.cubes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.cube {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--s);
+  height: var(--s);
+  translate: calc(var(--px, 0) * var(--depth) * 1px) calc(var(--py, 0) * var(--depth) * 1px);
+}
+.cube::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 28%;
+  background:
+    linear-gradient(140deg, rgba(255, 255, 255, .55) 0 18%, transparent 40%),
+    var(--c);
+  box-shadow: 0 10px 18px -8px color-mix(in srgb, var(--c) 70%, #000 10%);
+  rotate: var(--r);
+}
+
+/* =========================================================
+   Coreografía. Todo vive dentro de no-preference: con
+   "reducir movimiento" la página aparece completa y quieta.
+   ========================================================= */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  /* Entrada de la barra */
+  .nav { animation: nav-in 700ms 80ms var(--ease-out) both; }
+  @keyframes nav-in {
+    from { opacity: 0; translate: 0 -24px; }
+  }
+
+  /* Título: cada palabra rebota como gelatina */
+  .hero__title .w {
+    display: inline-block;
+    transform-origin: 50% 100%;
+    animation: word-pop 900ms calc(220ms + var(--i) * 70ms) var(--spring-bouncy) both;
+  }
+  @keyframes word-pop {
+    from { opacity: 0; transform: translateY(.45em) scale(.7, 1.25); }
+    30%  { opacity: 1; }
+    to   { transform: none; }
+  }
+  .lead,
+  .hero__actions,
+  .hero__art figcaption { animation: rise 800ms var(--ease-out) both; }
+  .lead { animation-delay: 760ms; }
+  .hero__actions { animation-delay: 860ms; }
+  .hero__art figcaption { animation-delay: 2200ms; }
+  @keyframes rise {
+    from { opacity: 0; translate: 0 18px; }
+  }
+
+  /* Gelatina del inicio: se llena capa por capa y se desmolda */
+  .plate { animation: fade 500ms 60ms var(--ease-out) both; }
+  .mold { animation: mold-out 400ms 1650ms var(--ease-out) both; }
+  .fill { animation: pour 760ms var(--ease-out) both; }
+  .fill--fresa { --from: 66px;  animation-delay: 250ms; }
+  .fill--mango { --from: 110px; animation-delay: 700ms; }
+  .fill--uva   { --from: 170px; animation-delay: 1150ms; }
+  .wave { animation: slosh 900ms linear 3 both; }
+  .fill--fresa .wave { animation-delay: 250ms; }
+  .fill--mango .wave { animation-delay: 700ms; }
+  .fill--uva .wave   { animation-delay: 1150ms; }
+  .finish { animation: fade 450ms 1750ms var(--ease-out) both; }
+  .hero__jelly .jelly { animation: unmold 1300ms 1800ms ease-out both; }
+
+  @keyframes fade { from { opacity: 0; } }
+  @keyframes mold-out { from { opacity: 1; } to { opacity: 0; } }
+  @keyframes pour {
+    from { transform: translateY(var(--from)); }
+    to   { transform: translateY(0); }
+  }
+  @keyframes slosh {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-55px); }
+  }
+  @keyframes unmold {
+    0%   { transform: translateY(0) scale(1, 1); }
+    16%  { transform: translateY(-16px) scale(.94, 1.07); }
+    30%  { transform: translateY(0) scale(1.15, .84); }
+    44%  { transform: scale(.91, 1.09); }
+    58%  { transform: scale(1.06, .95); }
+    72%  { transform: scale(.97, 1.03); }
+    86%  { transform: scale(1.015, .99); }
+    100% { transform: none; }
+  }
+
+  /* Cubitos: aparecen al terminar la gelatina y flotan */
+  .cube { animation: cube-in 900ms calc(1900ms + var(--i) * 90ms) var(--spring-bouncy) both; }
+  .cube::before { animation: float 5s calc(var(--i) * -1.1s) ease-in-out infinite alternate; }
+  @keyframes cube-in {
+    from { opacity: 0; scale: .3; }
+  }
+  @keyframes float {
+    from { transform: translateY(-9px) rotate(-8deg); }
+    to   { transform: translateY(9px) rotate(10deg); }
+  }
+  .hero.is-offscreen .cube::before,
+  .hero.is-offscreen .flame { animation-play-state: paused; }
+
+  /* Botón principal: se aplasta como gelatina al pasar el mouse */
+  @media (hover: hover) and (pointer: fine) {
+    .btn--jelly:hover { animation: squish 600ms ease-out; }
+  }
+  @keyframes squish {
+    0%   { transform: scale(1, 1); }
+    25%  { transform: scale(1.08, .9); }
+    50%  { transform: scale(.96, 1.05); }
+    75%  { transform: scale(1.02, .98); }
+    100% { transform: scale(1, 1); }
+  }
+
+  /* Franja de festejos corriendo de lado */
+  .marquee__track { animation: marquee 30s linear infinite; }
+  .marquee.is-offscreen .marquee__track,
+  .marquee:hover .marquee__track { animation-play-state: paused; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* Aparición con scroll: solo cuando JS está activo */
+  .js .reveal {
+    transition:
+      opacity 500ms var(--ease-out),
+      translate 900ms var(--spring-soft),
+      rotate 900ms var(--spring-bouncy),
+      scale 900ms var(--spring-soft);
+    transition-delay: calc(var(--i, 0) * 90ms);
+  }
+  .js .reveal:not(.is-in) { opacity: 0; translate: 0 36px; }
+
+  /* Polaroids: caen girando y se quedan "pegadas" */
+  .js .polaroid.reveal:not(.is-in) { translate: 0 -60px; rotate: calc(var(--tilt) * -5); scale: .9; }
+  @media (hover: hover) and (pointer: fine) {
+    .polaroid.is-in:hover { rotate: 0deg; scale: 1.05; transition-delay: 0ms; }
+  }
+
+  /* Tarjetas: la gelatina aterriza en su plato al aparecer */
+  .js .card.reveal .jelly { opacity: 0; }
+  .card.is-in:not(.landed) .jelly { animation: land 1100ms calc(var(--i, 0) * 90ms + 200ms) ease-out both; }
+  @keyframes land {
+    0%   { opacity: 0; transform: translateY(-40px) scale(.95, 1.08); }
+    25%  { opacity: 1; transform: translateY(0) scale(1.12, .86); }
+    45%  { transform: scale(.94, 1.06); }
+    65%  { transform: scale(1.04, .97); }
+    82%  { transform: scale(.99, 1.01); }
+    100% { opacity: 1; transform: none; }
+  }
+  .js .card.landed .jelly { opacity: 1; }
+  @media (hover: hover) and (pointer: fine) {
+    .card.landed:hover .jelly { animation: jiggle-soft 600ms ease-out; }
+  }
+
+  /* Pasos: el ícono brinca al entrar */
+  .js .step.reveal .icon { scale: .4; opacity: 0; transition: scale 800ms var(--spring-bouncy), opacity 300ms ease; transition-delay: calc(var(--i, 0) * 140ms + 150ms); }
+  .js .step.reveal.is-in .icon { scale: 1; opacity: 1; }
+
+  /* Borde derretido que fluye */
+  .steps::before {
+    right: -360px;
+    animation: drip 14s linear infinite;
+  }
+  @keyframes drip { to { transform: translateX(-360px); } }
+
+  /* WhatsApp: entra al final del inicio y late tres veces */
+  .fab { animation: fab-in 700ms 2300ms var(--spring-bouncy) both; }
+  .fab::after { animation: ping 1.8s 3100ms var(--ease-out) 3; }
+  @keyframes fab-in {
+    from { opacity: 0; scale: .4; }
+  }
+}
+
+/* Movimiento reducido: solo cambios de opacidad suaves */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  body::before,
-  .hero__jelly,
-  .hero__jelly .jelly,
-  .flame,
-  .fab::after { animation: none; }
-  .card:hover .jelly { animation: none; }
-  .js .reveal { translate: none; transition: opacity 300ms ease; }
+  .js .reveal { transition: opacity 400ms ease; }
+  .js .reveal:not(.is-in) { opacity: 0; }
+  .marquee__track { flex-wrap: wrap; width: auto; justify-content: center; }
+  .marquee__list[aria-hidden="true"] { display: none; }
+  .marquee__list { flex-wrap: wrap; justify-content: center; }
 }
