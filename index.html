@@ -170,19 +170,39 @@
 
 
     <section class="flavors" id="sabores" aria-labelledby="sabores-title">
+      <span class="flavors__fondo" aria-hidden="true"></span>
       <div class="section-head">
         <h2 id="sabores-title" class="script">Nuestros sabores <svg class="icon heading-heart" aria-hidden="true"><use href="#i-heart-fill"/></svg></h2>
         <p>Gelatinas artesanales con ingredientes de calidad.</p>
-        <div class="carousel-nav">
-          <button class="round js-prev" type="button" aria-label="Sabores anteriores"><svg class="icon" aria-hidden="true"><use href="#i-prev"/></svg></button>
-          <button class="round js-next" type="button" aria-label="Más sabores"><svg class="icon" aria-hidden="true"><use href="#i-next"/></svg></button>
+      </div>
+      <div class="vitrina">
+        <span class="vitrina__eco js-v-eco" aria-hidden="true">Fresa con crema</span>
+        <div class="vitrina__foto">
+          <span class="vitrina__linea" aria-hidden="true"></span>
+          <div class="vitrina__arco js-v-arco">
+            <img class="js-v-img" src="assets/sabores/fresa-crema-1200.webp" width="1200" height="800" alt="Gelatina de fresa con crema" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="vitrina__texto" aria-live="polite">
+          <p class="vitrina__num"><span class="js-v-num">01</span><span aria-hidden="true"> / </span><span class="js-v-total">08</span></p>
+          <h3 class="vitrina__nombre"><span class="js-v-name">Fresa con crema</span></h3>
+          <p class="vitrina__desc js-v-desc">Gelatina cremosa con fresas naturales, el equilibrio perfecto entre frescura y dulzura.</p>
+          <p class="vitrina__precio js-v-price">$45</p>
+          <div class="vitrina__acciones">
+            <button class="btn btn--glow js-v-add" type="button">Agregar al pedido</button>
+            <button class="btn btn--line js-v-detail" type="button">Ver detalle</button>
+          </div>
+          <div class="vitrina__nav">
+            <button class="round js-v-prev" type="button" aria-label="Sabor anterior"><svg class="icon" aria-hidden="true"><use href="#i-prev"/></svg></button>
+            <button class="round js-v-next" type="button" aria-label="Siguiente sabor"><svg class="icon" aria-hidden="true"><use href="#i-next"/></svg></button>
+          </div>
         </div>
       </div>
       <div class="flavors__track" tabindex="0" aria-label="Sabores disponibles">
-          <article class="flavor" data-id="fresa-crema" data-name="Fresa con crema" data-price="45" data-cats="frutales cremosas" data-img="assets/gelatina-fresa-leche-800.webp" data-desc="Gelatina cremosa con fresas naturales, el equilibrio perfecto entre frescura y dulzura.">
+          <article class="flavor" data-id="fresa-crema" data-tinte="#F9D3D6" data-acento="#A8102C" data-encuadre="55% 50%" data-name="Fresa con crema" data-price="45" data-cats="frutales cremosas" data-img="assets/sabores/fresa-crema-1200.webp" data-desc="Gelatina cremosa con fresas naturales, el equilibrio perfecto entre frescura y dulzura.">
             <button class="flavor__fav" type="button" aria-label="Guardar Fresa con crema en favoritos" aria-pressed="false"><svg class="icon icon--off" aria-hidden="true"><use href="#i-heart"/></svg><svg class="icon icon--on" aria-hidden="true"><use href="#i-heart-fill"/></svg></button>
-            <button class="flavor__media" type="button" aria-label="Ver detalles de Fresa con crema">
-              <img src="assets/gelatina-fresa-leche-800.webp" width="800" height="533" loading="lazy" alt="Gelatina de fresa con crema" style="object-position:55% 60%">
+            <button class="flavor__media" type="button" aria-label="Mostrar Fresa con crema en la vitrina">
+              <img src="assets/sabores/fresa-crema-760.webp" srcset="assets/sabores/fresa-crema-760.webp 760w, assets/sabores/fresa-crema-1200.webp 1200w" sizes="(max-width: 700px) 78vw, 380px" width="380" height="240" loading="lazy" alt="Gelatina de fresa con crema" style="object-position:55% 60%">
             </button>
             <div class="flavor__body">
               <h3>Fresa con crema</h3>
@@ -193,9 +213,9 @@
               </div>
             </div>
           </article>
-          <article class="flavor" data-id="uva" data-name="Uva" data-price="45" data-cats="frutales" data-img="assets/sabores/uva-1200.webp" data-desc="Gelatina de uva brillante con uvas verdes y moradas por dentro, sobre una capa de leche cremosa.">
+          <article class="flavor" data-id="uva" data-tinte="#EADCF0" data-acento="#5E1B63" data-encuadre="50% 50%" data-name="Uva" data-price="45" data-cats="frutales" data-img="assets/sabores/uva-1200.webp" data-desc="Gelatina de uva brillante con uvas verdes y moradas por dentro, sobre una capa de leche cremosa.">
             <button class="flavor__fav" type="button" aria-label="Guardar Uva en favoritos" aria-pressed="false"><svg class="icon icon--off" aria-hidden="true"><use href="#i-heart"/></svg><svg class="icon icon--on" aria-hidden="true"><use href="#i-heart-fill"/></svg></button>
-            <button class="flavor__media" type="button" aria-label="Ver detalles de Uva">
+            <button class="flavor__media" type="button" aria-label="Mostrar Uva en la vitrina">
               <img src="assets/sabores/uva-760.webp" srcset="assets/sabores/uva-760.webp 760w, assets/sabores/uva-1200.webp 1200w" sizes="(max-width: 700px) 78vw, 380px" width="380" height="240" loading="lazy" alt="Gelatina de uva" style="object-position:50% 50%">
             </button>
             <div class="flavor__body">
@@ -207,9 +227,9 @@
               </div>
             </div>
           </article>
-          <article class="flavor" data-id="mango" data-name="Mango" data-price="45" data-cats="frutales" data-img="assets/sabores/mango-1200.webp" data-desc="Gelatina de mango con cubos de fruta natural, sobre una capa de leche cremosa. Dulce y tropical.">
+          <article class="flavor" data-id="mango" data-tinte="#FFE7C2" data-acento="#B85A00" data-encuadre="55% 50%" data-name="Mango" data-price="45" data-cats="frutales" data-img="assets/sabores/mango-1200.webp" data-desc="Gelatina de mango con cubos de fruta natural, sobre una capa de leche cremosa. Dulce y tropical.">
             <button class="flavor__fav" type="button" aria-label="Guardar Mango en favoritos" aria-pressed="false"><svg class="icon icon--off" aria-hidden="true"><use href="#i-heart"/></svg><svg class="icon icon--on" aria-hidden="true"><use href="#i-heart-fill"/></svg></button>
-            <button class="flavor__media" type="button" aria-label="Ver detalles de Mango">
+            <button class="flavor__media" type="button" aria-label="Mostrar Mango en la vitrina">
               <img src="assets/sabores/mango-760.webp" srcset="assets/sabores/mango-760.webp 760w, assets/sabores/mango-1200.webp 1200w" sizes="(max-width: 700px) 78vw, 380px" width="380" height="240" loading="lazy" alt="Gelatina de mango" style="object-position:50% 50%">
             </button>
             <div class="flavor__body">
@@ -221,9 +241,9 @@
               </div>
             </div>
           </article>
-          <article class="flavor" data-id="fresa-natural" data-name="Fresa natural" data-price="45" data-cats="frutales cremosas" data-img="assets/sabores/fresa-natural-1200.webp" data-desc="Gelatina de leche rosada con trozos reales de fresa y una fresa entera encima.">
+          <article class="flavor" data-id="fresa-natural" data-tinte="#FBDCE3" data-acento="#BF2A5B" data-encuadre="50% 50%" data-name="Fresa natural" data-price="45" data-cats="frutales cremosas" data-img="assets/sabores/fresa-natural-1200.webp" data-desc="Gelatina de leche rosada con trozos reales de fresa y una fresa entera encima.">
             <button class="flavor__fav" type="button" aria-label="Guardar Fresa natural en favoritos" aria-pressed="false"><svg class="icon icon--off" aria-hidden="true"><use href="#i-heart"/></svg><svg class="icon icon--on" aria-hidden="true"><use href="#i-heart-fill"/></svg></button>
-            <button class="flavor__media" type="button" aria-label="Ver detalles de Fresa natural">
+            <button class="flavor__media" type="button" aria-label="Mostrar Fresa natural en la vitrina">
               <img src="assets/sabores/fresa-natural-760.webp" srcset="assets/sabores/fresa-natural-760.webp 760w, assets/sabores/fresa-natural-1200.webp 1200w" sizes="(max-width: 700px) 78vw, 380px" width="380" height="240" loading="lazy" alt="Gelatina de fresa natural" style="object-position:50% 50%">
             </button>
             <div class="flavor__body">
@@ -235,9 +255,9 @@
               </div>
             </div>
           </article>
-          <article class="flavor" data-id="mango-maracuya" data-name="Mango con maracuyá" data-price="45" data-cats="frutales especiales" data-img="assets/sabores/mango-maracuya-1200.webp" data-desc="Gelatina individual de maracuyá con cubos de mango y semillas de la fruta, decorada con hierbabuena. Fresca y tropical.">
+          <article class="flavor" data-id="mango-maracuya" data-tinte="#FFF0BF" data-acento="#A86B00" data-encuadre="50% 50%" data-name="Mango con maracuyá" data-price="45" data-cats="frutales especiales" data-img="assets/sabores/mango-maracuya-1200.webp" data-desc="Gelatina individual de maracuyá con cubos de mango y semillas de la fruta, decorada con hierbabuena. Fresca y tropical.">
             <button class="flavor__fav" type="button" aria-label="Guardar Mango con maracuyá en favoritos" aria-pressed="false"><svg class="icon icon--off" aria-hidden="true"><use href="#i-heart"/></svg><svg class="icon icon--on" aria-hidden="true"><use href="#i-heart-fill"/></svg></button>
-            <button class="flavor__media" type="button" aria-label="Ver detalles de Mango con maracuyá">
+            <button class="flavor__media" type="button" aria-label="Mostrar Mango con maracuyá en la vitrina">
               <img src="assets/sabores/mango-maracuya-760.webp" srcset="assets/sabores/mango-maracuya-760.webp 760w, assets/sabores/mango-maracuya-1200.webp 1200w" sizes="(max-width: 700px) 78vw, 380px" width="380" height="240" loading="lazy" alt="Gelatina individual de mango con maracuyá y hierbabuena" style="object-position:50% 50%">
             </button>
             <div class="flavor__body">
@@ -249,9 +269,9 @@
               </div>
             </div>
           </article>
-          <article class="flavor" data-id="corazon-fresa" data-name="Corazón de fresa" data-price="45" data-cats="personalizadas especiales eventos" data-img="assets/sabores/corazon-fresa-1200.webp" data-desc="Gelatina en forma de corazón: fresas naturales en gelatina brillante sobre una capa de leche. Ideal para aniversarios y fechas especiales.">
+          <article class="flavor" data-id="corazon-fresa" data-tinte="#F9D0D3" data-acento="#A50E2A" data-encuadre="45% 50%" data-name="Corazón de fresa" data-price="45" data-cats="personalizadas especiales eventos" data-img="assets/sabores/corazon-fresa-1200.webp" data-desc="Gelatina en forma de corazón: fresas naturales en gelatina brillante sobre una capa de leche. Ideal para aniversarios y fechas especiales.">
             <button class="flavor__fav" type="button" aria-label="Guardar Corazón de fresa en favoritos" aria-pressed="false"><svg class="icon icon--off" aria-hidden="true"><use href="#i-heart"/></svg><svg class="icon icon--on" aria-hidden="true"><use href="#i-heart-fill"/></svg></button>
-            <button class="flavor__media" type="button" aria-label="Ver detalles de Corazón de fresa">
+            <button class="flavor__media" type="button" aria-label="Mostrar Corazón de fresa en la vitrina">
               <img src="assets/sabores/corazon-fresa-760.webp" srcset="assets/sabores/corazon-fresa-760.webp 760w, assets/sabores/corazon-fresa-1200.webp 1200w" sizes="(max-width: 700px) 78vw, 380px" width="380" height="240" loading="lazy" alt="Gelatina de fresa con leche en forma de corazón" style="object-position:50% 50%">
             </button>
             <div class="flavor__body">
@@ -263,9 +283,9 @@
               </div>
             </div>
           </article>
-          <article class="flavor" data-id="vasitos-capas" data-name="Vasitos de capas" data-price="45" data-cats="individuales mini eventos" data-img="assets/sabores/vasitos-capas-1200.webp" data-desc="Gelatinas individuales en vaso, con capas de fresa, leche, mango y uva, y fruta fresca encima. Perfectas para fiestas y mesas de postres.">
+          <article class="flavor" data-id="vasitos-capas" data-tinte="#F8E1D3" data-acento="#A8411A" data-encuadre="50% 50%" data-name="Vasitos de capas" data-price="45" data-cats="individuales mini eventos" data-img="assets/sabores/vasitos-capas-1200.webp" data-desc="Gelatinas individuales en vaso, con capas de fresa, leche, mango y uva, y fruta fresca encima. Perfectas para fiestas y mesas de postres.">
             <button class="flavor__fav" type="button" aria-label="Guardar Vasitos de capas en favoritos" aria-pressed="false"><svg class="icon icon--off" aria-hidden="true"><use href="#i-heart"/></svg><svg class="icon icon--on" aria-hidden="true"><use href="#i-heart-fill"/></svg></button>
-            <button class="flavor__media" type="button" aria-label="Ver detalles de Vasitos de capas">
+            <button class="flavor__media" type="button" aria-label="Mostrar Vasitos de capas en la vitrina">
               <img src="assets/sabores/vasitos-capas-760.webp" srcset="assets/sabores/vasitos-capas-760.webp 760w, assets/sabores/vasitos-capas-1200.webp 1200w" sizes="(max-width: 700px) 78vw, 380px" width="380" height="240" loading="lazy" alt="Seis vasitos de gelatina con capas de colores y fruta encima" style="object-position:50% 50%">
             </button>
             <div class="flavor__body">
@@ -277,9 +297,9 @@
               </div>
             </div>
           </article>
-          <article class="flavor" data-id="mosaico" data-name="Mosaico" data-price="45" data-cats="cremosas especiales eventos" data-img="assets/sabores/mosaico-1200.webp" data-desc="La clásica gelatina de mosaico: cubos de colores en gelatina de leche, en molde rectangular para rebanar.">
+          <article class="flavor" data-id="mosaico" data-tinte="#EEE3F1" data-acento="#6E2A7A" data-encuadre="45% 50%" data-name="Mosaico" data-price="45" data-cats="cremosas especiales eventos" data-img="assets/sabores/mosaico-1200.webp" data-desc="La clásica gelatina de mosaico: cubos de colores en gelatina de leche, en molde rectangular para rebanar.">
             <button class="flavor__fav" type="button" aria-label="Guardar Mosaico en favoritos" aria-pressed="false"><svg class="icon icon--off" aria-hidden="true"><use href="#i-heart"/></svg><svg class="icon icon--on" aria-hidden="true"><use href="#i-heart-fill"/></svg></button>
-            <button class="flavor__media" type="button" aria-label="Ver detalles de Mosaico">
+            <button class="flavor__media" type="button" aria-label="Mostrar Mosaico en la vitrina">
               <img src="assets/sabores/mosaico-760.webp" srcset="assets/sabores/mosaico-760.webp 760w, assets/sabores/mosaico-1200.webp 1200w" sizes="(max-width: 700px) 78vw, 380px" width="380" height="240" loading="lazy" alt="Gelatina de mosaico rectangular con una rebanada cortada" style="object-position:50% 50%">
             </button>
             <div class="flavor__body">

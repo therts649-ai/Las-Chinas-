@@ -113,6 +113,7 @@ $$('.cat').forEach((btn) => btn.addEventListener('click', () => {
     if (ok) shown++;
   });
   emptyCard.hidden = shown > 0;
+  if (shown) selectFlavor(visibles()[0], 1);
   track.scrollTo({ left: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   if (!reduceMotion && window.gsap) {
     gsap.fromTo($$('.flavor:not([hidden])', track), { y: 30, opacity: 0, rotateX: -12 }, { y: 0, opacity: 1, rotateX: 0, duration: 0.7, stagger: 0.07, ease: 'power3.out' });
@@ -120,10 +121,91 @@ $$('.cat').forEach((btn) => btn.addEventListener('click', () => {
   $('#sabores').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
 }));
 
-// Flechas del carrusel
-const step = () => (cards[0]?.getBoundingClientRect().width || 280) + 20;
-$('.js-prev').addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
-$('.js-next').addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+// ---------- Vitrina: un sabor a la vez ----------
+// El fondo de la sección toma el color del sabor, la foto entra en el arco
+// desde abajo y el nombre cambia con un deslizamiento corto.
+
+const flavorsSec = $('#sabores');
+const vit = {
+  fondo: $('.flavors__fondo'),
+  arco: $('.js-v-arco'),
+  eco: $('.js-v-eco'),
+  num: $('.js-v-num'),
+  total: $('.js-v-total'),
+  name: $('.js-v-name'),
+  desc: $('.js-v-desc'),
+  price: $('.js-v-price'),
+};
+let current = cards[0];
+const visibles = () => cards.filter((c) => !c.hidden);
+const pad = (n) => String(n).padStart(2, '0');
+
+function selectFlavor(card, dir = 1, instant = false) {
+  if (!card) return;
+  const prev = current;
+  current = card;
+  const list = visibles();
+  const d = card.dataset;
+  const animate = !instant && !reduceMotion && window.gsap && prev !== card;
+  cards.forEach((c) => c.classList.toggle('is-current', c === card));
+  vit.fondo.style.backgroundColor = d.tinte;
+  flavorsSec.style.setProperty('--acento', d.acento);
+  vit.num.textContent = pad(list.indexOf(card) + 1);
+  vit.total.textContent = pad(list.length);
+  vit.price.textContent = money(Number(d.price));
+
+  const swapText = () => {
+    vit.name.textContent = d.name;
+    vit.eco.textContent = d.name;
+    vit.desc.textContent = d.desc;
+  };
+  const img = new Image();
+  img.src = d.img;
+  img.alt = `Gelatina de ${d.name.toLowerCase()}`;
+  img.decoding = 'async';
+  img.style.objectPosition = d.encuadre || '50% 50%';
+  const old = $$('img', vit.arco);
+  vit.arco.appendChild(img);
+
+  if (!animate) {
+    swapText();
+    old.forEach((o) => o.remove());
+    return;
+  }
+  gsap.timeline({ onComplete: () => old.forEach((o) => o.remove()) })
+    .fromTo(img, { clipPath: dir > 0 ? 'inset(100% 0 0 0)' : 'inset(0 0 100% 0)', scale: 1.12 }, { clipPath: 'inset(0% 0 0% 0)', scale: 1, duration: 0.95, ease: 'power3.inOut' }, 0)
+    .to(old, { scale: 1.06, duration: 0.95, ease: 'power3.inOut' }, 0)
+    .to([vit.name, vit.desc], { yPercent: -60 * dir, opacity: 0, duration: 0.3, ease: 'power2.in', stagger: 0.04 }, 0)
+    .to(vit.eco, { xPercent: -8 * dir, opacity: 0, duration: 0.35, ease: 'power2.in' }, 0)
+    .call(swapText, null, 0.36)
+    .fromTo([vit.name, vit.desc], { yPercent: 60 * dir, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.6, ease: 'power3.out', stagger: 0.06 }, 0.38)
+    .fromTo(vit.eco, { xPercent: 8 * dir, opacity: 0 }, { xPercent: 0, opacity: 1, duration: 0.9, ease: 'power3.out' }, 0.4);
+}
+
+function stepFlavor(dir) {
+  const list = visibles();
+  const i = list.indexOf(current);
+  const next = list[(i + dir + list.length) % list.length];
+  selectFlavor(next, dir);
+  // Solo se mueve la fila de tarjetas, no la página
+  const r = next.getBoundingClientRect(), t = track.getBoundingClientRect();
+  track.scrollTo({ left: track.scrollLeft + r.left - t.left - (t.width - r.width) / 2, behavior: reduceMotion ? 'auto' : 'smooth' });
+}
+$('.js-v-prev').addEventListener('click', () => stepFlavor(-1));
+$('.js-v-next').addEventListener('click', () => stepFlavor(1));
+$('.js-v-add').addEventListener('click', () => addToCart(current.dataset.id, 1, $('img:last-child', vit.arco)));
+$('.js-v-detail').addEventListener('click', () => openDetail(current.dataset.id));
+
+// Deslizar la foto con el dedo cambia de sabor
+let swipeX = null;
+vit.arco.addEventListener('pointerdown', (e) => { swipeX = e.clientX; });
+vit.arco.addEventListener('pointerup', (e) => {
+  if (swipeX === null) return;
+  const dx = e.clientX - swipeX;
+  swipeX = null;
+  if (Math.abs(dx) > 40) stepFlavor(dx < 0 ? 1 : -1);
+});
+selectFlavor(current, 1, true);
 
 // ---------- Pedido (carrito) ----------
 
@@ -226,7 +308,12 @@ function openDetail(id) {
     img.decode?.().then(() => setTimeout(() => detailJelly.poke(0.5, 0.35, 1), 250)).catch(() => {});
   }
 }
-cards.forEach((c) => $('.flavor__media', c).addEventListener('click', () => openDetail(c.dataset.id)));
+// Tocar la foto de una tarjeta la pone en la vitrina
+cards.forEach((c) => $('.flavor__media', c).addEventListener('click', () => {
+  const list = visibles();
+  selectFlavor(c, list.indexOf(c) >= list.indexOf(current) ? 1 : -1);
+  $('.vitrina').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
+}));
 $('.js-qty-minus', detail).addEventListener('click', () => { detailQty = Math.max(1, detailQty - 1); $('.js-qty', detail).textContent = detailQty; });
 $('.js-qty-plus', detail).addEventListener('click', () => { detailQty++; $('.js-qty', detail).textContent = detailQty; });
 $('.js-detail-add', detail).addEventListener('click', () => {
