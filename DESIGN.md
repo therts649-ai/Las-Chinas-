@@ -23,12 +23,12 @@ Pastelería fina: **marfil y vino**. Fondo marfil con un toque rosado y luz cál
 ## Movimiento (taste-skill 8/10, reglas de impeccable y Emil Kowalski)
 - **Telón de entrada** (1 vez por visita, se salta con clic o tecla): logo, nombre y línea dorada; el telón sube.
 - **Inicio:** palabras que suben desde su máscara, el arco se abre desde el centro, la foto se asienta, cruza un destello y la gelatina tiembla. Con mouse, la vitrina se inclina en 3D y el brillo sigue al cursor.
-- **Deconstrucción 3D** (`src/gelatina3d.js`, Three.js): la escena se queda fija mientras bajas y la gelatina, modelada en 3D, se eleva, se parte en gajos, las piezas, fresas y un remolino de leche giran alrededor, se vuelve a unir capa por capa, cae al plato con rebote y termina con una rebanada que muestra el interior. Las 8 etapas se resaltan al lado.
+- **Deconstrucción en video** (`assets/video/deconstruccion.mp4` / `.webm`): video realista que se reproduce solo al verse, con las 8 etapas resaltándose al ritmo del video. A lo ancho en el celular. Sin video, la sección no se muestra.
 - **Franja de festejos** que corre sola y se adelanta con el scroll.
 - **Vitrina horizontal:** el catálogo se queda fijo y las gelatinas pasan de lado al bajar (en celular se deslizan con el dedo).
 - **Pasos:** números que suben de su máscara y una línea dorada que se dibuja.
 - **Llamado final** con botón imán; destello dorado en los botones.
-- **Reducir movimiento:** sin telón, sin fijados y sin escena animada; la página aparece completa y quieta (la 3D muestra una sola imagen con la rebanada).
+- **Reducir movimiento:** sin telón, sin fijados y el video no arranca solo (se muestran sus controles); la página aparece completa y quieta.
 
 ## Logo
 Logo oficial en `assets/logo-160.webp` y `assets/logo-480.webp`.

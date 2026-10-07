@@ -92,6 +92,40 @@ if (magnet && magnetBtn && finePointer.matches && animated) {
   magnet.addEventListener('pointerleave', () => pull(0, 0));
 }
 
+// ---------- Deconstrucción en video ----------
+
+const deco = document.querySelector('.deco');
+const decoVideo = deco?.querySelector('.deco__video');
+if (deco && decoVideo) {
+  const decoSteps = [...deco.querySelectorAll('.deco__step')];
+  const decoBar = deco.querySelector('.deco__progress span');
+  // La sección solo aparece cuando el video existe y se puede reproducir.
+  decoVideo.addEventListener('loadedmetadata', () => { deco.hidden = false; }, { once: true });
+  if (decoVideo.readyState >= 1) deco.hidden = false;
+
+  const sync = () => {
+    const d = decoVideo.duration || 1;
+    const f = Math.min(decoVideo.currentTime / d, 0.9999);
+    const idx = Math.floor(f * decoSteps.length);
+    decoSteps.forEach((el, i) => el.classList.toggle('is-active', i === idx));
+    if (decoBar) decoBar.style.transform = `scaleX(${f.toFixed(4)})`;
+    if (!decoVideo.paused) requestAnimationFrame(sync);
+  };
+  decoVideo.addEventListener('play', () => requestAnimationFrame(sync));
+  decoVideo.addEventListener('seeked', sync);
+
+  if (animated && 'IntersectionObserver' in window) {
+    // Se reproduce sola mientras se ve y se pausa al salir de pantalla.
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) decoVideo.play().catch(() => { decoVideo.controls = true; });
+      else decoVideo.pause();
+    }, { threshold: 0.35 }).observe(decoVideo);
+  } else {
+    decoVideo.controls = true;
+    decoVideo.loop = false;
+  }
+}
+
 // ---------- Aparición con scroll y pausas fuera de pantalla ----------
 
 document.querySelectorAll('.polaroids, .steps__list').forEach((group) => {

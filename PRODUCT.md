@@ -15,14 +15,12 @@ Personas que están organizando un festejo y buscan un postre bonito y hecho a m
 - Son tres hermanas.
 - Cada gelatina se hace sobre pedido, con los colores, sabores y nombre que el cliente quiera.
 
-## Cómo se trabaja el código
-- La animación 3D vive en `src/gelatina3d.js`. Después de editarla, corre `npm install` (una vez) y `npm run build` para generar `assets/js/gelatina3d.js`.
-
 ## Pedidos
 - Solo por WhatsApp. El número se configura en `script.js` (`WHATSAPP_NUMBER`).
 - Cada tipo de gelatina abre WhatsApp con un mensaje ya escrito para ese tipo.
 
 ## Pendientes
+- [ ] Video de la deconstrucción: `assets/video/deconstruccion.mp4` (y `.webm`). La sección aparece sola cuando el archivo existe.
 - [ ] Número de WhatsApp real.
 - [ ] Fotos de cada gelatina del catálogo (hay una de fresa con leche; faltan cumpleaños, mosaico y vasitos) con el mismo estilo.
 - [ ] Fotos y nombres de las tres hermanas.

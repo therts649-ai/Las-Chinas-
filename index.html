@@ -113,25 +113,28 @@
       </div>
     </section>
 
-    <section class="deco" aria-labelledby="deco-title">
-      <div class="deco__sticky">
+    <!-- Deconstrucción en video. La sección se muestra sola cuando existe
+         assets/video/deconstruccion.mp4 (y opcionalmente .webm). -->
+    <section class="deco" aria-labelledby="deco-title" hidden>
+      <div class="deco__inner">
         <div class="deco__stage">
-          <div class="deco__frame">
-            <img class="deco__fallback" src="assets/gelatina-fresa-leche-800.webp" width="800" height="533" loading="lazy" alt="Gelatina de fresa con leche con rebanadas de fresa">
-          </div>
+          <video class="deco__video" muted playsinline loop preload="metadata" poster="assets/gelatina-fresa-leche-800.webp" aria-label="Video: una gelatina de fresa con leche se separa en capas, flota, se vuelve a armar y termina con una rebanada">
+            <source src="assets/video/deconstruccion.webm" type="video/webm">
+            <source src="assets/video/deconstruccion.mp4" type="video/mp4">
+          </video>
           <div class="deco__progress" aria-hidden="true"><span></span></div>
         </div>
         <div class="deco__text">
           <h2 id="deco-title">Una gelatina, <em>capa por capa</em></h2>
           <ol class="deco__steps">
-          <li class="deco__step"><span class="deco__num" aria-hidden="true">1</span><div><h3>Completa y brillante</h3><p>Así llega a tu mesa: entera, firme y con brillo.</p></div></li>
-          <li class="deco__step"><span class="deco__num" aria-hidden="true">2</span><div><h3>Se eleva y se segmenta</h3><p>La capa de fresa se levanta y se separa en gajos.</p></div></li>
-          <li class="deco__step"><span class="deco__num" aria-hidden="true">3</span><div><h3>Las capas se separan</h3><p>Cada trozo de gelatina y de fruta se aparta suavemente.</p></div></li>
-          <li class="deco__step"><span class="deco__num" aria-hidden="true">4</span><div><h3>Todo flota alrededor</h3><p>Fresas, gelatina y leche giran alrededor del centro.</p></div></li>
-          <li class="deco__step"><span class="deco__num" aria-hidden="true">5</span><div><h3>Se vuelve a unir</h3><p>Las piezas regresan capa por capa a su lugar.</p></div></li>
-          <li class="deco__step"><span class="deco__num" aria-hidden="true">6</span><div><h3>Se reconstruye</h3><p>La capa de fresa baja y abraza la base de leche.</p></div></li>
-          <li class="deco__step"><span class="deco__num" aria-hidden="true">7</span><div><h3>Lista para tu festejo</h3><p>Otra vez completa, como recién desmoldada.</p></div></li>
-          <li class="deco__step"><span class="deco__num" aria-hidden="true">8</span><div><h3>Una rebanada por dentro</h3><p>Fresa natural en cada capa, de arriba a abajo.</p></div></li>
+            <li class="deco__step"><span class="deco__num" aria-hidden="true">1</span><h3>Completa y brillante</h3></li>
+            <li class="deco__step"><span class="deco__num" aria-hidden="true">2</span><h3>Se eleva y se segmenta</h3></li>
+            <li class="deco__step"><span class="deco__num" aria-hidden="true">3</span><h3>Las capas se separan</h3></li>
+            <li class="deco__step"><span class="deco__num" aria-hidden="true">4</span><h3>Todo flota alrededor</h3></li>
+            <li class="deco__step"><span class="deco__num" aria-hidden="true">5</span><h3>Se vuelve a unir</h3></li>
+            <li class="deco__step"><span class="deco__num" aria-hidden="true">6</span><h3>Se reconstruye</h3></li>
+            <li class="deco__step"><span class="deco__num" aria-hidden="true">7</span><h3>Lista para tu festejo</h3></li>
+            <li class="deco__step"><span class="deco__num" aria-hidden="true">8</span><h3>Una rebanada por dentro</h3></li>
           </ol>
         </div>
       </div>
@@ -265,6 +268,5 @@
   </a>
 
   <script src="script.js"></script>
-  <script type="module" src="assets/js/gelatina3d.js"></script>
 </body>
 </html>

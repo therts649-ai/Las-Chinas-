@@ -463,97 +463,55 @@ main { display: block; }
   rotate: 45deg;
 }
 
-/* ---------- Deconstrucción 3D ---------- */
+/* ---------- Deconstrucción en video ---------- */
 
-.deco { position: relative; }
-.deco__sticky {
-  max-width: 1280px;
+.deco[hidden] { display: none; }
+.deco__inner {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: clamp(72px, 10vw, 120px) var(--gutter);
+  padding: clamp(72px, 10vw, 128px) var(--gutter);
   display: grid;
-  grid-template-columns: 1.35fr 1fr;
+  grid-template-columns: 1.2fr 1fr;
   gap: clamp(28px, 5vw, 72px);
   align-items: center;
 }
 .deco__stage { display: grid; gap: 14px; min-width: 0; }
-.deco__frame {
-  position: relative;
-  aspect-ratio: 4 / 3.3;
+.deco__video {
+  width: 100%;
   max-width: 100%;
-  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
   border-radius: 999px 999px 28px 28px;
-  background: #F3E6E1;
+  background: var(--marfil-2);
   box-shadow: inset 0 0 0 1px rgba(176, 141, 87, .45), var(--shadow);
 }
-.deco__frame canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-.deco__fallback {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.has-webgl .deco__fallback { display: none; }
 .deco__progress { height: 1px; background: rgba(176, 141, 87, .3); }
 .deco__progress span { display: block; height: 100%; background: var(--dorado); transform-origin: 0 50%; transform: scaleX(0); }
-
-.deco__text { display: grid; gap: 28px; min-width: 0; }
-.deco__steps {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 4px;
-}
+.deco__text { display: grid; gap: 24px; min-width: 0; }
+.deco__steps { list-style: none; margin: 0; padding: 0; display: grid; }
 .deco__step {
   display: grid;
   grid-template-columns: 2.2rem 1fr;
   gap: 12px;
   align-items: baseline;
-  padding: 8px 0;
+  padding: 10px 0;
   border-top: 1px solid rgba(176, 141, 87, .25);
+  opacity: .4;
+  transition: opacity 400ms var(--ease-out);
 }
-.deco__num {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.5rem;
-  color: var(--dorado-texto);
-  line-height: 1;
-}
-.deco__step h3 { font-size: 1.25rem; }
-.deco__step p { color: var(--tinta-suave); font-size: .95rem; margin-top: 4px; }
-
-/* Con 3D y movimiento: la escena se queda fija mientras bajas */
-@media (prefers-reduced-motion: no-preference) {
-  .deco.has-webgl { height: 520vh; }
-  .deco.has-webgl .deco__sticky {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    height: 100dvh;
-    padding-block: 90px 32px;
-  }
-  .deco.has-webgl .deco__frame { aspect-ratio: auto; height: min(74vh, 640px); }
-  .deco.has-webgl .deco__step { transition: opacity 400ms var(--ease-out); opacity: .38; }
-  .deco.has-webgl .deco__step p { max-height: 0; opacity: 0; overflow: hidden; margin-top: 0; transition: max-height 450ms var(--ease-out), opacity 400ms ease, margin-top 450ms var(--ease-out); }
-  .deco.has-webgl .deco__step.is-active { opacity: 1; }
-  .deco.has-webgl .deco__step.is-active .deco__num { color: var(--vino); }
-  .deco.has-webgl .deco__step.is-active p { max-height: 5em; opacity: 1; margin-top: 4px; }
-}
+.deco__step.is-active { opacity: 1; }
+.deco__num { font-family: var(--font-display); font-style: italic; font-size: 1.5rem; line-height: 1; color: var(--dorado-texto); }
+.deco__step.is-active .deco__num { color: var(--vino); }
+.deco__step h3 { font-size: 1.2rem; }
 
 @media (max-width: 860px) {
-  .deco__sticky { grid-template-columns: 1fr; }
-  @media (prefers-reduced-motion: no-preference) {
-    .deco.has-webgl .deco__sticky { padding-block: 84px 20px; align-content: start; gap: 18px; }
-    .deco.has-webgl .deco__frame { height: 54vh; }
-    .deco.has-webgl .deco__text h2 { font-size: 1.8rem; }
-    .deco.has-webgl .deco__step { display: none; border: 0; }
-    .deco.has-webgl .deco__step.is-active { display: grid; }
-  }
+  .deco__inner { grid-template-columns: 1fr; padding-inline: 0; gap: 20px; }
+  .deco__video { border-radius: 0; box-shadow: none; aspect-ratio: 4 / 5; }
+  .deco__progress { margin-inline: var(--gutter); }
+  .deco__text { padding-inline: var(--gutter); }
+  /* En el celular solo se ve la etapa que está pasando */
+  .deco__step { display: none; border: 0; padding: 0; }
+  .deco__step.is-active { display: grid; }
 }
 
 /* ---------- Nosotras ---------- */
