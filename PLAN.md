@@ -47,7 +47,51 @@ Configurador paso a paso con vista previa, precio aproximado y resumen enviado p
 - tabla por tamaño, más extras (capas, fruta, decoración);
 - se muestra como "desde $___" y el precio final se confirma por WhatsApp.
 
-## Experiencia de inicio: un plano secuencia
+## Dirección elegida: película interactiva
+Todo el impacto lo pone **video de alta calidad dirigido como comercial**. La interfaz es mínima: logo, botón de pedir, una frase por escena y una línea de progreso. Sin corazones, temblores, gotas ni destellos.
+
+### Cómo se ve y se siente
+- **Una escena por pantalla.** Al bajar, la página avanza a la siguiente escena (como pasar historias) y su video se reproduce.
+- **La deconstrucción es la única escena que se controla con el dedo**: avanza y retrocede con el scroll.
+- **Cortes invisibles:** el último cuadro de cada video es el primero del siguiente, así la película se siente como una sola toma.
+- **Tipografía:** una frase grande por escena que aparece con una revelación suave. Es la única animación de interfaz.
+- **Celular primero:** cada escena en vertical 9:16 para celular y horizontal 16:9 para computadora.
+
+### Guion de escenas del inicio
+| # | Escena | Qué se ve | Cámara | Frase | Duración |
+|---|---|---|---|---|---|
+| 1 | Apertura | Desde negro, una gota de gelatina de fresa líquida cae en cámara lenta sobre un molde y salpica | Fija, macro | *Las Chinas* | 5 s |
+| 2 | El vertido | Gelatina roja brillante se vierte en un molde de rosca con rebanadas de fresa | Órbita lenta | *Hechas a mano, una por una* | 6 s |
+| 3 | El desmolde | Se levanta el molde y aparece la gelatina perfecta, que tiembla suavemente | Acercamiento lento | *Gelatinas artesanales* | 6 s |
+| 4 | Las manos | Manos con mandil rosa decoran gelatinas con fresas y flores (sin rostros, para que se vea siempre consistente) | Lateral lento | *Tres hermanas, un mismo sabor* | 6 s |
+| 5 | Deconstrucción | La gelatina se separa, flota y se vuelve a unir (ya la tenemos; se regenera en mejor calidad y en vertical) | Fija; **se controla con el scroll** | Una frase por etapa | 10 s |
+| 6 | La mesa | La cámara se aleja y revela la mesa con gelatinas de fresa, uva, mango y fresa con crema | Alejamiento lento | *¿Cuál se te antoja?* + botones | 6 s |
+
+### Estilo común (pegar al inicio de cada indicación)
+> Ultra-realistic premium food commercial, soft pink pastel studio, soft natural window light from the left, white marble table, fresh strawberries, glossy translucent gelatin, shallow depth of field, slow elegant motion, 24fps cinematic, no text, no logos, no watermark.
+
+### Indicaciones por escena (agregar después del estilo común)
+1. **Apertura:** *Starting from black, a single drop of liquid strawberry gelatin falls in extreme slow motion into an empty bundt mold and creates a small glossy splash. Static macro camera.*
+2. **El vertido:** *Glossy liquid red strawberry gelatin is poured slowly into a bundt mold filled with fresh strawberry slices. The camera orbits slowly around the mold.*
+3. **El desmolde:** *A bundt mold is lifted slowly, revealing a perfect strawberry and milk jello on a white plate; it jiggles softly. The camera pushes in slowly.*
+4. **Las manos:** *Hands of a young woman wearing a pink apron decorate strawberry jellos with fresh strawberries and small edible flowers. No faces visible. Slow lateral camera move.*
+5. **Deconstrucción:** regenerar el video actual en 1080p, en vertical y horizontal.
+6. **La mesa:** *The camera slowly pulls back from a strawberry jello to reveal a pink table with several jellos: strawberry, grape, mango and strawberry with cream, fresh fruit around them.*
+
+**Truco para que no se noten los cortes:** al generar cada escena, usa como **imagen inicial el último cuadro** de la escena anterior. La herramienta lo permite: "start frame" en Kling, Runway, Luma y Veo.
+
+### Especificaciones de entrega
+- Cada escena en **9:16 (1080×1920)** y **16:9 (1920×1080)**, MP4, sin audio, sin texto.
+- Yo los recorto, los comprimo para celular (MP4 y WebM) y preparo los cuadros de la deconstrucción para el control con scroll.
+- **Presupuesto de carga:** la escena 1 pesa menos de 1 MB para que arranque al instante; las demás se cargan mientras ves la anterior.
+
+### El resto del sitio
+Sereno y elegante. Fotografía grande y tipografía cuidada, con transiciones suaves entre páginas. El configurador "Arma tu gelatina" mantiene una sola animación: la vista previa que cambia con cada elección.
+
+## (Descartado) Experiencia de inicio: un plano secuencia
+Se probó en `prototipo/` y se descartó: demasiados efectos y muy simples.
+
+### Detalle del intento descartado
 Los cuatro conceptos aprobados se unen en un solo recorrido continuo, sin cortes. Cada uno tiene un papel:
 
 | # | Etapa | Qué pasa | Cómo avanza | Técnica |
