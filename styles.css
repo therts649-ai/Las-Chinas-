@@ -7,10 +7,11 @@
   --fresa-oscura: #A3214F;
   --chocolate: #4A2C2A;
   --chocolate-suave: #6E4743;
-  --mango: #FFB23F;
-  --uva: #8E5BD9;
-  --limon: #B9D95B;
-  --menta: #6FD0B8;
+  --fresa-viva: #F0164E;
+  --mango: #FFB000;
+  --uva: #8A3CF5;
+  --limon: #A8E22B;
+  --menta: #2FD8B5;
   --whatsapp: #15803D;
 
   --font-display: "Gluten", "Figtree", system-ui, sans-serif;
@@ -212,7 +213,7 @@ p { margin: 0; text-wrap: pretty; }
 .logo__mark span { flex: 1; }
 .logo__mark span:nth-child(1) { background: var(--uva); }
 .logo__mark span:nth-child(2) { background: var(--mango); }
-.logo__mark span:nth-child(3) { background: #E8476F; }
+.logo__mark span:nth-child(3) { background: var(--fresa-viva); }
 .logo__word {
   font-family: var(--font-display);
   font-weight: 800;
@@ -412,7 +413,9 @@ main { display: block; }
 
 .card__art {
   border-radius: calc(var(--radius) - 10px);
-  background: linear-gradient(180deg, #FFEAF0, #FFE6D6);
+  background:
+    radial-gradient(60% 55% at 50% 42%, rgba(255, 255, 255, .95), rgba(255, 255, 255, 0) 70%),
+    linear-gradient(180deg, #FFD9E5, #FFD3BD);
   padding: 22px 28px 18px;
   display: grid;
   place-items: center;
@@ -458,8 +461,8 @@ main { display: block; }
   top: -39px;
   height: 40px;
   background: var(--fresa);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40' preserveAspectRatio='none'%3E%3Cpath d='M0 40 V24 C10 24 12 8 30 8 S50 28 60 28 S78 4 92 4 S112 22 120 22 V40 Z'/%3E%3C/svg%3E") 0 0 / 360px 40px repeat-x;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40' preserveAspectRatio='none'%3E%3Cpath d='M0 40 V24 C10 24 12 8 30 8 S50 28 60 28 S78 4 92 4 S112 22 120 22 V40 Z'/%3E%3C/svg%3E") 0 0 / 360px 40px repeat-x;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40' preserveAspectRatio='none'%3E%3Cpath d='M0 40 V24 C10 24 12 8 30 8 S50 28 60 28 S78 4 92 4 S112 24 120 24 V40 Z'/%3E%3C/svg%3E") 0 0 / 360px 40px repeat-x;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40' preserveAspectRatio='none'%3E%3Cpath d='M0 40 V24 C10 24 12 8 30 8 S50 28 60 28 S78 4 92 4 S112 24 120 24 V40 Z'/%3E%3C/svg%3E") 0 0 / 360px 40px repeat-x;
 }
 .steps__inner { max-width: 1100px; margin: 0 auto; display: grid; justify-items: start; gap: 44px; }
 
@@ -614,7 +617,8 @@ main { display: block; }
   inset: 0;
   border-radius: 28%;
   background:
-    linear-gradient(140deg, rgba(255, 255, 255, .55) 0 18%, transparent 40%),
+    radial-gradient(circle at 30% 26%, rgba(255, 255, 255, .85) 0 9%, transparent 22%),
+    linear-gradient(140deg, rgba(255, 255, 255, .45), transparent 45%, rgba(60, 0, 25, .3)),
     var(--c);
   box-shadow: 0 10px 18px -8px color-mix(in srgb, var(--c) 70%, #000 10%);
   rotate: var(--r);
