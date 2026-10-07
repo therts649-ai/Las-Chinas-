@@ -76,6 +76,8 @@ Los cuatro conceptos aprobados se unen en un solo recorrido continuo, sin cortes
 | Video "entrar a la gelatina" | Cámara fija que avanza lento hacia la gelatina central hasta entrar en su interior rojo translúcido | 6–8 s, 1080p |
 | Video deconstrucción | El que ya tenemos (se puede regenerar en mayor calidad) | 10 s, 1080p |
 
+**Prototipo:** `prototipo/index.html` (etapas 1 a 4 con las imágenes temporales).
+
 ## Sistema de diseño
 - **Colores:** rosa intenso, frambuesa oscuro y rosa muy claro, como en el diseño de referencia del cliente.
 - **Tipografía:**
