@@ -12,7 +12,7 @@ Personas que están organizando un festejo y buscan un postre bonito y hecho a m
 3. Que **escriban por WhatsApp** para pedir o cotizar. Ese es el único objetivo de conversión.
 
 ## Lo que es único de Las Chinas
-- Son tres hermanas. La gelatina de tres capas del inicio representa a las tres.
+- Son tres hermanas.
 - Cada gelatina se hace sobre pedido, con los colores, sabores y nombre que el cliente quiera.
 
 ## Pedidos
@@ -22,7 +22,7 @@ Personas que están organizando un festejo y buscan un postre bonito y hecho a m
 ## Pendientes
 - [ ] Logo definitivo (hay uno preliminar en `assets/`).
 - [ ] Número de WhatsApp real.
-- [ ] Fotos reales de las gelatinas (por ahora son ilustraciones).
+- [ ] Fotos de cada gelatina del catálogo (hay una de fresa con leche; faltan cumpleaños, mosaico y vasitos) con el mismo estilo.
 - [ ] Fotos y nombres de las tres hermanas.
 - [ ] Confirmar qué tipos de gelatina personalizada ofrecen.
 - [ ] Zona de entrega, horario y redes sociales.

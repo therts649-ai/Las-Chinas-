@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Las Chinas | Gelatinas personalizadas</title>
   <meta name="description" content="Gelatinas personalizadas hechas a mano por tres hermanas. Pide la tuya por WhatsApp.">
-  <meta name="theme-color" content="#FFD1DF">
+  <meta name="theme-color" content="#F7CDD3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Gluten:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/gelatina-fresa-leche-1400.webp" imagesrcset="assets/gelatina-fresa-leche-800.webp 800w, assets/gelatina-fresa-leche-1400.webp 1400w" imagesizes="(max-width: 860px) 92vw, 600px">
   <link rel="stylesheet" href="styles.css">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
-  <!-- Formas compartidas por todas las ilustraciones de gelatina -->
+  <!-- Íconos de Phosphor (MIT) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <defs>
-      <!-- Íconos de Phosphor (MIT) -->
       <symbol id="i-whatsapp-logo" viewBox="0 0 256 256"><path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88,40,40,0,0,0,40-40A8,8,0,0,0,187.58,144.84ZM152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155l14.61-9.74,23,11.48A24,24,0,0,1,152,176ZM128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z"/></symbol>
       <symbol id="i-arrow-down" viewBox="0 0 256 256"><path d="M205.66,149.66l-72,72a8,8,0,0,1-11.32,0l-72-72a8,8,0,0,1,11.32-11.32L120,196.69V40a8,8,0,0,1,16,0V196.69l58.34-58.35a8,8,0,0,1,11.32,11.32Z"/></symbol>
       <symbol id="i-camera" viewBox="0 0 256 256"><path d="M208,56H180.28L166.65,35.56A8,8,0,0,0,160,32H96a8,8,0,0,0-6.65,3.56L75.71,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H80a8,8,0,0,0,6.66-3.56L100.28,48h55.43l13.63,20.44A8,8,0,0,0,176,72h32a8,8,0,0,1,8,8ZM128,88a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,88Zm0,72a28,28,0,1,1,28-28A28,28,0,0,1,128,160Z"/></symbol>
@@ -24,115 +24,7 @@
       <symbol id="i-palette" viewBox="0 0 256 256"><path d="M200.77,53.89A103.27,103.27,0,0,0,128,24h-1.07A104,104,0,0,0,24,128c0,43,26.58,79.06,69.36,94.17A32,32,0,0,0,136,192a16,16,0,0,1,16-16h46.21a31.81,31.81,0,0,0,31.2-24.88,104.43,104.43,0,0,0,2.59-24A103.28,103.28,0,0,0,200.77,53.89Zm13,93.71A15.89,15.89,0,0,1,198.21,160H152a32,32,0,0,0-32,32,16,16,0,0,1-21.31,15.07C62.49,194.3,40,164,40,128a88,88,0,0,1,87.09-88h.9a88.35,88.35,0,0,1,88,87.25A88.86,88.86,0,0,1,213.81,147.6ZM140,76a12,12,0,1,1-12-12A12,12,0,0,1,140,76ZM96,100A12,12,0,1,1,84,88,12,12,0,0,1,96,100Zm0,56a12,12,0,1,1-12-12A12,12,0,0,1,96,156Zm88-56a12,12,0,1,1-12-12A12,12,0,0,1,184,100Z"/></symbol>
       <symbol id="i-confetti" viewBox="0 0 256 256"><path d="M111.49,52.63a15.8,15.8,0,0,0-26,5.77L33,202.78A15.83,15.83,0,0,0,47.76,224a16,16,0,0,0,5.46-1l144.37-52.5a15.8,15.8,0,0,0,5.78-26Zm-8.33,135.21-35-35,13.16-36.21,58.05,58.05Zm-55,20,14-38.41,24.45,24.45ZM156,168.64,87.36,100l13-35.87,91.43,91.43ZM160,72a37.8,37.8,0,0,1,3.84-15.58C169.14,45.83,179.14,40,192,40c6.7,0,11-2.29,13.65-7.21A22,22,0,0,0,208,23.94,8,8,0,0,1,224,24c0,12.86-8.52,32-32,32-6.7,0-11,2.29-13.65,7.21A22,22,0,0,0,176,72.06,8,8,0,0,1,160,72ZM136,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm101.66,82.34a8,8,0,1,1-11.32,11.31l-16-16a8,8,0,0,1,11.32-11.32Zm4.87-42.75-24,8a8,8,0,0,1-5.06-15.18l24-8a8,8,0,0,1,5.06,15.18Z"/></symbol>
       <symbol id="i-whatsapp-fill" viewBox="0 0 256 256"><path d="M152.58,145.23l23,11.48A24,24,0,0,1,152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155ZM232,128A104,104,0,0,1,79.12,219.82L45.07,231.17a16,16,0,0,1-20.24-20.24l11.35-34.05A104,104,0,1,1,232,128Zm-40,24a8,8,0,0,0-4.42-7.16l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88A40,40,0,0,0,192,152Z"/></symbol>
-      <!-- Gelatina: forma, sombreado y brillos compartidos -->
-      <path id="g-body" d="M28 168 C24 128 34 80 58 52 C78 30 142 30 162 52 C186 80 196 128 192 168 Q110 182 28 168 Z"/>
-      <clipPath id="g-clip"><use href="#g-body"/></clipPath>
-      <linearGradient id="f-fresa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF5A86"/><stop offset="0.55" stop-color="#F0164E"/><stop offset="1" stop-color="#B80A36"/></linearGradient>
-      <linearGradient id="f-mango" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD84D"/><stop offset="0.5" stop-color="#FFB000"/><stop offset="1" stop-color="#F07B00"/></linearGradient>
-      <linearGradient id="f-uva" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B57BFF"/><stop offset="0.5" stop-color="#8A3CF5"/><stop offset="1" stop-color="#5B16C2"/></linearGradient>
-      <linearGradient id="f-leche" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.6" stop-color="#FFF3E6"/><stop offset="1" stop-color="#F4D8C2"/></linearGradient>
-      <linearGradient id="f-rosa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE1EA"/><stop offset="0.6" stop-color="#FFB3C9"/><stop offset="1" stop-color="#FF86A8"/></linearGradient>
-      <linearGradient id="f-limon" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#DDFF7A"/><stop offset="0.5" stop-color="#A8E22B"/><stop offset="1" stop-color="#6BAA0E"/></linearGradient>
-      <linearGradient id="f-menta" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8CFFE6"/><stop offset="0.5" stop-color="#2FD8B5"/><stop offset="1" stop-color="#0E9E80"/></linearGradient>
-      <linearGradient id="f-petalo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF6FA5"/><stop offset="1" stop-color="#C2004F"/></linearGradient>
-      <linearGradient id="f-plato" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F3CBD7"/></linearGradient>
-      <linearGradient id="vol-h" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0" stop-color="#3B0019" stop-opacity=".34"/>
-        <stop offset=".2" stop-color="#3B0019" stop-opacity="0"/>
-        <stop offset=".38" stop-color="#fff" stop-opacity=".22"/>
-        <stop offset=".56" stop-color="#fff" stop-opacity="0"/>
-        <stop offset=".82" stop-color="#3B0019" stop-opacity=".14"/>
-        <stop offset="1" stop-color="#3B0019" stop-opacity=".38"/>
-      </linearGradient>
-      <linearGradient id="vol-v" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#fff" stop-opacity=".3"/>
-        <stop offset=".3" stop-color="#fff" stop-opacity="0"/>
-        <stop offset=".85" stop-color="#3B0019" stop-opacity="0"/>
-        <stop offset="1" stop-color="#3B0019" stop-opacity=".3"/>
-      </linearGradient>
-      <radialGradient id="glow" cx=".5" cy="1" r=".6">
-        <stop offset="0" stop-color="#fff" stop-opacity=".45"/>
-        <stop offset="1" stop-color="#fff" stop-opacity="0"/>
-      </radialGradient>
-      <radialGradient id="contact" cx=".5" cy=".5" r=".5">
-        <stop offset="0" stop-color="#5A0F2C" stop-opacity=".5"/>
-        <stop offset="1" stop-color="#5A0F2C" stop-opacity="0"/>
-      </radialGradient>
-      <radialGradient id="uva-bola" cx=".35" cy=".3" r=".75">
-        <stop offset="0" stop-color="#D9B3FF"/><stop offset=".45" stop-color="#8A3CF5"/><stop offset="1" stop-color="#3E0B8F"/>
-      </radialGradient>
-      <linearGradient id="mango-cubo" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#FFE680"/><stop offset=".5" stop-color="#FFB300"/><stop offset="1" stop-color="#E86F00"/>
-      </linearGradient>
-      <linearGradient id="cubo-luz" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#3B0019" stop-opacity=".3"/>
-      </linearGradient>
-      <radialGradient id="fresa-corte" cx=".5" cy=".45" r=".6">
-        <stop offset="0" stop-color="#FFE3EA"/><stop offset=".35" stop-color="#FF7A9A"/><stop offset=".8" stop-color="#E3002F"/><stop offset="1" stop-color="#A80022"/>
-      </radialGradient>
-      <linearGradient id="fresa-entera" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#FF5F7E"/><stop offset=".5" stop-color="#E8002D"/><stop offset="1" stop-color="#9C0020"/>
-      </linearGradient>
-      <linearGradient id="hoja" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#7EE05A"/><stop offset="1" stop-color="#1E8A2E"/>
-      </linearGradient>
-      <filter id="blur-s" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.2"/></filter>
-      <filter id="blur-l" x="-30%" y="-60%" width="160%" height="220%"><feGaussianBlur stdDeviation="5"/></filter>
-
-      <!-- Frutas -->
-      <g id="fr-fresa">
-        <path d="M0 -13 C9 -14 14 -6 12 2 C10 9 4 13 0 15 C-4 13 -10 9 -12 2 C-14 -6 -9 -14 0 -13 Z" fill="url(#fresa-corte)"/>
-        <path d="M0 -8 C3 -2 3 6 0 11 C-3 6 -3 -2 0 -8 Z" fill="#FFF1F4" opacity=".75"/>
-        <g fill="#FFE07A"><circle cx="-7" cy="-4" r="1"/><circle cx="7" cy="-3" r="1"/><circle cx="-6" cy="5" r="1"/><circle cx="6" cy="6" r="1"/><circle cx="0" cy="-10" r="1"/></g>
-      </g>
-      <g id="fr-mango">
-        <rect x="-8" y="-8" width="16" height="16" rx="4" fill="url(#mango-cubo)"/>
-        <rect x="-8" y="-8" width="16" height="16" rx="4" fill="url(#cubo-luz)"/>
-        <rect x="-5" y="-6" width="6" height="2.5" rx="1.2" fill="#fff" opacity=".7"/>
-      </g>
-      <g id="fr-uva">
-        <circle r="9" fill="url(#uva-bola)"/>
-        <ellipse cx="-3" cy="-4" rx="3" ry="2" fill="#fff" opacity=".75"/>
-      </g>
-      <g id="fr-fresa-entera">
-        <path d="M0 -14 C12 -14 17 -4 14 6 C11 15 4 21 0 22 C-4 21 -11 15 -14 6 C-17 -4 -12 -14 0 -14 Z" fill="url(#fresa-entera)"/>
-        <g fill="#FFE07A"><ellipse cx="-7" cy="-3" rx="1" ry="1.5"/><ellipse cx="6" cy="-4" rx="1" ry="1.5"/><ellipse cx="0" cy="3" rx="1" ry="1.5"/><ellipse cx="-8" cy="8" rx="1" ry="1.5"/><ellipse cx="8" cy="7" rx="1" ry="1.5"/><ellipse cx="-2" cy="13" rx="1" ry="1.5"/><ellipse cx="4" cy="14" rx="1" ry="1.5"/></g>
-        <path d="M-9 -6 C-8 -11 -4 -12 -2 -11" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none" opacity=".7"/>
-        <path d="M0 -13 L-11 -19 L-5 -13 L-9 -24 L0 -15 L6 -25 L5 -13 L13 -19 Z" fill="url(#hoja)"/>
-      </g>
-      <g id="fr-hoja">
-        <path d="M0 0 C6 -10 18 -12 24 -10 C20 -2 10 4 0 0 Z" fill="url(#hoja)"/>
-        <path d="M2 -1 C9 -5 15 -8 22 -9.5" stroke="#C8F7A8" stroke-width="1.2" fill="none" opacity=".8"/>
-      </g>
-
-      <!-- Acabado: volumen, estrías, luz interior y brillos -->
-      <g id="g-finish">
-        <use href="#g-body" fill="url(#vol-h)"/>
-        <use href="#g-body" fill="url(#vol-v)"/>
-        <ellipse cx="110" cy="176" rx="70" ry="34" fill="url(#glow)" clip-path="url(#g-clip)"/>
-        <g fill="none" stroke-linecap="round" clip-path="url(#g-clip)">
-          <g stroke="#fff" stroke-width="7" opacity=".28">
-            <path d="M74 42 C62 84 56 130 58 176"/><path d="M106 34 V180"/><path d="M138 42 C150 84 156 130 154 176"/>
-          </g>
-          <g stroke="#3B0019" stroke-width="6" opacity=".07">
-            <path d="M84 40 C74 84 70 130 72 176"/><path d="M116 34 V180"/><path d="M148 44 C162 84 168 130 166 176"/>
-          </g>
-        </g>
-      </g>
-      <g id="g-shine" fill="none" stroke="#fff" stroke-linecap="round">
-        <path d="M50 86 C43 106 41 128 44 150" stroke-width="14" opacity=".45" filter="url(#blur-s)"/>
-        <path d="M51 90 C46 108 45 124 46 142" stroke-width="5" opacity=".9"/>
-        <path d="M63 64 l5 -7" stroke-width="6" opacity=".9"/>
-        <path d="M150 58 C160 66 166 76 170 88" stroke-width="4" opacity=".5"/>
-        <ellipse cx="110" cy="38" rx="22" ry="5" fill="#fff" stroke="none" opacity=".35" filter="url(#blur-s)"/>
-      </g>
-      <g id="g-plate">
-        <ellipse cx="110" cy="176" rx="106" ry="15" fill="#E9AFC0"/>
-        <ellipse cx="110" cy="172" rx="104" ry="13" fill="url(#f-plato)"/>
-        <ellipse cx="110" cy="171" rx="84" ry="8" fill="#F6D3DD"/>
-        <path d="M14 170 C40 160 80 158 110 158" stroke="#fff" stroke-width="2" fill="none" opacity=".9"/>
-        <ellipse cx="110" cy="171" rx="86" ry="9" fill="url(#contact)" filter="url(#blur-s)"/>
-      </g>
+      <path id="badge-circle" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0"/>
     </defs>
   </svg>
 
@@ -158,7 +50,7 @@
     <section class="hero" id="inicio">
       <div class="hero__text">
         <h1 class="hero__title"><span class="w" style="--i:0">Gelatinas</span> <span class="w" style="--i:1">hechas</span> <span class="w" style="--i:2">a</span> <span class="w" style="--i:3">la</span> <span class="w" style="--i:4">medida</span> <span class="w" style="--i:5">de</span> <span class="w" style="--i:6">tu</span> <span class="w" style="--i:7">festejo</span></h1>
-        <p class="lead">Somos tres hermanas y hacemos cada gelatina sobre pedido: con los sabores, colores y nombre que tú elijas.</p>
+        <p class="lead">Somos tres hermanas y hacemos cada gelatina sobre pedido, con fruta de verdad y los sabores, colores y nombre que tú elijas.</p>
         <div class="hero__actions">
           <a class="btn btn--jelly" data-wa="Hola Las Chinas, quiero pedir una gelatina personalizada." href="#">
             <svg class="icon" aria-hidden="true"><use href="#i-whatsapp-logo"/></svg> Pide la tuya por WhatsApp
@@ -168,43 +60,30 @@
       </div>
 
       <figure class="hero__art">
-        <div class="cubes" aria-hidden="true">
-          <span class="cube" style="--x:6%;  --y:14%; --c:#F0164E; --s:34px; --r:14deg;  --depth:1.4; --i:0"></span>
-          <span class="cube" style="--x:84%; --y:8%;  --c:#A8E22B; --s:26px; --r:-18deg; --depth:2;   --i:1"></span>
-          <span class="cube" style="--x:92%; --y:58%; --c:#8A3CF5; --s:38px; --r:24deg;  --depth:1;   --i:2"></span>
-          <span class="cube" style="--x:2%;  --y:66%; --c:#FFB000; --s:28px; --r:-8deg;  --depth:1.8; --i:3"></span>
-          <span class="cube" style="--x:50%; --y:-4%; --c:#2FD8B5; --s:22px; --r:32deg;  --depth:2.4; --i:4"></span>
-        </div>
-        <button class="hero__jelly" type="button" aria-label="Hacer temblar la gelatina">
-          <span class="hero__lean">
-            <svg viewBox="0 -12 220 202" role="img" aria-labelledby="hero-jelly-title">
-              <title id="hero-jelly-title">Gelatina de tres capas: fresa, mango y uva</title>
-              <g class="plate"><use href="#g-plate"/></g>
-              <g class="jelly">
-                <use class="mold" href="#g-body" fill="#fff" fill-opacity=".35" stroke="#fff" stroke-width="3" stroke-dasharray="8 8"/>
-                <g clip-path="url(#g-clip)">
-                  <g class="fill fill--uva"><path class="wave" d="M-220 26 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 V200 H-220 Z" fill="url(#f-uva)"/><use href="#fr-uva" transform="translate(72 66) rotate(0)" opacity=".92"/><use href="#fr-uva" transform="translate(96 58) rotate(0)" opacity=".92"/><use href="#fr-uva" transform="translate(124 64) rotate(0)" opacity=".92"/><use href="#fr-uva" transform="translate(150 72) rotate(0)" opacity=".92"/><use href="#fr-uva" transform="translate(108 78) rotate(0)" opacity=".92"/><use href="#fr-uva" transform="translate(84 80) rotate(0)" opacity=".92"/><use href="#fr-uva" transform="translate(138 50) rotate(0)" opacity=".92"/></g>
-                  <g class="fill fill--mango"><path class="wave" d="M-220 86 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 V200 H-220 Z" fill="url(#f-mango)"/><use href="#fr-mango" transform="translate(52 108) rotate(12)" opacity=".92"/><use href="#fr-mango" transform="translate(84 100) rotate(-14)" opacity=".92"/><use href="#fr-mango" transform="translate(114 112) rotate(20)" opacity=".92"/><use href="#fr-mango" transform="translate(146 102) rotate(-8)" opacity=".92"/><use href="#fr-mango" transform="translate(172 114) rotate(16)" opacity=".92"/></g>
-                  <g class="fill fill--fresa"><path class="wave" d="M-220 130 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 V200 H-220 Z" fill="url(#f-fresa)"/><use href="#fr-fresa" transform="translate(50 152) rotate(-20)" opacity=".92"/><use href="#fr-fresa" transform="translate(86 160) rotate(10)" opacity=".92"/><use href="#fr-fresa" transform="translate(122 150) rotate(-6)" opacity=".92"/><use href="#fr-fresa" transform="translate(158 158) rotate(18)" opacity=".92"/><use href="#fr-fresa" transform="translate(104 172) rotate(0)" opacity=".92"/></g>
-                </g>
-                <g class="finish">
-                  <use href="#g-finish"/>
-                  <use href="#g-shine"/>
-                  <use href="#fr-hoja" transform="translate(112 36) rotate(-20)"/>
-                  <use href="#fr-fresa-entera" transform="translate(104 24) rotate(-12) scale(.95)"/>
-                </g>
-              </g>
-            </svg>
+        <div class="hero__stage" aria-hidden="true"></div>
+        <button class="hero__photo" type="button" aria-label="Hacer temblar la gelatina">
+          <span class="hero__tilt">
+            <img src="assets/gelatina-fresa-leche-1400.webp"
+                 srcset="assets/gelatina-fresa-leche-800.webp 800w, assets/gelatina-fresa-leche-1400.webp 1400w"
+                 sizes="(max-width: 860px) 92vw, 600px"
+                 width="1400" height="933" fetchpriority="high"
+                 alt="Gelatina de fresa con leche, con rebanadas de fresa natural, sobre un plato blanco">
           </span>
         </button>
-        <figcaption>Una capa por cada hermana. <span class="hint">Tócala.</span></figcaption>
+        <div class="badge" aria-hidden="true">
+          <svg class="badge__ring" viewBox="0 0 120 120">
+            <text><textPath href="#badge-circle" textLength="270" lengthAdjust="spacing">gelatinas hechas a mano por tres hermanas</textPath></text>
+          </svg>
+          <img class="badge__logo" src="assets/logo-preliminar-160.webp" width="64" height="64" alt="">
+        </div>
+        <figcaption>Fresa con leche. <span class="hint">Tócala.</span></figcaption>
       </figure>
     </section>
 
     <section class="marquee" aria-label="Festejos para los que preparamos gelatinas">
       <div class="marquee__track">
-        <ul class="marquee__list"><li>Cumpleaños</li><li class="sep" aria-hidden="true"><span class="logo__mark"><span></span><span></span><span></span></span></li><li>Baby showers</li><li class="sep" aria-hidden="true"><span class="logo__mark"><span></span><span></span><span></span></span></li><li>Bautizos</li><li class="sep" aria-hidden="true"><span class="logo__mark"><span></span><span></span><span></span></span></li><li>XV años</li><li class="sep" aria-hidden="true"><span class="logo__mark"><span></span><span></span><span></span></span></li><li>Reuniones</li><li class="sep" aria-hidden="true"><span class="logo__mark"><span></span><span></span><span></span></span></li></ul>
-        <ul class="marquee__list" aria-hidden="true"><li>Cumpleaños</li><li class="sep" aria-hidden="true"><span class="logo__mark"><span></span><span></span><span></span></span></li><li>Baby showers</li><li class="sep" aria-hidden="true"><span class="logo__mark"><span></span><span></span><span></span></span></li><li>Bautizos</li><li class="sep" aria-hidden="true"><span class="logo__mark"><span></span><span></span><span></span></span></li><li>XV años</li><li class="sep" aria-hidden="true"><span class="logo__mark"><span></span><span></span><span></span></span></li><li>Reuniones</li><li class="sep" aria-hidden="true"><span class="logo__mark"><span></span><span></span><span></span></span></li></ul>
+        <ul class="marquee__list"><li>Cumpleaños</li><li class="sep" aria-hidden="true"></li><li>Baby showers</li><li class="sep" aria-hidden="true"></li><li>Bautizos</li><li class="sep" aria-hidden="true"></li><li>XV años</li><li class="sep" aria-hidden="true"></li><li>Reuniones</li><li class="sep" aria-hidden="true"></li></ul>
+        <ul class="marquee__list" aria-hidden="true"><li>Cumpleaños</li><li class="sep" aria-hidden="true"></li><li>Baby showers</li><li class="sep" aria-hidden="true"></li><li>Bautizos</li><li class="sep" aria-hidden="true"></li><li>XV años</li><li class="sep" aria-hidden="true"></li><li>Reuniones</li><li class="sep" aria-hidden="true"></li></ul>
       </div>
     </section>
 
@@ -214,15 +93,15 @@
         <p>Las Chinas nació en casa, entre moldes, sabores y festejos de la familia. Hoy preparamos gelatinas personalizadas para que tu mesa de postres se vea tan bonita como sabe.</p>
       </div>
       <ul class="polaroids">
-        <li class="polaroid reveal" style="--tilt:-3deg; --tone:#F0164E">
+        <li class="polaroid reveal" style="--tilt:-3deg; --tone:#C8102E">
           <div class="polaroid__photo"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg><span>Foto pendiente</span></div>
           <p class="polaroid__name">La mayor</p>
         </li>
-        <li class="polaroid reveal" style="--tilt:2deg; --tone:#FFB000">
+        <li class="polaroid reveal" style="--tilt:2deg; --tone:#F4A259">
           <div class="polaroid__photo"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg><span>Foto pendiente</span></div>
           <p class="polaroid__name">La de en medio</p>
         </li>
-        <li class="polaroid reveal" style="--tilt:-1.5deg; --tone:#8A3CF5">
+        <li class="polaroid reveal" style="--tilt:-1.5deg; --tone:#E86A8A">
           <div class="polaroid__photo"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg><span>Foto pendiente</span></div>
           <p class="polaroid__name">La más chica</p>
         </li>
@@ -237,41 +116,34 @@
 
       <div class="bento">
         <article class="card card--feature reveal">
-          <div class="card__art">
-            <svg viewBox="0 -24 220 214" role="img" aria-label="Gelatina de fresa y leche con vela de cumpleaños">
-              <use href="#g-plate"/>
-              <g class="jelly">
-                <g clip-path="url(#g-clip)">
-                  <rect width="220" height="200" fill="url(#f-leche)"/>
-                  <path d="M-220 104 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 q13.75 -5 27.5 0 t27.5 0 V200 H-220 Z" fill="url(#f-fresa)" transform="scale(1 -1) translate(0 -208)"/>
-                  <use href="#fr-fresa" transform="translate(48 74) rotate(-16)" opacity=".92"/><use href="#fr-fresa" transform="translate(82 62) rotate(12)" opacity=".92"/><use href="#fr-fresa" transform="translate(118 70) rotate(-4)" opacity=".92"/><use href="#fr-fresa" transform="translate(152 64) rotate(20)" opacity=".92"/><use href="#fr-fresa" transform="translate(176 84) rotate(-10)" opacity=".92"/><use href="#fr-fresa" transform="translate(66 92) rotate(6)" opacity=".92"/><use href="#fr-fresa" transform="translate(138 92) rotate(-14)" opacity=".92"/>
-                </g>
-                <use href="#g-finish"/>
-                <text x="110" y="146" text-anchor="middle" class="svg-name">Feliz día</text>
-                <use href="#g-shine"/>
-                <rect x="105" y="0" width="10" height="36" rx="3" fill="#9B4DFF"/>
-                <rect x="105" y="0" width="4" height="36" rx="2" fill="#fff" opacity=".45"/>
-                <g class="flame"><ellipse cx="110" cy="-8" rx="9" ry="14" fill="#FFD84D" opacity=".35" filter="url(#blur-s)"/><path d="M110 -18 C102 -7 102 1 110 4 C118 1 118 -7 110 -18 Z" fill="#FFB000"/><path d="M110 -8 C106 -3 106 1 110 3 C114 1 114 -3 110 -8 Z" fill="#FFF3B0"/></g>
-              </g>
-            </svg>
+          <div class="card__photo">
+            <img src="assets/gelatina-fresa-leche-800.webp"
+                 srcset="assets/gelatina-fresa-leche-800.webp 800w, assets/gelatina-fresa-leche-1400.webp 1400w"
+                 sizes="(max-width: 860px) 92vw, 640px"
+                 width="800" height="533" loading="lazy"
+                 alt="Gelatina de fresa con leche con rebanadas de fresa">
+          </div>
+          <div class="card__body">
+            <h3>Fresa con leche</h3>
+            <p>Base cremosa de leche con trocitos de fresa y una capa brillante de gelatina de fresa con rebanadas de fruta natural.</p>
+            <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar una gelatina de fresa con leche." href="#">Cotizar esta</a>
+          </div>
+        </article>
+        <article class="card reveal" style="--tone:#F4A259">
+          <div class="card__photo card__photo--pending">
+            <svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg>
+            <span>Foto próximamente</span>
           </div>
           <div class="card__body">
             <h3>De cumpleaños con nombre</h3>
-            <p>Con el nombre o la edad de quien festeja, en los sabores y colores favoritos.</p>
+            <p>Con el nombre o la edad de quien festeja, en sus sabores favoritos.</p>
             <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar una gelatina de cumpleaños con nombre." href="#">Cotizar esta</a>
           </div>
         </article>
-
-        <article class="card reveal">
-          <div class="card__art">
-            <svg viewBox="0 0 220 190" role="img" aria-label="Gelatina mosaico de leche con cubos de colores">
-              <use href="#g-plate"/>
-              <g class="jelly">
-                <g clip-path="url(#g-clip)"><rect width="220" height="200" fill="url(#f-leche)"/><g opacity=".93"><g transform="translate(66 82) rotate(14)"><rect x="-11" y="-11" width="22" height="22" rx="4" fill="#F0164E"/><rect x="-11" y="-11" width="22" height="22" rx="4" fill="url(#cubo-luz)"/><rect x="-7" y="-8" width="8" height="3" rx="1.5" fill="#fff" opacity=".65"/></g><g transform="translate(106 66) rotate(-10)"><rect x="-11" y="-11" width="22" height="22" rx="4" fill="#8A3CF5"/><rect x="-11" y="-11" width="22" height="22" rx="4" fill="url(#cubo-luz)"/><rect x="-7" y="-8" width="8" height="3" rx="1.5" fill="#fff" opacity=".65"/></g><g transform="translate(144 92) rotate(22)"><rect x="-11" y="-11" width="22" height="22" rx="4" fill="#A8E22B"/><rect x="-11" y="-11" width="22" height="22" rx="4" fill="url(#cubo-luz)"/><rect x="-7" y="-8" width="8" height="3" rx="1.5" fill="#fff" opacity=".65"/></g><g transform="translate(84 122) rotate(-18)"><rect x="-11" y="-11" width="22" height="22" rx="4" fill="#FFB000"/><rect x="-11" y="-11" width="22" height="22" rx="4" fill="url(#cubo-luz)"/><rect x="-7" y="-8" width="8" height="3" rx="1.5" fill="#fff" opacity=".65"/></g><g transform="translate(126 128) rotate(8)"><rect x="-11" y="-11" width="22" height="22" rx="4" fill="#2FD8B5"/><rect x="-11" y="-11" width="22" height="22" rx="4" fill="url(#cubo-luz)"/><rect x="-7" y="-8" width="8" height="3" rx="1.5" fill="#fff" opacity=".65"/></g><g transform="translate(50 144) rotate(30)"><rect x="-11" y="-11" width="22" height="22" rx="4" fill="#8A3CF5"/><rect x="-11" y="-11" width="22" height="22" rx="4" fill="url(#cubo-luz)"/><rect x="-7" y="-8" width="8" height="3" rx="1.5" fill="#fff" opacity=".65"/></g><g transform="translate(164 140) rotate(-24)"><rect x="-11" y="-11" width="22" height="22" rx="4" fill="#F0164E"/><rect x="-11" y="-11" width="22" height="22" rx="4" fill="url(#cubo-luz)"/><rect x="-7" y="-8" width="8" height="3" rx="1.5" fill="#fff" opacity=".65"/></g><g transform="translate(104 150) rotate(12)"><rect x="-11" y="-11" width="22" height="22" rx="4" fill="#A8E22B"/><rect x="-11" y="-11" width="22" height="22" rx="4" fill="url(#cubo-luz)"/><rect x="-7" y="-8" width="8" height="3" rx="1.5" fill="#fff" opacity=".65"/></g><g transform="translate(150 60) rotate(4)"><rect x="-11" y="-11" width="22" height="22" rx="4" fill="#FFB000"/><rect x="-11" y="-11" width="22" height="22" rx="4" fill="url(#cubo-luz)"/><rect x="-7" y="-8" width="8" height="3" rx="1.5" fill="#fff" opacity=".65"/></g></g></g>
-                <use href="#g-finish"/>
-                <use href="#g-shine"/>
-              </g>
-            </svg>
+        <article class="card reveal" style="--tone:#8A3CF5">
+          <div class="card__photo card__photo--pending">
+            <svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg>
+            <span>Foto próximamente</span>
           </div>
           <div class="card__body">
             <h3>Mosaico de colores</h3>
@@ -279,67 +151,22 @@
             <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar una gelatina mosaico." href="#">Cotizar esta</a>
           </div>
         </article>
-
-        <article class="card reveal">
-          <div class="card__art">
-            <svg viewBox="0 0 220 190" role="img" aria-label="Gelatina transparente con una flor dentro">
-              <use href="#g-plate"/>
-              <g class="jelly">
-                <g clip-path="url(#g-clip)">
-                  <rect width="220" height="200" fill="url(#f-rosa)"/>
-                  <path d="M110 140 C106 156 114 170 110 196" stroke="#2E9B3A" stroke-width="5" fill="none"/>
-                  <use href="#fr-hoja" transform="translate(110 160) rotate(-25)"/>
-                  <use href="#fr-hoja" transform="translate(110 168) scale(-1 1) rotate(-20)"/>
-                  <g transform="translate(110 108)"><ellipse rx="14" ry="28" transform="rotate(0) translate(0 -24)" fill="url(#f-petalo)"/><ellipse rx="14" ry="28" transform="rotate(72) translate(0 -24)" fill="url(#f-petalo)"/><ellipse rx="14" ry="28" transform="rotate(144) translate(0 -24)" fill="url(#f-petalo)"/><ellipse rx="14" ry="28" transform="rotate(216) translate(0 -24)" fill="url(#f-petalo)"/><ellipse rx="14" ry="28" transform="rotate(288) translate(0 -24)" fill="url(#f-petalo)"/><ellipse rx="8" ry="17" transform="rotate(36) translate(0 -14)" fill="#FFC2D9"/><ellipse rx="8" ry="17" transform="rotate(108) translate(0 -14)" fill="#FFC2D9"/><ellipse rx="8" ry="17" transform="rotate(180) translate(0 -14)" fill="#FFC2D9"/><ellipse rx="8" ry="17" transform="rotate(252) translate(0 -14)" fill="#FFC2D9"/><ellipse rx="8" ry="17" transform="rotate(324) translate(0 -14)" fill="#FFC2D9"/><circle r="10" fill="#FFD84D"/><circle cx="-3" cy="-3" r="3" fill="#fff" opacity=".7"/></g>
-                </g>
-                <use href="#g-finish"/>
-                <use href="#g-shine"/>
-              </g>
-            </svg>
-          </div>
-          <div class="card__body">
-            <h3>Con flores dentro</h3>
-            <p>Gelatina artística con una flor al centro, para regalar.</p>
-            <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar una gelatina con flores." href="#">Cotizar esta</a>
-          </div>
-        </article>
-
-        <article class="card card--wide reveal">
-          <div class="card__art card__art--row">
-            <svg viewBox="0 -4 330 154" role="img" aria-label="Tres mini gelatinas en vasito con fruta">
-              <defs><clipPath id="cup"><path d="M0 0 H76 L67 100 Q38 109 9 100 Z"/></clipPath></defs>
-              <ellipse cx="165" cy="140" rx="160" ry="8" fill="url(#contact)"/>
-              <g transform="translate(16 34)"><g class="jelly">
-                <g clip-path="url(#cup)"><rect width="76" height="110" fill="url(#f-uva)"/><rect y="52" width="76" height="110" fill="url(#f-leche)"/><use href="#fr-uva" transform="translate(20 30) rotate(0)" opacity=".9"/><use href="#fr-uva" transform="translate(54 24) rotate(0)" opacity=".9"/><rect width="76" height="110" fill="url(#vol-h)"/></g>
-                <path d="M0 0 H76 L67 100 Q38 109 9 100 Z" fill="none" stroke="#fff" stroke-width="3" opacity=".85"/>
-                <path d="M8 8 L14 92" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".55"/>
-                <ellipse cx="38" cy="0" rx="38" ry="5" fill="#fff" opacity=".5"/>
-                <use href="#fr-uva" transform="translate(30 -6)"/><use href="#fr-uva" transform="translate(46 -8)"/><use href="#fr-uva" transform="translate(38 -18)"/>
-              </g></g><g transform="translate(126 34)"><g class="jelly">
-                <g clip-path="url(#cup)"><rect width="76" height="110" fill="url(#f-fresa)"/><rect y="60" width="76" height="110" fill="url(#f-mango)"/><use href="#fr-fresa" transform="translate(22 30) rotate(-10)" opacity=".9"/><use href="#fr-fresa" transform="translate(54 36) rotate(14)" opacity=".9"/><use href="#fr-mango" transform="translate(26 80) rotate(10)" opacity=".9"/><use href="#fr-mango" transform="translate(52 86) rotate(-12)" opacity=".9"/><rect width="76" height="110" fill="url(#vol-h)"/></g>
-                <path d="M0 0 H76 L67 100 Q38 109 9 100 Z" fill="none" stroke="#fff" stroke-width="3" opacity=".85"/>
-                <path d="M8 8 L14 92" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".55"/>
-                <ellipse cx="38" cy="0" rx="38" ry="5" fill="#fff" opacity=".5"/>
-                <use href="#fr-fresa-entera" transform="translate(38 -14) rotate(8) scale(.8)"/>
-              </g></g><g transform="translate(236 34)"><g class="jelly">
-                <g clip-path="url(#cup)"><rect width="76" height="110" fill="url(#f-menta)"/><rect y="42" width="76" height="110" fill="url(#f-limon)"/><use href="#fr-mango" transform="translate(24 72) rotate(8)" opacity=".9"/><use href="#fr-mango" transform="translate(52 84) rotate(-10)" opacity=".9"/><rect width="76" height="110" fill="url(#vol-h)"/></g>
-                <path d="M0 0 H76 L67 100 Q38 109 9 100 Z" fill="none" stroke="#fff" stroke-width="3" opacity=".85"/>
-                <path d="M8 8 L14 92" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".55"/>
-                <ellipse cx="38" cy="0" rx="38" ry="5" fill="#fff" opacity=".5"/>
-                <use href="#fr-mango" transform="translate(38 -6) rotate(12) scale(1.2)"/><use href="#fr-hoja" transform="translate(44 -10) rotate(-30) scale(.7)"/>
-              </g></g>
-            </svg>
+        <article class="card reveal card--wide" style="--tone:#2FB89A">
+          <div class="card__photo card__photo--pending">
+            <svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg>
+            <span>Foto próximamente</span>
           </div>
           <div class="card__body">
             <h3>Mini gelatinas en vasito</h3>
-            <p>Porciones individuales para mesa de postres, recuerditos o fiestas infantiles. Combinamos los colores de tu evento.</p>
-            <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar mini gelatinas en vasito." href="#">Cotizar estas</a>
+            <p>Porciones individuales para mesa de postres, recuerditos o fiestas infantiles.</p>
+            <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar mini gelatinas en vasito." href="#">Cotizar esta</a>
           </div>
         </article>
       </div>
     </section>
 
     <section class="steps" id="como-pedir" aria-labelledby="pedir-title">
+      <div class="steps__bg" aria-hidden="true"></div>
       <div class="steps__inner">
         <h2 id="pedir-title">Así de fácil se pide</h2>
         <ol class="steps__list">
