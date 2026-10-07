@@ -19,6 +19,8 @@
   --font-script: "Lobster Two", "Brush Script MT", cursive;
   --font-hand: "Caveat", "Segoe Print", cursive;
   --font-body: "Poppins", system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Times New Roman", serif;
+  --marfil: #FBF3EE;
 
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --spring: linear(0, 0.035, 0.126, 0.257, 0.411, 0.572, 0.729, 0.871, 0.993, 1.090, 1.161, 1.207, 1.230, 1.233, 1.219, 1.194, 1.161, 1.124, 1.087, 1.051, 1.019, 0.993, 0.972, 0.958, 0.949, 0.946, 0.946, 0.951, 0.957, 0.965, 0.974, 0.983, 0.991, 0.998, 1.004, 1.008, 1.011, 1.012, 1.013, 1.012, 1);
@@ -135,9 +137,6 @@ h2.script { font-size: clamp(2rem, 4.4vw, 3rem); }
 
 .price { font-weight: 700; color: var(--rosa-700); font-size: 1.15rem; font-variant-numeric: tabular-nums; }
 
-/* ---------- Presentación de entrada ---------- */
-
-.intro { display: none; }
 
 /* ---------- Encabezado ---------- */
 
@@ -227,20 +226,7 @@ h2.script { font-size: clamp(2rem, 4.4vw, 3rem); }
     linear-gradient(160deg, #6B1240, var(--frambuesa-2));
   overflow: visible;
 }
-.hero__bg, .hero__photo, .hero__hearts { clip-path: inset(0); }
-/* Borde de gelatina que escurre al pie del hero */
-.hero__drips {
-  position: absolute;
-  z-index: 1;
-  left: 0;
-  top: calc(100% - 1px);
-  width: 100%;
-  height: clamp(44px, 7vw, 90px);
-  fill: var(--frambuesa-2);
-  pointer-events: none;
-  overflow: visible;
-}
-.hero__drips .hd { transform-box: fill-box; transform-origin: 50% 0; }
+.hero__bg, .hero__photo { clip-path: inset(0); }
 .hero__bg { position: absolute; inset: 0; z-index: -2; }
 .bokeh {
   position: absolute;
@@ -270,19 +256,6 @@ h2.script { font-size: clamp(2rem, 4.4vw, 3rem); }
           mask-composite: intersect;
 }
 .hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
-
-.hero__hearts { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
-.fheart {
-  position: absolute;
-  left: var(--x);
-  top: var(--y);
-  width: var(--s);
-  height: var(--s);
-  background: radial-gradient(circle at 35% 30%, #FFD6E6, #FF6FA7 55%, #E23A7E);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.1 5.3 3 1.7-1.9 3.2-3 5.3-3 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E") center / contain no-repeat;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.1 5.3 3 1.7-1.9 3.2-3 5.3-3 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E") center / contain no-repeat;
-  filter: drop-shadow(0 4px 10px rgba(255, 90, 160, .6));
-}
 
 .hero__content { max-width: 560px; position: relative; }
 .hero__title {
@@ -532,60 +505,135 @@ h2.script { font-size: clamp(2rem, 4.4vw, 3rem); }
 .special__text p:not(.special__lead) { color: rgba(255, 255, 255, .9); font-size: .95rem; max-width: 46ch; }
 .special__text .btn { margin-top: 8px; }
 
-/* ---------- Gelatina capa por capa (controlada con el scroll) ---------- */
+/* ---------- Capa por capa (la foto real separada en capas) ---------- */
 
-.cine { position: relative; margin-top: 56px; }
-.cine__pin {
+.capas { position: relative; margin-top: 56px; }
+.capas__pin {
   position: relative;
   height: 100vh;
   height: 100svh;
   overflow: hidden;
   display: grid;
-  grid-template-rows: auto 1fr auto auto;
-  padding: calc(92px + env(safe-area-inset-top, 0px)) var(--gutter) calc(28px + env(safe-area-inset-bottom, 0px));
-  background: radial-gradient(80% 70% at 50% 45%, #FBDED8, #F4C8C0);
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 330px);
+  grid-template-rows: auto 1fr;
+  align-items: center;
+  column-gap: clamp(16px, 3vw, 48px);
+  padding: calc(96px + env(safe-area-inset-top, 0px)) var(--gutter) calc(32px + env(safe-area-inset-bottom, 0px));
+  color: #fff;
+  background:
+    radial-gradient(55% 50% at 42% 58%, rgba(196, 52, 102, .5), transparent 70%),
+    radial-gradient(120% 90% at 50% 40%, #5E1336, var(--frambuesa-2) 62%, #1F0410);
   isolation: isolate;
 }
-.cine__canvas { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; }
-.cine__video { display: none; }
-.cine__title {
-  justify-self: start;
-  font-size: clamp(2rem, 5vw, 3.6rem);
-  color: var(--rosa-700);
-  text-shadow: 0 2px 18px rgba(255, 255, 255, .7);
-}
-.cine__steps { grid-row: 3; list-style: none; margin: 0; padding: 0; position: relative; min-height: 2.6em; }
-.cine__steps li {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  translate: -50% 0;
-  width: max-content;
-  max-width: 100%;
-  padding: 10px 22px;
-  border-radius: 999px;
-  font-family: var(--font-script);
+.capas__head { grid-column: 1 / -1; align-self: start; text-align: center; }
+.capas__kicker { font-size: .78rem; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--rosa-300); }
+.capas__title {
+  font-family: var(--font-serif);
   font-style: italic;
-  font-weight: 700;
-  font-size: clamp(1.3rem, 3.2vw, 2.2rem);
-  text-align: center;
-  color: #fff;
-  background: rgba(163, 18, 77, .82);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 16px 34px -14px rgba(90, 15, 51, .7);
+  font-weight: 500;
+  font-size: clamp(2.6rem, 6.4vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.capas__stage {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 980px, calc((100svh - 230px) * 1.744));
+  aspect-ratio: 1500 / 860;
+  transform-origin: 50% 70%;
+}
+.capas__plato, .capas__fresa, .capas__leche, .capas__leche img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.capas__leche, .capas__fresa { will-change: transform; }
+/* Sombra del plato sobre la mesa */
+.capas__piso {
+  position: absolute;
+  left: 4%;
+  right: 2%;
+  top: 74%;
+  height: 26%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, .55), rgba(0, 0, 0, 0));
+  filter: blur(6px);
+}
+/* Sombra de la leche sobre el plato cuando se despega */
+.capas__apoyo {
+  position: absolute;
+  left: 9%;
+  width: 82.7%;
+  top: 43%;
+  height: 46%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(90, 20, 40, .38), rgba(90, 20, 40, 0));
   opacity: 0;
 }
-.cine__progress { grid-row: 4; margin-top: 18px; height: 4px; border-radius: 4px; background: rgba(163, 18, 77, .18); overflow: hidden; }
-.cine__progress span { display: block; height: 100%; background: linear-gradient(90deg, #F15A99, var(--rosa-600)); transform-origin: 0 50%; transform: scaleX(0); }
-.cine__hint { position: absolute; right: var(--gutter); top: calc(100px + env(safe-area-inset-top, 0px)); display: flex; align-items: center; gap: 6px; font-size: .85rem; font-weight: 600; color: var(--rosa-700); }
+/* La luz roja que atraviesa la gelatina tiñe la leche de abajo */
+.capas__gap {
+  position: absolute;
+  left: 12%;
+  width: 80%;
+  top: 19%;
+  height: 46%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(150, 18, 40, .55), rgba(150, 18, 40, .22) 70%, rgba(150, 18, 40, 0));
+  mix-blend-mode: multiply;
+  opacity: 0;
+}
+.capas__suelta {
+  position: absolute;
+  width: 20%;
+  height: auto;
+  filter: drop-shadow(0 18px 18px rgba(0, 0, 0, .35));
+}
+.capas__suelta--1 { left: -4%; top: 58%; }
+.capas__suelta--2 { right: -2%; top: 48%; }
+.capas__suelta--3 { left: 46%; top: -6%; width: 13%; filter: blur(2px) drop-shadow(0 10px 10px rgba(0, 0, 0, .3)); }
 
-/* Sin movimiento o sin JavaScript: video normal con controles y todas las etapas */
-.cine--static .cine__pin { height: auto; grid-template-rows: auto; gap: 18px; padding-top: 40px; }
-.cine--static .cine__canvas, .cine--static .cine__progress, .cine--static .cine__hint { display: none; }
-.cine--static .cine__video { display: block; width: 100%; max-width: 900px; height: auto; justify-self: center; border-radius: var(--radius-lg); box-shadow: var(--shadow); }
-.cine--static .cine__steps { grid-row: auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; min-height: 0; }
-.cine--static .cine__steps li { position: static; translate: none; opacity: 1; font-size: 1.1rem; padding: 8px 16px; }
+.capas__notas { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; align-self: center; }
+.capas__notas li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 14px;
+  opacity: .28;
+  transition: opacity 500ms var(--ease-out), translate 500ms var(--ease-out);
+}
+.capas__notas li.is-on { opacity: 1; translate: 6px 0; }
+.capas__notas li.is-past { opacity: .5; }
+.capas__num { grid-row: span 2; font-family: var(--font-serif); font-style: italic; font-size: 1.6rem; line-height: 1; color: var(--rosa-300); }
+.capas__notas b { font-family: var(--font-serif); font-weight: 600; font-size: 1.55rem; line-height: 1.15; }
+.capas__notas li > span:last-child { font-size: .92rem; color: rgba(255, 255, 255, .78); }
+.capas__notas, .capas__final { grid-column: 2; grid-row: 2; }
+.capas__final {
+  display: grid;
+  justify-items: start;
+  align-self: center;
+  gap: 16px;
+  opacity: 0;
+  translate: 0 20px;
+  pointer-events: none;
+  transition: opacity 600ms var(--ease-out), translate 600ms var(--ease-out);
+}
+.capas__final p { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.8rem, 3.4vw, 2.8rem); line-height: 1.05; }
+.is-final .capas__final { opacity: 1; translate: 0 0; pointer-events: auto; }
+.is-final .capas__notas li { opacity: 0; }
+
+@media (max-width: 1000px) {
+  .capas__pin { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr auto; padding-bottom: calc(36px + env(safe-area-inset-bottom, 0px)); }
+  .capas__stage { --w: min(118vw, calc((100svh - 330px) * 1.744)); width: var(--w); justify-self: start; margin-left: calc((100% - var(--w)) / 2); }
+  .capas__notas, .capas__final { grid-column: 1; grid-row: 3; width: min(100%, 420px); justify-self: center; }
+  .capas__notas { position: relative; min-height: 5.6em; text-align: left; }
+  .capas__final { justify-items: center; text-align: center; align-self: start; }
+  .capas__notas li { position: absolute; inset: 0 0 auto 0; opacity: 0; translate: 0 12px; }
+  .capas__notas li.is-on { opacity: 1; translate: 0 0; }
+  .capas__notas li.is-past { opacity: 0; translate: 0 -12px; }
+  .capas__notas b { font-size: 1.35rem; }
+}
+
+/* Sin movimiento o sin JavaScript: la gelatina completa y las notas a la vista */
+.capas--static .capas__pin { height: auto; }
+.capas--static .capas__suelta, .capas--static .capas__gap, .capas--static .capas__apoyo { display: none; }
+.capas--static .capas__notas { min-height: 0; }
+.capas--static .capas__notas li { position: static; opacity: 1; translate: none; }
+.capas--static .capas__final { grid-column: 1 / -1; grid-row: auto; translate: none; opacity: 1; pointer-events: auto; margin-top: 24px; }
 
 /* ---------- Calidad ---------- */
 
@@ -893,69 +941,26 @@ h2.script { font-size: clamp(2rem, 4.4vw, 3rem); }
 .fab:active { transform: scale(.94); }
 
 
-/* ---------- Entrada: gota, logo, frase y cortina que escurre ---------- */
+/* ---------- Entrada: la frase, el logo y la cortina que se desmolda ---------- */
 
 .intro {
   position: fixed;
   inset: 0;
   z-index: 90;
   display: none;
-  place-content: center;
-  justify-items: center;
-  gap: 22px;
-  background: radial-gradient(60% 50% at 50% 42%, #8A1A4E, var(--frambuesa-2));
+  background: var(--marfil);
+  color: var(--frambuesa);
 }
-.js:not(.no-intro) .intro { display: grid; animation: intro-safety 0s 6s forwards; }
+.js:not(.no-intro) .intro { display: block; animation: intro-safety 0s 7s forwards; }
 @keyframes intro-safety { to { visibility: hidden; } }
-.intro__stage { position: relative; width: 170px; height: 170px; display: grid; place-items: center; }
-.intro__drop {
-  position: absolute;
-  width: 74px;
-  height: 74px;
-  border-radius: 50% 50% 50% 50% / 58% 58% 42% 42%;
-  background:
-    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, .95) 0 8%, rgba(255, 255, 255, 0) 22%),
-    radial-gradient(circle at 60% 70%, #FF8DBA, #E23A7E 55%, #A3124D);
-  box-shadow: inset -8px -10px 18px rgba(90, 15, 51, .45), 0 18px 40px rgba(226, 58, 126, .55);
-  opacity: 0;
-}
-.intro__ring {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 141, 186, .8);
-  opacity: 0;
-}
-.intro__logo { position: relative; width: 160px; height: 160px; border-radius: 50%; box-shadow: 0 0 0 3px rgba(255, 255, 255, .6), 0 0 70px rgba(255, 111, 167, .7); opacity: 0; }
-.intro__phrase { font-family: var(--font-hand); font-size: clamp(2rem, 6vw, 3rem); color: #fff; text-align: center; padding: 0 16px; min-height: 1.2em; }
-.intro__phrase span { display: inline-block; opacity: 0; }
-.intro__drips { position: absolute; left: 0; top: calc(100% - 2px); width: 100%; height: 18vh; fill: var(--frambuesa-2); overflow: visible; }
-.intro__drips .drip { transform-box: fill-box; transform-origin: 50% 0; }
-
-/* ---------- Franja de festejos ---------- */
-
-.marquee {
-  position: relative;
-  z-index: 3;
-  margin: 46px -3vw 0;
-  padding: 16px 0;
-  overflow: hidden;
-  rotate: -2deg;
-  color: #fff;
-  background: linear-gradient(90deg, var(--rosa-600), #F15A99, var(--rosa-600));
-  box-shadow: 0 16px 34px -18px rgba(163, 18, 77, .7);
-}
-.marquee__track { display: flex; width: max-content; }
-.marquee__list { list-style: none; margin: 0; padding: 0 30px 0 0; display: flex; align-items: center; gap: 30px; }
-.marquee__list li { font-family: var(--font-script); font-style: italic; font-weight: 700; font-size: clamp(1.4rem, 3.4vw, 2.2rem); line-height: 1.2; white-space: nowrap; }
-.marquee__list .sep {
-  width: 18px;
-  height: 18px;
-  background: #fff;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.1 5.3 3 1.7-1.9 3.2-3 5.3-3 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E") center / contain no-repeat;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.1 5.3 3 1.7-1.9 3.2-3 5.3-3 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E") center / contain no-repeat;
-}
+.intro__panel { height: 100%; display: grid; place-content: center; justify-items: center; gap: 26px; padding: 0 20px; text-align: center; }
+.intro__phrase { font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: clamp(2.6rem, 8vw, 5.6rem); line-height: 1.02; letter-spacing: -0.015em; }
+.intro__line { display: block; overflow: hidden; padding: 0 .08em .08em; }
+.intro__line > span { display: block; }
+.intro__line + .intro__line { color: var(--rosa-600); }
+.intro__rule { width: 72px; height: 1px; background: currentColor; opacity: .5; }
+.intro__logo { width: 116px; height: 116px; border-radius: 50%; box-shadow: 0 18px 40px -18px rgba(90, 15, 51, .5); }
+.intro__edge { position: absolute; left: 0; top: calc(100% - 1px); width: 100%; height: 120px; fill: var(--marfil); overflow: visible; }
 
 /* Corazones que salen al tocar */
 .burst {
@@ -969,12 +974,6 @@ h2.script { font-size: clamp(2rem, 4.4vw, 3rem); }
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.1 5.3 3 1.7-1.9 3.2-3 5.3-3 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E") center / contain no-repeat;
           mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.1 5.3 3 1.7-1.9 3.2-3 5.3-3 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E") center / contain no-repeat;
 }
-
-/* Letras del título que caen como gelatina */
-.hero__title .ch { display: inline-block; transform-origin: 50% 100%; }
-
-/* Foto del hero con efecto gelatina */
-.hero__photo .jelly-canvas { pointer-events: none; }
 
 /* ---------- Celular y tableta ---------- */
 
@@ -996,8 +995,6 @@ h2.script { font-size: clamp(2rem, 4.4vw, 3rem); }
 }
 
 @media (max-width: 700px) {
-  .cine__pin { padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)); }
-  .cine__steps li { font-size: 1.25rem; }
   .hero__list { grid-template-columns: 1fr 1fr; gap: 8px 12px; }
   .hero__list li { font-size: .85rem; }
   .hero__down { display: none; }
@@ -1034,12 +1031,10 @@ h2.script { font-size: clamp(2rem, 4.4vw, 3rem); }
 /* ---------- Coreografía (solo con movimiento permitido) ---------- */
 
 @media (prefers-reduced-motion: no-preference) {
-  .fheart { animation: float 6s var(--d) ease-in-out infinite alternate; }
-  @keyframes float { from { translate: 0 -10px; rotate: -10deg; } to { translate: 0 12px; rotate: 10deg; } }
   .bokeh { animation: glow 5s ease-in-out infinite alternate; }
   .bokeh:nth-child(2n) { animation-duration: 7s; }
   @keyframes glow { from { opacity: .5; scale: .9; } to { opacity: 1; scale: 1.1; } }
-  .hero.is-offscreen .fheart, .hero.is-offscreen .bokeh { animation-play-state: paused; }
+  .hero.is-offscreen .bokeh { animation-play-state: paused; }
   .hero__down { animation: bob 1.8s ease-in-out infinite; }
   @keyframes bob { 50% { translate: -50% 6px; } }
 

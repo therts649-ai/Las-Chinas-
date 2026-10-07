@@ -278,29 +278,13 @@ const spy = new IntersectionObserver((entries) => {
 // El hero pausa sus luces y corazones cuando no se ve
 new IntersectionObserver(([e]) => $('.hero').classList.toggle('is-offscreen', !e.isIntersecting)).observe($('.hero'));
 
-// ---------- Efecto gelatina 3D sobre las fotos reales ----------
-
-const heroJelly = !reduceMotion && window.Jelly ? Jelly.attach($('.hero__photo')) : null;
-
-if (!reduceMotion && window.Jelly) {
-  cards.forEach((c) => {
-    const j = Jelly.attach($('.flavor__media', c));
-    // Tiembla una vez la primera vez que aparece en pantalla
-    new IntersectionObserver(([e], obs) => {
-      if (!e.isIntersecting) return;
-      setTimeout(() => j.poke(0.5, 0.3, 0.9), 200 + Math.random() * 300);
-      obs.disconnect();
-    }, { threshold: 0.6 }).observe(c);
-  });
-}
-
 // ---------- Coreografía con GSAP ----------
 
 const root = document.documentElement;
 const introShown = !root.classList.contains('no-intro') && !reduceMotion && !!window.gsap;
 if (!window.gsap || reduceMotion) root.classList.add('no-intro');
 
-// Corazones que salen disparados desde un punto
+// Corazones que salen al agregar al pedido
 function burst(x, y, n = 8) {
   if (reduceMotion || !window.gsap) return;
   for (let i = 0; i < n; i++) {
@@ -322,252 +306,173 @@ function burst(x, y, n = 8) {
 if (window.gsap && !reduceMotion) {
   gsap.registerPlugin(ScrollTrigger);
 
-  // ---- Entrada: cae una gota, rebota, salen ondas, aparece el logo, la frase
-  //      se escribe y la cortina sube escurriendo como gelatina ----
+  // ---- Entrada: la frase se revela línea por línea, aparece el logo y la
+  //      cortina se levanta como un molde, estirándose antes de soltarse ----
   let start = 0.1;
   if (introShown) {
+    const edge = $('.intro__edge path');
+    const pull = { v: 1 };
+    const drawEdge = () => edge.setAttribute('d', `M0 0 H1200 V1 Q600 ${pull.v.toFixed(1)} 0 1 Z`);
     const intro = gsap.timeline({ onComplete: () => root.classList.add('no-intro') });
     intro
-      .set('.intro__drop', { opacity: 1, y: -window.innerHeight * 0.6, scaleX: 0.8, scaleY: 1.25 })
-      .to('.intro__drop', { y: 0, duration: 0.55, ease: 'power2.in' })
-      .to('.intro__drop', { scaleX: 1.45, scaleY: 0.6, duration: 0.12, ease: 'power1.out' })
-      .to('.intro__drop', { scaleX: 1, scaleY: 1, duration: 0.6, ease: 'elastic.out(1.1, 0.35)' })
-      .fromTo('.intro__ring', { opacity: 0.9, scale: 0.4 }, { opacity: 0, scale: 2.2, duration: 1, stagger: 0.18, ease: 'power2.out' }, '<-0.6')
-      .to('.intro__drop', { scale: 2.3, opacity: 0, duration: 0.45, ease: 'power2.in' }, '-=0.55')
-      .fromTo('.intro__logo', { opacity: 0, scale: 0.4, rotate: -30 }, { opacity: 1, scale: 1, rotate: 0, duration: 0.7, ease: 'back.out(2)' }, '<0.15')
-      .fromTo('.intro__phrase span', { opacity: 0, y: 24, rotate: -8 }, { opacity: 1, y: 0, rotate: 0, duration: 0.5, stagger: 0.09, ease: 'back.out(2)' }, '<0.2')
-      .addLabel('out', '+=0.35')
-      .to('.intro', { yPercent: -112, duration: 1.05, ease: 'power3.inOut' }, 'out')
-      .fromTo('.intro__drips .drip', { scaleY: 1 }, { scaleY: 2.4, duration: 0.7, ease: 'power1.in', yoyo: true, repeat: 1 }, 'out');
-    start = intro.labels.out + 0.35;
-    const skip = () => { if (intro.progress() < 1 && intro.time() < intro.labels.out) intro.seek('out'); };
+      .from('.intro__line > span', { yPercent: 115, duration: 1.1, stagger: 0.18, ease: 'power4.out' }, 0.25)
+      .from('.intro__rule', { scaleX: 0, duration: 0.9, ease: 'power3.inOut' }, 0.9)
+      .from('.intro__logo', { opacity: 0, y: 16, scale: 0.92, duration: 0.9, ease: 'power3.out' }, 1.05)
+      .addLabel('out', 2.3)
+      .to('.intro__panel > *', { y: -24, opacity: 0, duration: 0.45, stagger: 0.04, ease: 'power2.in' }, 'out')
+      .to('.intro', { yPercent: -100, duration: 1.15, ease: 'power3.inOut' }, 'out+=0.3')
+      .to(pull, { v: 120, duration: 0.6, ease: 'power2.in', onUpdate: drawEdge }, 'out+=0.3')
+      .to(pull, { v: 1, duration: 1.1, ease: 'elastic.out(1, 0.32)', onUpdate: drawEdge }, '>');
+    start = intro.labels.out + 0.75;
+    const skip = () => { if (intro.time() < intro.labels.out) intro.seek('out'); };
     window.addEventListener('pointerdown', skip, { once: true });
     window.addEventListener('keydown', skip, { once: true });
   }
 
-  // Título: separar en letras para que caigan una por una
-  $$('.hero__title .line').forEach((line) => {
-    line.setAttribute('aria-label', line.textContent);
-    line.innerHTML = [...line.textContent].map((c) => `<span class="ch" aria-hidden="true">${c}</span>`).join('');
-  });
-
-  // Entrada del hero
+  // Entrada del hero: la foto se asienta y el título aparece línea por línea
   const tl = gsap.timeline({ delay: start, defaults: { ease: 'power3.out' } });
-  tl.from('.header', { y: -40, opacity: 0, duration: 0.8 })
-    .from('.hero__photo', { opacity: 0, scale: 1.12, duration: 1.6, ease: 'power2.out' }, 0)
-    .from('.hero__title .ch', { y: -140, opacity: 0, scaleY: 1.5, scaleX: 0.7, rotate: () => gsap.utils.random(-25, 25), duration: 0.9, stagger: 0.035, ease: 'bounce.out' }, 0.1)
-    .from('.hero__sub', { opacity: 0, x: -20, duration: 0.7 }, 0.55)
-    .from('.hero__list li', { opacity: 0, x: -24, duration: 0.6, stagger: 0.08 }, 0.65)
-    .from('.hero__actions .btn', { opacity: 0, y: 20, scale: 0.9, duration: 0.6, stagger: 0.1, ease: 'back.out(2)' }, 0.85)
-    .from('.hero__note', { opacity: 0, scale: 0.6, rotate: -30, duration: 0.9, ease: 'back.out(2)' }, 1)
-    .from('.fheart', { scale: 0, duration: 0.8, stagger: 0.08, ease: 'back.out(3)' }, 0.9)
-    .from('.cats__list', { y: 60, opacity: 0, duration: 0.9 }, 0.9)
-    .from('.cat', { y: 20, opacity: 0, duration: 0.5, stagger: 0.05 }, 1.05)
-    .from('.hero__drips .hd', { scaleY: 0, duration: 1.2, stagger: 0.12, ease: 'elastic.out(1, 0.5)' }, 0.6)
-    .call(() => heroJelly?.poke(0.5, 0.25, 1.4), null, 1.3);
+  tl.from('.header', { y: -30, opacity: 0, duration: 0.9 })
+    .from('.hero__photo', { opacity: 0, scale: 1.08, duration: 1.8, ease: 'power2.out' }, 0)
+    .fromTo('.hero__title .line', { clipPath: 'inset(-20% -10% 100% -10%)', y: 40 }, { clipPath: 'inset(-20% -10% -30% -10%)', y: 0, duration: 1.1, stagger: 0.14, ease: 'power4.out' }, 0.15)
+    .from('.hero__sub', { opacity: 0, y: 16, duration: 0.8 }, 0.55)
+    .from('.hero__list li', { opacity: 0, y: 14, duration: 0.7, stagger: 0.06 }, 0.65)
+    .from('.hero__actions .btn', { opacity: 0, y: 16, duration: 0.7, stagger: 0.08 }, 0.8)
+    .from('.hero__note', { opacity: 0, y: 10, duration: 0.9 }, 1)
+    .from('.cats__list', { y: 40, opacity: 0, duration: 0.9 }, 0.9);
 
-  // Gotas del borde: se estiran despacio, como gelatina que escurre
-  $$('.hero__drips .hd').forEach((d, i) => {
-    gsap.to(d, { scaleY: 1.35, duration: 2.4 + i * 0.4, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: start + 2 + i * 0.3 });
-  });
+  // ---- La gelatina capa por capa, controlada con el scroll ----
+  setupCapas();
 
-  // Tocar el hero lanza corazones y hace temblar la foto
-  $('.hero').addEventListener('pointerdown', (e) => {
-    if (e.target.closest('a, button')) return;
-    burst(e.clientX, e.clientY);
-    const r = $('.hero__photo').getBoundingClientRect();
-    if (e.clientX > r.left && e.clientX < r.right && e.clientY > r.top && e.clientY < r.bottom) {
-      heroJelly?.poke((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height, 1.2);
-    }
-  });
-
-  // Franja de festejos: corre sola y se acelera con la velocidad del scroll
-  const mq = gsap.to('.marquee__track', { xPercent: -50, duration: 28, ease: 'none', repeat: -1 });
-  ScrollTrigger.create({
-    trigger: '.marquee',
-    start: 'top bottom',
-    end: 'bottom top',
-    onUpdate: (self) => {
-      const v = gsap.utils.clamp(0, 6, Math.abs(self.getVelocity()) / 300);
-      gsap.to(mq, { timeScale: 1 + v, duration: 0.2, overwrite: true, onComplete: () => gsap.to(mq, { timeScale: 1, duration: 1.2 }) });
-    },
-    onToggle: (self) => (self.isActive ? mq.resume() : mq.pause()),
-  });
-
-  // ---- La gelatina capa por capa: el video avanza con el scroll ----
-  setupCine();
-
-  // Profundidad del hero: cada capa sigue al mouse a distinta distancia
+  // Profundidad del hero: la foto sigue al mouse muy poco
   if (finePointer) {
-    const layers = $$('[data-depth]').map((el) => ({
-      d: parseFloat(el.dataset.depth),
-      x: gsap.quickTo(el, 'x', { duration: 0.9, ease: 'power3' }),
-      y: gsap.quickTo(el, 'y', { duration: 0.9, ease: 'power3' }),
-    }));
-    const tx = gsap.quickTo('.hero__content', 'x', { duration: 1, ease: 'power3' });
+    const px = gsap.quickTo('.hero__photo', 'x', { duration: 1.2, ease: 'power3' });
+    const py = gsap.quickTo('.hero__photo', 'y', { duration: 1.2, ease: 'power3' });
     $('.hero').addEventListener('pointermove', (e) => {
-      const nx = e.clientX / window.innerWidth - 0.5, ny = e.clientY / window.innerHeight - 0.5;
-      layers.forEach((l) => { l.x(nx * -30 * l.d); l.y(ny * -20 * l.d); });
-      tx(nx * 10);
+      px((e.clientX / window.innerWidth - 0.5) * -18);
+      py((e.clientY / window.innerHeight - 0.5) * -12);
     });
   }
 
   // Al bajar, la foto del hero se aleja y el texto sube más rápido
-  gsap.to('.hero__photo', { yPercent: 12, scale: 1.05, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-  gsap.to('.hero__content', { y: -80, opacity: 0.3, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.hero__photo', { yPercent: 10, scale: 1.04, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.hero__content', { y: -70, opacity: 0.3, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
 
-  // Títulos script: aparecen escribiéndose de izquierda a derecha
-  $$('h2.script:not(.cine__title)').forEach((h) => {
+  // Entradas de las secciones: todas iguales, suaves y cortas
+  const rise = (targets, trigger, extra = {}) => gsap.from(targets, {
+    y: 36, opacity: 0, duration: 1, ease: 'power3.out', stagger: 0.08,
+    scrollTrigger: { trigger, start: 'top 85%' }, ...extra,
+  });
+  $$('h2.script').forEach((h) => {
     gsap.from(h, { clipPath: 'inset(0 100% 0 0)', duration: 1.1, ease: 'power2.inOut', scrollTrigger: { trigger: h, start: 'top 85%' } });
   });
-
-  // Tarjetas de sabores: entran girando en 3D
-  gsap.from('.flavor[data-id]', {
-    y: 60, rotateX: -18, opacity: 0, duration: 0.9, stagger: 0.1, ease: 'power3.out',
-    scrollTrigger: { trigger: '.flavors__track', start: 'top 85%' },
-  });
+  rise('.flavor[data-id]', '.flavors__track');
+  rise('.special', '.special');
+  rise('.quality__list li', '.quality');
+  rise('.about__photo img', '.about');
+  rise('.how__list li', '.how__list');
+  rise('.insta__item', '.insta__grid', { stagger: 0.05 });
+  rise('.cta', '.cta');
 
   // Banners: la foto se mueve más lento que el scroll
   $$('[data-parallax] img').forEach((img) => {
     gsap.fromTo(img, { yPercent: -8 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
   });
-  gsap.from('.special', { y: 50, opacity: 0, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: '.special', start: 'top 85%' } });
-  gsap.from('.special__icon', { scale: 0, rotate: -90, duration: 0.9, ease: 'back.out(2.5)', scrollTrigger: { trigger: '.special', start: 'top 80%' } });
-  gsap.from('.quality__list li', { y: 30, opacity: 0, scale: 0.9, duration: 0.7, stagger: 0.12, ease: 'back.out(2)', scrollTrigger: { trigger: '.quality', start: 'top 75%' } });
-  gsap.from('.about__photo img', { rotate: -12, y: 60, opacity: 0, duration: 1.1, ease: 'back.out(1.4)', scrollTrigger: { trigger: '.about', start: 'top 75%' } });
-  gsap.from('.about__note', { scale: 0, rotate: -20, duration: 0.8, delay: 0.3, ease: 'back.out(2.5)', scrollTrigger: { trigger: '.about', start: 'top 75%' } });
-  gsap.from('.how__list li', { y: 50, opacity: 0, rotateY: -20, duration: 0.8, stagger: 0.12, ease: 'power3.out', scrollTrigger: { trigger: '.how__list', start: 'top 85%' } });
-  gsap.from('.insta__item', { y: 40, opacity: 0, scale: 0.85, duration: 0.7, stagger: 0.06, ease: 'back.out(1.8)', scrollTrigger: { trigger: '.insta__grid', start: 'top 88%' } });
-  gsap.from('.map__pin', { y: -60, opacity: 0, duration: 0.9, ease: 'bounce.out', scrollTrigger: { trigger: '.visit', start: 'top 80%' } });
-  gsap.from('.cta', { y: 50, opacity: 0, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: '.cta', start: 'top 88%' } });
-
-  // Tarjetas con inclinación 3D y reflejo al pasar el mouse
-  if (finePointer) {
-    $$('.flavor[data-id], .how__list li, .visit__card').forEach((el) => {
-      const rx = gsap.quickTo(el, 'rotationX', { duration: 0.6, ease: 'power3' });
-      const ry = gsap.quickTo(el, 'rotationY', { duration: 0.6, ease: 'power3' });
-      gsap.set(el, { transformPerspective: 900 });
-      el.addEventListener('pointermove', (e) => {
-        const r = el.getBoundingClientRect();
-        ry(((e.clientX - r.left) / r.width - 0.5) * 10);
-        rx(((e.clientY - r.top) / r.height - 0.5) * -10);
-      });
-      el.addEventListener('pointerleave', () => { rx(0); ry(0); });
-    });
-  }
 
   window.addEventListener('load', () => ScrollTrigger.refresh());
 }
 
-// ---------- Gelatina capa por capa ----------
+// ---------- Capa por capa ----------
+// La foto real de la gelatina separada en capas (herramientas/capas.py):
+// se abre, flota, se vuelve a unir con un temblor y queda lista para pedir.
 
-function setupCine() {
-  const sec = $('.cine');
-  const canvas = $('.cine__canvas', sec);
-  const ctx = canvas.getContext('2d');
-  const steps = $$('.cine__steps li', sec);
-  const bar = $('.cine__progress span', sec);
-  const TOTAL = 120;
-  const frames = new Array(TOTAL);
-  let target = 0, shown = 0, raf = 0, active = -1;
+function setupCapas() {
+  const sec = $('.capas');
+  const fresa = $('.capas__fresa', sec);
+  const leche = $('.capas__leche', sec);
+  const plato = $('.capas__plato', sec);
+  const notas = $$('.capas__notas li', sec);
+  const [s1, s2, s3] = $$('.capas__suelta', sec);
 
-  const src = (i) => `assets/video/cuadros/c${String(i + 1).padStart(3, '0')}.webp`;
-  const load = (i) => {
-    if (frames[i]) return;
-    const img = new Image();
-    img.decoding = 'async';
-    img.onload = () => { if (Math.abs(i - Math.round(shown)) < 3) draw(); };
-    img.src = src(i);
-    frames[i] = img;
-  };
-  // Primero uno de cada cuatro cuadros (ya se puede ver) y luego el resto
-  const preload = () => {
-    for (let i = 0; i < TOTAL; i += 4) load(i);
-    setTimeout(() => { for (let i = 0; i < TOTAL; i++) load(i); }, 700);
-  };
+  // Las imágenes se piden antes de llegar para que nada aparezca a medias
   new IntersectionObserver(([e], obs) => {
-    if (e.isIntersecting) { preload(); obs.disconnect(); }
-  }, { rootMargin: '800px 0px' }).observe(sec);
+    if (!e.isIntersecting) return;
+    $$('img', sec).forEach((i) => { i.loading = 'eager'; });
+    obs.disconnect();
+  }, { rootMargin: '1200px 0px' }).observe(sec);
 
-  const ready = (img) => img && img.complete && img.naturalWidth;
-  const nearest = (i) => {
-    for (let d = 0; d < TOTAL; d++) {
-      if (ready(frames[i - d])) return frames[i - d];
-      if (ready(frames[i + d])) return frames[i + d];
-    }
-    return null;
+  gsap.set([s1, s2, s3], { opacity: 0 });
+  gsap.set(s1, { xPercent: -260, yPercent: 40, rotation: -40, scale: 0.8 });
+  gsap.set(s2, { xPercent: 260, yPercent: -30, rotation: 50, scale: 0.7 });
+  gsap.set(s3, { xPercent: 120, yPercent: -220, rotation: 20, scale: 0.5 });
+
+  const tl = gsap.timeline({ defaults: { ease: 'none' } });
+  tl.fromTo('.capas__stage', { scale: 0.9, yPercent: 6 }, { scale: 1, yPercent: 0, duration: 1.2, ease: 'power2.out' }, 0)
+    // Se abre: la fresa sube, la leche se despega del plato
+    .addLabel('abre', 0.8)
+    .to(fresa, { yPercent: -11, duration: 1.8, ease: 'power2.inOut' }, 'abre')
+    .to(leche, { yPercent: -3.6, duration: 1.8, ease: 'power2.inOut' }, 'abre')
+    .to('.capas__gap', { opacity: 1, duration: 1.2 }, 'abre')
+    .to('.capas__apoyo', { opacity: 1, duration: 1.2 }, 'abre')
+    // Flota: cada capa gira un poco y llegan las fresas
+    .addLabel('flota', 2.6)
+    .to(fresa, { yPercent: -14, xPercent: 1.2, rotation: -1.6, duration: 3.4, ease: 'sine.inOut' }, 'flota')
+    .to(leche, { yPercent: -5, xPercent: -0.6, rotation: 0.9, duration: 3.4, ease: 'sine.inOut' }, 'flota')
+    .to(plato, { yPercent: 1.4, duration: 3.4, ease: 'sine.inOut' }, 'flota')
+    .to('.capas__gap', { opacity: 0.75, duration: 3.4 }, 'flota')
+    .to(s1, { opacity: 1, xPercent: -30, yPercent: -10, rotation: -12, scale: 1, duration: 2.4, ease: 'power2.out' }, 'flota')
+    .to(s2, { opacity: 1, xPercent: 20, yPercent: 10, rotation: 18, scale: 0.85, duration: 2.4, ease: 'power2.out' }, 'flota+=0.4')
+    .to(s3, { opacity: 0.9, xPercent: 10, yPercent: -20, rotation: -8, scale: 0.6, duration: 2.4, ease: 'power2.out' }, 'flota+=0.8')
+    // Se vuelve a unir: cae por su peso
+    .addLabel('cierra', 6)
+    .to(fresa, { yPercent: 0, xPercent: 0, rotation: 0, duration: 1.5, ease: 'power2.in' }, 'cierra')
+    .to(leche, { yPercent: 0, xPercent: 0, rotation: 0, duration: 1.3, ease: 'power2.in' }, 'cierra')
+    .to(plato, { yPercent: 0, duration: 1.3, ease: 'power2.inOut' }, 'cierra')
+    .to(['.capas__gap', '.capas__apoyo'], { opacity: 0, duration: 1.3 }, 'cierra')
+    .addLabel('cae', 7.5)
+    // Las fresas se acomodan junto al plato
+    .to(s1, { xPercent: 10, yPercent: 60, rotation: -4, scale: 0.95, duration: 1.6, ease: 'power2.inOut' }, 'cierra+=0.4')
+    .to(s2, { xPercent: -30, yPercent: 70, rotation: 8, scale: 0.8, duration: 1.6, ease: 'power2.inOut' }, 'cierra+=0.5')
+    .to(s3, { opacity: 0, yPercent: -60, duration: 1.2 }, 'cierra+=0.3')
+    .to({}, { duration: 2.2 });
+
+  // El temblor al caer no se controla con el scroll: es física, pasa una vez
+  let st = null;
+  const jiggle = () => {
+    if (st && st.direction < 0) return;
+    gsap.timeline()
+      .to(fresa, { scaleY: 0.955, scaleX: 1.022, duration: 0.1, ease: 'power2.out', transformOrigin: '50% 72%' })
+      .to(fresa, { scaleY: 1, scaleX: 1, duration: 1.2, ease: 'elastic.out(1.15, 0.28)' })
+      .fromTo(fresa, { skewX: 0 }, { keyframes: { skewX: [1.4, -1.1, 0.7, -0.35, 0] }, duration: 1.1, ease: 'sine.out' }, 0.06)
+      .to(leche, { scaleY: 0.985, duration: 0.1, transformOrigin: '50% 90%' }, 0.02)
+      .to(leche, { scaleY: 1, duration: 0.9, ease: 'elastic.out(1, 0.35)' }, 0.12);
   };
+  tl.call(jiggle, null, 'cae');
 
-  function draw() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const W = Math.round(canvas.clientWidth * dpr), H = Math.round(canvas.clientHeight * dpr);
-    if (!W || !H) return;
-    if (canvas.width !== W || canvas.height !== H) { canvas.width = W; canvas.height = H; }
-    const img = nearest(Math.round(shown));
-    if (!img) return;
-    ctx.clearRect(0, 0, W, H);
-    const ia = img.naturalWidth / img.naturalHeight;
-    let w, h, y;
-    if (W / H > 1) {
-      // Computadora: el video llena la pantalla
-      w = Math.max(W, H * ia); h = w / ia; y = (H - h) / 2;
-    } else {
-      // Celular: la gelatina grande al centro y los bordes se funden con el fondo
-      w = W * 1.85; h = w / ia; y = H * 0.48 - h / 2;
-    }
-    ctx.drawImage(img, (W - w) / 2, y, w, h);
-    if (W / H <= 1) {
-      const fade = h * 0.22;
-      for (const [from, to] of [[y, y + fade], [y + h, y + h - fade]]) {
-        const g = ctx.createLinearGradient(0, from, 0, to);
-        g.addColorStop(0, 'rgba(248, 211, 204, 1)');
-        g.addColorStop(1, 'rgba(248, 211, 204, 0)');
-        ctx.fillStyle = g;
-        ctx.fillRect(0, Math.min(from, to) - 1, W, fade + 2);
-      }
-    }
-  }
-
-  const tick = () => {
-    shown += (target - shown) * 0.18;
-    if (Math.abs(target - shown) < 0.05) shown = target;
-    draw();
-    raf = shown !== target ? requestAnimationFrame(tick) : 0;
-  };
-
-  const setStep = (p) => {
-    let idx = 0;
-    steps.forEach((li, i) => { if (p >= parseFloat(li.dataset.at)) idx = i; });
-    if (idx === active) return;
-    if (active >= 0) gsap.to(steps[active], { opacity: 0, y: -16, scale: 0.95, duration: 0.3, ease: 'power2.in', overwrite: true });
-    gsap.fromTo(steps[idx], { opacity: 0, y: 24, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'back.out(2)', overwrite: true });
-    active = idx;
-  };
-
-  ScrollTrigger.create({
+  const total = tl.duration();
+  const marks = [1.4 / total, 3.4 / total, 4.8 / total];
+  const finalAt = 7.8 / total;
+  let last = -2;
+  st = ScrollTrigger.create({
     trigger: sec,
     start: 'top top',
-    end: '+=280%',
-    pin: '.cine__pin',
-    scrub: true,
+    end: '+=320%',
+    pin: '.capas__pin',
+    scrub: 0.6,
+    animation: tl,
     onUpdate: (self) => {
-      target = self.progress * (TOTAL - 1);
-      bar.style.transform = `scaleX(${self.progress.toFixed(4)})`;
-      setStep(self.progress);
-      if (!raf) raf = requestAnimationFrame(tick);
+      const p = self.progress;
+      let idx = -1;
+      marks.forEach((m, i) => { if (p >= m) idx = i; });
+      if (p >= finalAt) idx = 3;
+      if (idx === last) return;
+      last = idx;
+      notas.forEach((li, i) => li.classList.toggle('is-on', i === idx));
+      notas.forEach((li, i) => li.classList.toggle('is-past', i < idx));
+      sec.classList.toggle('is-final', idx === 3);
     },
   });
-  gsap.from('.cine__title', { clipPath: 'inset(0 100% 0 0)', duration: 1.1, ease: 'power2.inOut', scrollTrigger: { trigger: sec, start: 'top 70%' } });
-  setStep(0);
-  window.addEventListener('resize', draw);
-  draw();
+  gsap.from('.capas__head > *', { y: 30, opacity: 0, duration: 1, stagger: 0.12, ease: 'power3.out', scrollTrigger: { trigger: sec, start: 'top 70%' } });
 }
 
-// Sin GSAP o con movimiento reducido: video normal con controles y todas las etapas
-if (!window.gsap || reduceMotion) {
-  const sec = $('.cine');
-  sec.classList.add('cine--static');
-  const v = $('.cine__video', sec);
-  v.controls = true;
-  v.preload = 'metadata';
-}
+// Sin GSAP o con movimiento reducido: la gelatina completa y las tres notas a la vista
+if (!window.gsap || reduceMotion) $('.capas').classList.add('capas--static');

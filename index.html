@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#4A0E2A">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Lobster+Two:ital,wght@1,700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Lobster+Two:ital,wght@1,700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/temp/hero-hermanas.webp">
   <link rel="stylesheet" href="styles.css">
   <script>
@@ -68,15 +68,12 @@
 
   <!-- Presentación de entrada -->
   <div class="intro" aria-hidden="true">
-    <div class="intro__stage">
-      <span class="intro__ring"></span><span class="intro__ring"></span>
-      <span class="intro__drop"></span>
-      <img class="intro__logo" src="assets/logo-480.webp" width="160" height="160" alt="">
+    <div class="intro__panel">
+      <p class="intro__phrase"><span class="intro__line"><span>Tres hermanas,</span></span><span class="intro__line"><span>un mismo sabor</span></span></p>
+      <span class="intro__rule"></span>
+      <img class="intro__logo" src="assets/logo-480.webp" width="132" height="132" alt="">
     </div>
-    <p class="intro__phrase"><span>Tres</span> <span>hermanas,</span> <span>un</span> <span>mismo</span> <span>sabor</span></p>
-    <svg class="intro__drips" viewBox="0 0 1200 140" preserveAspectRatio="none">
-      <path class="drip" d="M0 0 H1200 V40 C1150 40 1140 55 1130 40 C1100 0 1060 30 1000 30 C960 30 950 110 930 110 C910 110 905 30 860 30 C800 30 790 60 760 60 C730 60 720 30 660 30 C610 30 600 140 575 140 C550 140 545 30 500 30 C450 30 440 75 410 75 C380 75 370 30 320 30 C270 30 262 120 240 120 C218 120 212 30 170 30 C120 30 110 55 80 55 C50 55 40 30 0 30 Z"/>
-    </svg>
+    <svg class="intro__edge" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0 0 H1200 V1 Q600 1 0 1 Z"/></svg>
   </div>
 
   <a class="skip" href="#sabores">Saltar a los sabores</a>
@@ -108,13 +105,6 @@
       <figure class="hero__photo" data-depth="0.6">
         <img src="assets/temp/hero-hermanas.webp" width="940" height="820" fetchpriority="high" alt="Las tres hermanas de Las Chinas detrás de sus gelatinas de fresa, fresa con crema, uva y mango">
       </figure>
-      <div class="hero__hearts" aria-hidden="true" data-depth="1.4">
-        <span class="fheart" style="--x:52%;--y:18%;--s:26px;--d:0s"></span>
-        <span class="fheart" style="--x:88%;--y:30%;--s:20px;--d:1.2s"></span>
-        <span class="fheart" style="--x:60%;--y:62%;--s:16px;--d:2.1s"></span>
-        <span class="fheart" style="--x:94%;--y:72%;--s:24px;--d:.6s"></span>
-        <span class="fheart" style="--x:44%;--y:40%;--s:14px;--d:1.7s"></span>
-      </div>
       <div class="hero__content">
         <h1 class="hero__title"><span class="line">Gelatinas</span><span class="line line--2">artesanales</span></h1>
         <p class="hero__sub">Hechas con mucho amor <svg class="icon" aria-hidden="true"><use href="#i-heart-fill"/></svg></p>
@@ -131,14 +121,6 @@
       </div>
       <p class="hero__note" aria-hidden="true">Tres hermanas,<br>un mismo sabor <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></p>
       <a class="hero__down" href="#sabores" aria-label="Bajar a los sabores"><svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
-      <svg class="hero__drips" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0 0 H1200 V8 C1180 8 1172 26 1150 26 C1128 26 1122 8 1090 8 Z"/>
-        <path class="hd" d="M930 0 C960 0 968 10 968 40 C968 64 955 74 945 74 C935 74 922 64 922 40 C922 10 900 0 930 0 Z"/>
-        <path class="hd" d="M560 0 C590 0 596 12 596 52 C596 78 584 88 574 88 C564 88 552 78 552 52 C552 12 530 0 560 0 Z"/>
-        <path class="hd" d="M240 0 C268 0 274 10 274 34 C274 54 263 62 254 62 C245 62 234 54 234 34 C234 10 212 0 240 0 Z"/>
-        <path class="hd" d="M1080 0 C1100 0 1104 8 1104 24 C1104 38 1096 44 1090 44 C1084 44 1076 38 1076 24 C1076 8 1060 0 1080 0 Z"/>
-        <path class="hd" d="M400 0 C418 0 422 8 422 22 C422 34 415 40 409 40 C403 40 396 34 396 22 C396 8 382 0 400 0 Z"/>
-      </svg>
     </section>
 
     <section class="cats" aria-label="Categorías">
@@ -154,34 +136,38 @@
       </ul>
     </section>
 
-    <section class="cine" id="capa-por-capa" aria-labelledby="cine-title">
-      <div class="cine__pin">
-        <canvas class="cine__canvas" aria-hidden="true"></canvas>
-        <video class="cine__video" muted playsinline loop preload="none" poster="assets/video/deconstruccion-poster.webp" width="880" height="630" aria-label="Video: una gelatina de fresa con leche se separa en capas, flota, se vuelve a armar y termina con una rebanada">
-          <source src="assets/video/deconstruccion.webm" type="video/webm">
-          <source src="assets/video/deconstruccion.mp4" type="video/mp4">
-        </video>
-        <h2 id="cine-title" class="cine__title script">Una gelatina, capa por capa</h2>
-        <ol class="cine__steps">
-          <li data-at="0">Completa y brillante</li>
-          <li data-at="0.12">Se abre con un toque de leche</li>
-          <li data-at="0.2">Las capas se separan</li>
-          <li data-at="0.3">Todo flota alrededor</li>
-          <li data-at="0.54">Se vuelve a unir, capa por capa</li>
-          <li data-at="0.7">Se reconstruye y brilla</li>
-          <li data-at="0.86">Una rebanada por dentro</li>
+    <section class="capas" id="capa-por-capa" aria-labelledby="capas-title">
+      <div class="capas__pin">
+        <div class="capas__head">
+          <p class="capas__kicker">Fresa con leche</p>
+          <h2 id="capas-title" class="capas__title">Capa por capa</h2>
+        </div>
+        <div class="capas__stage" aria-hidden="true">
+          <span class="capas__piso"></span>
+          <img class="capas__plato" src="assets/capas/plato.webp" srcset="assets/capas/plato-m.webp 750w, assets/capas/plato.webp 1500w" sizes="(max-width: 700px) 120vw, 900px" width="1500" height="860" alt="" loading="lazy" decoding="async">
+          <span class="capas__apoyo"></span>
+          <div class="capas__leche">
+            <img src="assets/capas/leche-tapa.webp" srcset="assets/capas/leche-tapa-m.webp 750w, assets/capas/leche-tapa.webp 1500w" sizes="(max-width: 700px) 120vw, 900px" width="1500" height="860" alt="" loading="lazy" decoding="async">
+            <span class="capas__gap"></span>
+            <img src="assets/capas/leche.webp" srcset="assets/capas/leche-m.webp 750w, assets/capas/leche.webp 1500w" sizes="(max-width: 700px) 120vw, 900px" width="1500" height="860" alt="" loading="lazy" decoding="async">
+          </div>
+          <img class="capas__fresa" src="assets/capas/fresa.webp" srcset="assets/capas/fresa-m.webp 750w, assets/capas/fresa.webp 1500w" sizes="(max-width: 700px) 120vw, 900px" width="1500" height="860" alt="" loading="lazy" decoding="async">
+          <img class="capas__suelta capas__suelta--1" src="assets/capas/fresa-mitad.webp" width="304" height="301" alt="" loading="lazy" decoding="async">
+          <img class="capas__suelta capas__suelta--2" src="assets/capas/fresa-mitad.webp" width="304" height="301" alt="" loading="lazy" decoding="async">
+          <img class="capas__suelta capas__suelta--3" src="assets/capas/fresa-mitad.webp" width="304" height="301" alt="" loading="lazy" decoding="async">
+        </div>
+        <ol class="capas__notas">
+          <li><span class="capas__num">01</span><b>Gelatina de fresa</b><span>Fresas naturales cortadas a mano, en gelatina brillante.</span></li>
+          <li><span class="capas__num">02</span><b>Capa de leche</b><span>Cremosa y suave, con trocitos de fresa en cada cucharada.</span></li>
+          <li><span class="capas__num">03</span><b>Hecha a mano</b><span>Por tres hermanas en Monterrey, capa por capa.</span></li>
         </ol>
-        <div class="cine__progress" aria-hidden="true"><span></span></div>
-        <p class="cine__hint" aria-hidden="true">Sigue bajando <svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg></p>
+        <div class="capas__final">
+          <p>Lista para tu mesa</p>
+          <a class="btn btn--glow" data-wa="Hola Las Chinas, quiero pedir una gelatina de fresa con leche." href="#">Pídela por WhatsApp <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg></a>
+        </div>
       </div>
     </section>
 
-    <section class="marquee" aria-label="Festejos para los que preparamos gelatinas">
-      <div class="marquee__track">
-        <ul class="marquee__list"><li>Cumpleaños</li><li class="sep" aria-hidden="true"></li><li>Baby showers</li><li class="sep" aria-hidden="true"></li><li>Bautizos</li><li class="sep" aria-hidden="true"></li><li>XV años</li><li class="sep" aria-hidden="true"></li><li>Bodas</li><li class="sep" aria-hidden="true"></li><li>Reuniones</li><li class="sep" aria-hidden="true"></li><li>Mesas de postres</li><li class="sep" aria-hidden="true"></li></ul>
-        <ul class="marquee__list" aria-hidden="true"><li>Cumpleaños</li><li class="sep" aria-hidden="true"></li><li>Baby showers</li><li class="sep" aria-hidden="true"></li><li>Bautizos</li><li class="sep" aria-hidden="true"></li><li>XV años</li><li class="sep" aria-hidden="true"></li><li>Bodas</li><li class="sep" aria-hidden="true"></li><li>Reuniones</li><li class="sep" aria-hidden="true"></li><li>Mesas de postres</li><li class="sep" aria-hidden="true"></li></ul>
-      </div>
-    </section>
 
     <section class="flavors" id="sabores" aria-labelledby="sabores-title">
       <div class="section-head">
@@ -447,7 +433,6 @@
 
   <script src="assets/vendor/gsap.min.js"></script>
   <script src="assets/vendor/ScrollTrigger.min.js"></script>
-  <script src="assets/js/jelly.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -88,6 +88,24 @@ Todo el impacto lo pone **video de alta calidad dirigido como comercial**. La in
 ### El resto del sitio
 Sereno y elegante. Fotografía grande y tipografía cuidada, con transiciones suaves entre páginas. El configurador "Arma tu gelatina" mantiene una sola animación: la vista previa que cambia con cada elección.
 
+## Hecho: entrada nueva y escena «Capa por capa»
+
+Menos animaciones y más fuertes. Se quitaron los corazones flotando, las gotas del
+hero, el temblor de las fotos, la franja de festejos y la secuencia de cuadros del video.
+
+- **Entrada** (una vez por visita, se salta con un toque): fondo marfil, «Tres hermanas,
+  un mismo sabor» en serif (Cormorant Garamond) línea por línea, el logo, y la cortina
+  se levanta como un molde que se estira y se suelta.
+- **Capa por capa**: la foto real de la gelatina separada en capas
+  (`herramientas/capas.py` → `assets/capas/`). Con el scroll la capa de fresa sube,
+  la leche se despega del plato, todo flota, se vuelve a unir con un temblor y termina
+  en «Lista para tu mesa» con el botón de WhatsApp.
+  - Fondo quitado con `npx hyperframes remove-background` (`fuentes/gelatina-recorte.webp`).
+  - La cara de arriba de la leche (que la foto no muestra) se arma con parches de la
+    textura real de la leche; el plato completo está dibujado.
+  - Cuando existan las fotos por capa hechas con IA (o fotos reales), solo se cambian
+    los archivos de `assets/capas/`.
+
 ## (Descartado) Experiencia de inicio: un plano secuencia
 Se probó en `prototipo/` y se descartó: demasiados efectos y muy simples.
 
