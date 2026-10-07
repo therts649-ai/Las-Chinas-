@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Las Chinas | Gelatinas personalizadas</title>
-  <meta name="description" content="Gelatinas personalizadas hechas a mano por tres hermanas. Pide la tuya por WhatsApp.">
-  <meta name="theme-color" content="#F7F0EA">
+  <title>Las Chinas | Gelatinas artesanales en Monterrey</title>
+  <meta name="description" content="Gelatinas artesanales hechas con mucho amor por tres hermanas en Monterrey. Pide por WhatsApp.">
+  <meta name="theme-color" content="#4A0E2A">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/gelatina-fresa-leche-1400.webp" imagesrcset="assets/gelatina-fresa-leche-800.webp 800w, assets/gelatina-fresa-leche-1400.webp 1400w" imagesizes="(max-width: 860px) 92vw, 620px">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Lobster+Two:ital,wght@1,700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/temp/hero-hermanas.webp">
   <link rel="stylesheet" href="styles.css">
   <script>
     (function () {
       var d = document.documentElement;
       d.classList.add('js');
-      // El telón de entrada solo se muestra la primera vez de cada visita.
+      // La presentación de entrada se muestra una vez por visita.
       try {
         if (sessionStorage.getItem('lc-intro')) d.classList.add('no-intro');
         else sessionStorage.setItem('lc-intro', '1');
@@ -27,94 +27,204 @@
   <!-- Íconos de Phosphor (MIT) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <defs>
-      <symbol id="i-whatsapp-logo" viewBox="0 0 256 256"><path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88,40,40,0,0,0,40-40A8,8,0,0,0,187.58,144.84ZM152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155l14.61-9.74,23,11.48A24,24,0,0,1,152,176ZM128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z"/></symbol>
+      <symbol id="i-search" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/></symbol>
+      <symbol id="i-bag" viewBox="0 0 256 256"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,160H40V56H216V200ZM176,88a48,48,0,0,1-96,0,8,8,0,0,1,16,0,32,32,0,0,0,64,0,8,8,0,0,1,16,0Z"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 256 256"><path d="M178,40c-20.65,0-38.73,8.88-50,23.89C116.73,48.88,98.65,40,78,40a62.07,62.07,0,0,0-62,62c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,228.66,240,172,240,102A62.07,62.07,0,0,0,178,40ZM128,214.8C109.74,204.16,32,155.69,32,102A46.06,46.06,0,0,1,78,56c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,155.61,146.24,204.15,128,214.8Z"/></symbol>
+      <symbol id="i-heart-fill" viewBox="0 0 256 256"><path d="M240,102c0,70-103.79,126.66-108.21,129a8,8,0,0,1-7.58,0C119.79,228.66,16,172,16,102A62.07,62.07,0,0,1,78,40c20.65,0,38.73,8.88,50,23.89C139.27,48.88,157.35,40,178,40A62.07,62.07,0,0,1,240,102Z"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"/></symbol>
+      <symbol id="i-close" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></symbol>
+      <symbol id="i-prev" viewBox="0 0 256 256"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/></symbol>
+      <symbol id="i-next" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 256 256"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"/></symbol>
+      <symbol id="i-instagram" viewBox="0 0 256 256"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"/></symbol>
+      <symbol id="i-facebook" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"/></symbol>
+      <symbol id="i-tiktok" viewBox="0 0 256 256"><path d="M224,72a48.05,48.05,0,0,1-48-48,8,8,0,0,0-8-8H128a8,8,0,0,0-8,8V156a20,20,0,1,1-28.57-18.08A8,8,0,0,0,96,130.69V88a8,8,0,0,0-9.4-7.88C50.91,86.48,24,119.1,24,156a76,76,0,0,0,152,0V116.29A103.25,103.25,0,0,0,224,128a8,8,0,0,0,8-8V80A8,8,0,0,0,224,72Zm-8,39.64a87.19,87.19,0,0,1-43.33-16.15A8,8,0,0,0,160,102v54a60,60,0,0,1-120,0c0-25.9,16.64-49.13,40-57.6v27.67A36,36,0,1,0,136,156V32h24.5A64.14,64.14,0,0,0,216,87.5Z"/></symbol>
+      <symbol id="i-whatsapp" viewBox="0 0 256 256"><path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88,40,40,0,0,0,40-40A8,8,0,0,0,187.58,144.84ZM152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155l14.61-9.74,23,11.48A24,24,0,0,1,152,176ZM128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z"/></symbol>
+      <symbol id="i-whatsapp-fill" viewBox="0 0 256 256"><path d="M152.58,145.23l23,11.48A24,24,0,0,1,152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155ZM232,128A104,104,0,0,1,79.12,219.82L45.07,231.17a16,16,0,0,1-20.24-20.24l11.35-34.05A104,104,0,1,1,232,128Zm-40,24a8,8,0,0,0-4.42-7.16l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88A40,40,0,0,0,192,152Z"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></symbol>
+      <symbol id="i-minus" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128Z"/></symbol>
+      <symbol id="i-fruit" viewBox="0 0 256 256"><path d="M248,80H8a8,8,0,0,0-8,8,128,128,0,0,0,256,0A8,8,0,0,0,248,80ZM77.4,149.91l42.6-42.6V167.6A79.59,79.59,0,0,1,77.4,149.91ZM66.09,138.6A79.59,79.59,0,0,1,48.4,96h60.29ZM136,107.31l42.6,42.6A79.59,79.59,0,0,1,136,167.6Zm53.91,31.29L147.31,96H207.6A79.59,79.59,0,0,1,189.91,138.6ZM128,200A112.15,112.15,0,0,1,16.28,96H32.34a96,96,0,0,0,191.32,0h16.06A112.15,112.15,0,0,1,128,200Z"/></symbol>
+      <symbol id="i-bowl" viewBox="0 0 256 256"><path d="M224,104h-8.37a88,88,0,0,0-175.26,0H32a8,8,0,0,0-8,8,104.35,104.35,0,0,0,56,92.28V208a16,16,0,0,0,16,16h64a16,16,0,0,0,16-16v-3.72A104.35,104.35,0,0,0,232,112,8,8,0,0,0,224,104Zm-24.46,0H148.12a71.84,71.84,0,0,1,41.27-29.57A71.45,71.45,0,0,1,199.54,104ZM173.48,56.23q2.75,2.25,5.27,4.75a87.92,87.92,0,0,0-49.15,43H100.1A72.26,72.26,0,0,1,168,56C169.83,56,171.66,56.09,173.48,56.23ZM128,40a71.87,71.87,0,0,1,19,2.57A88.36,88.36,0,0,0,83.33,104H56.46A72.08,72.08,0,0,1,128,40Zm36.66,152A8,8,0,0,0,160,199.3V208H96v-8.7A8,8,0,0,0,91.34,192a88.29,88.29,0,0,1-51-72H215.63A88.29,88.29,0,0,1,164.66,192Z"/></symbol>
+      <symbol id="i-star" viewBox="0 0 256 256"><path d="M239.18,97.26A16.38,16.38,0,0,0,224.92,86l-59-4.76L143.14,26.15a16.36,16.36,0,0,0-30.27,0L90.11,81.23,31.08,86a16.46,16.46,0,0,0-9.37,28.86l45,38.83L53,211.75a16.38,16.38,0,0,0,24.5,17.82L128,198.49l50.53,31.08A16.4,16.4,0,0,0,203,211.75l-13.76-58.07,45-38.83A16.43,16.43,0,0,0,239.18,97.26Zm-15.34,5.47-48.7,42a8,8,0,0,0-2.56,7.91l14.88,62.8a.37.37,0,0,1-.17.48c-.18.14-.23.11-.38,0l-54.72-33.65a8,8,0,0,0-8.38,0L69.09,215.94c-.15.09-.19.12-.38,0a.37.37,0,0,1-.17-.48l14.88-62.8a8,8,0,0,0-2.56-7.91l-48.7-42c-.12-.1-.23-.19-.13-.5s.18-.27.33-.29l63.92-5.16A8,8,0,0,0,103,91.86l24.62-59.61c.08-.17.11-.25.35-.25s.27.08.35.25L153,91.86a8,8,0,0,0,6.75,4.92l63.92,5.16c.15,0,.24,0,.33.29S224,102.63,223.84,102.73Z"/></symbol>
+      <symbol id="i-glass" viewBox="0 0 256 256"><path d="M206,26.69A8,8,0,0,0,200,24H56a8,8,0,0,0-7.94,9l23.15,193A16,16,0,0,0,87.1,240h81.8a16,16,0,0,0,15.89-14.09L207.94,33A8,8,0,0,0,206,26.69ZM191,40,188.1,64H67.9L65,40ZM168.9,224H87.1L69.82,80H186.18Z"/></symbol>
+      <symbol id="i-cake" viewBox="0 0 256 256"><path d="M232,112a24,24,0,0,0-24-24H136V79a32.06,32.06,0,0,0,24-31c0-28-26.44-45.91-27.56-46.66a8,8,0,0,0-8.88,0C122.44,2.09,96,20,96,48a32.06,32.06,0,0,0,24,31v9H48a24,24,0,0,0-24,24v23.33a40.84,40.84,0,0,0,8,24.24V200a24,24,0,0,0,24,24H200a24,24,0,0,0,24-24V159.57a40.84,40.84,0,0,0,8-24.24ZM112,48c0-13.57,10-24.46,16-29.79,6,5.33,16,16.22,16,29.79a16,16,0,0,1-32,0ZM40,112a8,8,0,0,1,8-8H208a8,8,0,0,1,8,8v23.33c0,13.25-10.46,24.31-23.32,24.66A24,24,0,0,1,168,136a8,8,0,0,0-16,0,24,24,0,0,1-48,0,8,8,0,0,0-16,0,24,24,0,0,1-24.68,24C50.46,159.64,40,148.58,40,135.33Zm160,96H56a8,8,0,0,1-8-8V172.56A38.77,38.77,0,0,0,62.88,176a39.69,39.69,0,0,0,29-11.31A40.36,40.36,0,0,0,96,160a40,40,0,0,0,64,0,40.36,40.36,0,0,0,4.13,4.67A39.67,39.67,0,0,0,192,176c.38,0,.76,0,1.14,0A38.77,38.77,0,0,0,208,172.56V200A8,8,0,0,1,200,208Z"/></symbol>
+      <symbol id="i-gift" viewBox="0 0 256 256"><path d="M216,72H180.92c.39-.33.79-.65,1.17-1A29.53,29.53,0,0,0,192,49.57,32.62,32.62,0,0,0,158.44,16,29.53,29.53,0,0,0,137,25.91a54.94,54.94,0,0,0-9,14.48,54.94,54.94,0,0,0-9-14.48A29.53,29.53,0,0,0,97.56,16,32.62,32.62,0,0,0,64,49.57,29.53,29.53,0,0,0,73.91,71c.38.33.78.65,1.17,1H40A16,16,0,0,0,24,88v32a16,16,0,0,0,16,16v64a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V136a16,16,0,0,0,16-16V88A16,16,0,0,0,216,72ZM149,36.51a13.69,13.69,0,0,1,10-4.5h.49A16.62,16.62,0,0,1,176,49.08a13.69,13.69,0,0,1-4.5,10c-9.49,8.4-25.24,11.36-35,12.4C137.7,60.89,141,45.5,149,36.51Zm-64.09.36A16.63,16.63,0,0,1,96.59,32h.49a13.69,13.69,0,0,1,10,4.5c8.39,9.48,11.35,25.2,12.39,34.92-9.72-1-25.44-4-34.92-12.39a13.69,13.69,0,0,1-4.5-10A16.6,16.6,0,0,1,84.87,36.87ZM40,88h80v32H40Zm16,48h64v64H56Zm144,64H136V136h64Zm16-80H136V88h80v32Z"/></symbol>
+      <symbol id="i-leaf" viewBox="0 0 256 256"><path d="M223.45,40.07a8,8,0,0,0-7.52-7.52C139.8,28.08,78.82,51,52.82,94a87.09,87.09,0,0,0-12.76,49c.57,15.92,5.21,32,13.79,47.85l-19.51,19.5a8,8,0,0,0,11.32,11.32l19.5-19.51C81,210.73,97.09,215.37,113,215.94q1.67.06,3.33.06A86.93,86.93,0,0,0,162,203.18C205,177.18,227.93,116.21,223.45,40.07ZM153.75,189.5c-22.75,13.78-49.68,14-76.71.77l88.63-88.62a8,8,0,0,0-11.32-11.32L65.73,179c-13.19-27-13-54,.77-76.71,22.09-36.47,74.6-56.44,141.31-54.06C210.2,114.89,190.22,167.41,153.75,189.5Z"/></symbol>
+      <symbol id="i-flask" viewBox="0 0 256 256"><path d="M221.69,199.77,160,96.92V40h8a8,8,0,0,0,0-16H88a8,8,0,0,0,0,16h8V96.92L34.31,199.77A16,16,0,0,0,48,224H208a16,16,0,0,0,13.72-24.23ZM110.86,103.25A7.93,7.93,0,0,0,112,99.14V40h32V99.14a7.93,7.93,0,0,0,1.14,4.11L183.36,167c-12,2.37-29.07,1.37-51.75-10.11-15.91-8.05-31.05-12.32-45.22-12.81ZM48,208l28.54-47.58c14.25-1.74,30.31,1.85,47.82,10.72,19,9.61,35,12.88,48,12.88a69.89,69.89,0,0,0,19.55-2.7L208,208Z"/></symbol>
+      <symbol id="i-house" viewBox="0 0 256 256"><path d="M219.31,108.68l-80-80a16,16,0,0,0-22.62,0l-80,80A15.87,15.87,0,0,0,32,120v96a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V160h32v56a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V120A15.87,15.87,0,0,0,219.31,108.68ZM208,208H160V152a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8v56H48V120l80-80,80,80Z"/></symbol>
+      <symbol id="i-info" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 256 256"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 256 256"><path d="M216,48H176V40a24,24,0,0,0-24-24H104A24,24,0,0,0,80,40v8H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM96,40a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96Zm96,168H64V64H192ZM112,104v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Zm48,0v64a8,8,0,0,1-16,0V104a8,8,0,0,1,16,0Z"/></symbol>
       <symbol id="i-arrow-down" viewBox="0 0 256 256"><path d="M205.66,149.66l-72,72a8,8,0,0,1-11.32,0l-72-72a8,8,0,0,1,11.32-11.32L120,196.69V40a8,8,0,0,1,16,0V196.69l58.34-58.35a8,8,0,0,1,11.32,11.32Z"/></symbol>
-      <symbol id="i-camera" viewBox="0 0 256 256"><path d="M208,56H180.28L166.65,35.56A8,8,0,0,0,160,32H96a8,8,0,0,0-6.65,3.56L75.71,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H80a8,8,0,0,0,6.66-3.56L100.28,48h55.43l13.63,20.44A8,8,0,0,0,176,72h32a8,8,0,0,1,8,8ZM128,88a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,88Zm0,72a28,28,0,1,1,28-28A28,28,0,0,1,128,160Z"/></symbol>
-      <symbol id="i-chat-circle-dots" viewBox="0 0 256 256"><path d="M140,128a12,12,0,1,1-12-12A12,12,0,0,1,140,128ZM84,116a12,12,0,1,0,12,12A12,12,0,0,0,84,116Zm88,0a12,12,0,1,0,12,12A12,12,0,0,0,172,116Zm60,12A104,104,0,0,1,79.12,219.82L45.07,231.17a16,16,0,0,1-20.24-20.24l11.35-34.05A104,104,0,1,1,232,128Zm-16,0A88,88,0,1,0,51.81,172.06a8,8,0,0,1,.66,6.54L40,216,77.4,203.53a7.85,7.85,0,0,1,2.53-.42,8,8,0,0,1,4,1.08A88,88,0,0,0,216,128Z"/></symbol>
+      <symbol id="i-sparkle" viewBox="0 0 256 256"><path d="M197.58,129.06,146,110l-19-51.62a15.92,15.92,0,0,0-29.88,0L78,110l-51.62,19a15.92,15.92,0,0,0,0,29.88L78,178l19,51.62a15.92,15.92,0,0,0,29.88,0L146,178l51.62-19a15.92,15.92,0,0,0,0-29.88ZM137,164.22a8,8,0,0,0-4.74,4.74L112,223.85,91.78,169A8,8,0,0,0,87,164.22L32.15,144,87,123.78A8,8,0,0,0,91.78,119L112,64.15,132.22,119a8,8,0,0,0,4.74,4.74L191.85,144ZM144,40a8,8,0,0,1,8-8h16V16a8,8,0,0,1,16,0V32h16a8,8,0,0,1,0,16H184V64a8,8,0,0,1-16,0V48H152A8,8,0,0,1,144,40ZM248,88a8,8,0,0,1-8,8h-8v8a8,8,0,0,1-16,0V96h-8a8,8,0,0,1,0-16h8V72a8,8,0,0,1,16,0v8h8A8,8,0,0,1,248,88Z"/></symbol>
+      <symbol id="i-hand-heart" viewBox="0 0 256 256"><path d="M230.33,141.06a24.34,24.34,0,0,0-18.61-4.77C230.5,117.33,240,98.48,240,80c0-26.47-21.29-48-47.46-48A47.58,47.58,0,0,0,156,48.75,47.58,47.58,0,0,0,119.46,32C93.29,32,72,53.53,72,80c0,11,3.24,21.69,10.06,33a31.87,31.87,0,0,0-14.75,8.4L44.69,144H16A16,16,0,0,0,0,160v40a16,16,0,0,0,16,16H120a7.93,7.93,0,0,0,1.94-.24l64-16a6.94,6.94,0,0,0,1.19-.4L226,182.82l.44-.2a24.6,24.6,0,0,0,3.93-41.56ZM119.46,48A31.15,31.15,0,0,1,148.6,67a8,8,0,0,0,14.8,0,31.15,31.15,0,0,1,29.14-19C209.59,48,224,62.65,224,80c0,19.51-15.79,41.58-45.66,63.9l-11.09,2.55A28,28,0,0,0,140,112H100.68C92.05,100.36,88,90.12,88,80,88,62.65,102.41,48,119.46,48ZM16,160H40v40H16Zm203.43,8.21-38,16.18L119,200H56V155.31l22.63-22.62A15.86,15.86,0,0,1,89.94,128H140a12,12,0,0,1,0,24H112a8,8,0,0,0,0,16h32a8.32,8.32,0,0,0,1.79-.2l67-15.41.31-.08a8.6,8.6,0,0,1,6.3,15.9Z"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 256 256"><path d="M140,128a12,12,0,1,1-12-12A12,12,0,0,1,140,128ZM84,116a12,12,0,1,0,12,12A12,12,0,0,0,84,116Zm88,0a12,12,0,1,0,12,12A12,12,0,0,0,172,116Zm60,12A104,104,0,0,1,79.12,219.82L45.07,231.17a16,16,0,0,1-20.24-20.24l11.35-34.05A104,104,0,1,1,232,128Zm-16,0A88,88,0,1,0,51.81,172.06a8,8,0,0,1,.66,6.54L40,216,77.4,203.53a7.85,7.85,0,0,1,2.53-.42,8,8,0,0,1,4,1.08A88,88,0,0,0,216,128Z"/></symbol>
       <symbol id="i-palette" viewBox="0 0 256 256"><path d="M200.77,53.89A103.27,103.27,0,0,0,128,24h-1.07A104,104,0,0,0,24,128c0,43,26.58,79.06,69.36,94.17A32,32,0,0,0,136,192a16,16,0,0,1,16-16h46.21a31.81,31.81,0,0,0,31.2-24.88,104.43,104.43,0,0,0,2.59-24A103.28,103.28,0,0,0,200.77,53.89Zm13,93.71A15.89,15.89,0,0,1,198.21,160H152a32,32,0,0,0-32,32,16,16,0,0,1-21.31,15.07C62.49,194.3,40,164,40,128a88,88,0,0,1,87.09-88h.9a88.35,88.35,0,0,1,88,87.25A88.86,88.86,0,0,1,213.81,147.6ZM140,76a12,12,0,1,1-12-12A12,12,0,0,1,140,76ZM96,100A12,12,0,1,1,84,88,12,12,0,0,1,96,100Zm0,56a12,12,0,1,1-12-12A12,12,0,0,1,96,156Zm88-56a12,12,0,1,1-12-12A12,12,0,0,1,184,100Z"/></symbol>
       <symbol id="i-confetti" viewBox="0 0 256 256"><path d="M111.49,52.63a15.8,15.8,0,0,0-26,5.77L33,202.78A15.83,15.83,0,0,0,47.76,224a16,16,0,0,0,5.46-1l144.37-52.5a15.8,15.8,0,0,0,5.78-26Zm-8.33,135.21-35-35,13.16-36.21,58.05,58.05Zm-55,20,14-38.41,24.45,24.45ZM156,168.64,87.36,100l13-35.87,91.43,91.43ZM160,72a37.8,37.8,0,0,1,3.84-15.58C169.14,45.83,179.14,40,192,40c6.7,0,11-2.29,13.65-7.21A22,22,0,0,0,208,23.94,8,8,0,0,1,224,24c0,12.86-8.52,32-32,32-6.7,0-11,2.29-13.65,7.21A22,22,0,0,0,176,72.06,8,8,0,0,1,160,72ZM136,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm101.66,82.34a8,8,0,1,1-11.32,11.31l-16-16a8,8,0,0,1,11.32-11.32Zm4.87-42.75-24,8a8,8,0,0,1-5.06-15.18l24-8a8,8,0,0,1,5.06,15.18Z"/></symbol>
-      <symbol id="i-whatsapp-fill" viewBox="0 0 256 256"><path d="M152.58,145.23l23,11.48A24,24,0,0,1,152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155ZM232,128A104,104,0,0,1,79.12,219.82L45.07,231.17a16,16,0,0,1-20.24-20.24l11.35-34.05A104,104,0,1,1,232,128Zm-40,24a8,8,0,0,0-4.42-7.16l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88A40,40,0,0,0,192,152Z"/></symbol>
-      <path id="badge-circle" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0"/>
     </defs>
   </svg>
 
-  <!-- Telón de entrada -->
+  <!-- Presentación de entrada -->
   <div class="intro" aria-hidden="true">
-    <div class="intro__content">
-      <img class="intro__logo" src="assets/logo-480.webp" width="140" height="140" alt="">
-      <span class="intro__name">Las Chinas</span>
-      <span class="intro__line"></span>
-    </div>
+    <img class="intro__logo" src="assets/logo-480.webp" width="160" height="160" alt="">
+    <p class="intro__phrase"><span style="--i:0">Tres</span> <span style="--i:1">hermanas,</span> <span style="--i:2">un</span> <span style="--i:3">mismo</span> <span style="--i:4">sabor</span></p>
   </div>
 
-  <a class="skip" href="#gelatinas">Saltar al catálogo</a>
+  <a class="skip" href="#sabores">Saltar a los sabores</a>
 
-  <header class="nav">
-    <a class="logo" href="#inicio" aria-label="Las Chinas, inicio">
-      <!-- Logo oficial -->
-      <img class="logo__img" src="assets/logo-160.webp" width="44" height="44" alt="">
-      <span class="logo__word">Las Chinas</span>
+  <header class="header">
+    <a class="header__logo" href="#inicio" aria-label="Las Chinas, inicio">
+      <img src="assets/logo-160.webp" width="56" height="56" alt="">
     </a>
-    <nav class="nav__links" aria-label="Secciones">
+    <nav class="header__nav" aria-label="Secciones">
+      <a href="#inicio" class="is-current">Inicio</a>
+      <a href="#sabores">Sabores</a>
+      <a href="#pedidos">Pedidos</a>
       <a href="#nosotras">Nosotras</a>
-      <a href="#gelatinas">Gelatinas</a>
-      <a href="#como-pedir">Cómo pedir</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#contacto">Contacto</a>
     </nav>
-    <a class="btn btn--small" data-wa="Hola Las Chinas, quiero información sobre sus gelatinas personalizadas." href="#">
-      <svg class="icon" aria-hidden="true"><use href="#i-whatsapp-logo"/></svg> Pedir
-    </a>
+    <div class="header__tools">
+      <button class="tool js-search-open" type="button" aria-label="Buscar sabores"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></button>
+      <button class="tool tool--cart js-cart-open" type="button" aria-label="Abrir carrito"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg><span class="cart-count" aria-live="polite">0</span></button>
+      <button class="tool tool--menu js-menu-open" type="button" aria-label="Abrir menú"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
+    </div>
   </header>
 
   <main>
     <section class="hero" id="inicio">
-      <div class="hero__text">
-        <h1 class="hero__title"><span class="m"><span class="w" style="--i:0">Gelatinas</span></span> <span class="m"><span class="w" style="--i:1">hechas</span></span> <span class="m"><span class="w" style="--i:2"><em>a</em></span></span> <span class="m"><span class="w" style="--i:3"><em>la</em></span></span> <span class="m"><span class="w" style="--i:4"><em>medida</em></span></span> <span class="m"><span class="w" style="--i:5">de</span></span> <span class="m"><span class="w" style="--i:6">tu</span></span> <span class="m"><span class="w" style="--i:7">festejo</span></span></h1>
-        <span class="hero__rule" aria-hidden="true"></span>
-        <p class="lead">Somos tres hermanas y hacemos cada gelatina sobre pedido, con fruta de verdad y los sabores, colores y nombre que tú elijas.</p>
-        <div class="hero__actions">
-          <a class="btn btn--shine" data-wa="Hola Las Chinas, quiero pedir una gelatina personalizada." href="#">
-            <svg class="icon" aria-hidden="true"><use href="#i-whatsapp-logo"/></svg> Pide la tuya por WhatsApp
-          </a>
-          <a class="link" href="#gelatinas">Ver la vitrina <svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
-        </div>
+      <div class="hero__bg" aria-hidden="true">
+        <span class="bokeh"></span><span class="bokeh"></span><span class="bokeh"></span><span class="bokeh"></span><span class="bokeh"></span>
       </div>
-
-      <figure class="hero__art">
-        <span class="hero__halo" aria-hidden="true"></span>
-        <button class="hero__photo" type="button" aria-label="Hacer temblar la gelatina">
-          <span class="hero__tilt">
-            <span class="hero__arch">
-              <img src="assets/gelatina-fresa-leche-1400.webp"
-                   srcset="assets/gelatina-fresa-leche-800.webp 800w, assets/gelatina-fresa-leche-1400.webp 1400w"
-                   sizes="(max-width: 860px) 92vw, 620px"
-                   width="1400" height="933" fetchpriority="high"
-                   alt="Gelatina de fresa con leche, con rebanadas de fresa natural, sobre un plato blanco">
-              <span class="hero__glint" aria-hidden="true"></span>
-              <span class="hero__shine" aria-hidden="true"></span>
-            </span>
-          </span>
-        </button>
-        <div class="badge" aria-hidden="true">
-          <svg class="badge__ring" viewBox="0 0 120 120">
-            <text><textPath href="#badge-circle" textLength="270" lengthAdjust="spacing">gelatinas hechas a mano por tres hermanas</textPath></text>
-          </svg>
-          <img class="badge__logo" src="assets/logo-160.webp" width="64" height="64" alt="">
-        </div>
-        <figcaption><span class="caption-label">Fresa con leche</span> <span class="hint">Tócala</span></figcaption>
+      <figure class="hero__photo" data-depth="0.6">
+        <img src="assets/temp/hero-hermanas.webp" width="940" height="820" fetchpriority="high" alt="Las tres hermanas de Las Chinas detrás de sus gelatinas de fresa, fresa con crema, uva y mango">
       </figure>
+      <div class="hero__hearts" aria-hidden="true" data-depth="1.4">
+        <span class="fheart" style="--x:52%;--y:18%;--s:26px;--d:0s"></span>
+        <span class="fheart" style="--x:88%;--y:30%;--s:20px;--d:1.2s"></span>
+        <span class="fheart" style="--x:60%;--y:62%;--s:16px;--d:2.1s"></span>
+        <span class="fheart" style="--x:94%;--y:72%;--s:24px;--d:.6s"></span>
+        <span class="fheart" style="--x:44%;--y:40%;--s:14px;--d:1.7s"></span>
+      </div>
+      <div class="hero__content">
+        <h1 class="hero__title"><span class="line">Gelatinas</span><span class="line line--2">artesanales</span></h1>
+        <p class="hero__sub">Hechas con mucho amor <svg class="icon" aria-hidden="true"><use href="#i-heart-fill"/></svg></p>
+        <ul class="hero__list">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-heart-fill"/></svg> Sabores únicos</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-heart-fill"/></svg> Ingredientes de calidad</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-heart-fill"/></svg> Pedidos especiales</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-heart-fill"/></svg> Entrega en Monterrey</li>
+        </ul>
+        <div class="hero__actions">
+          <a class="btn btn--glow" href="#sabores">Ver sabores <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          <a class="btn btn--glass" href="#nosotras">Conoce más</a>
+        </div>
+      </div>
+      <p class="hero__note" aria-hidden="true">Tres hermanas,<br>un mismo sabor <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></p>
+      <a class="hero__down" href="#sabores" aria-label="Bajar a los sabores"><svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
     </section>
 
-    <section class="marquee" aria-label="Festejos para los que preparamos gelatinas">
-      <div class="marquee__drift">
-        <div class="marquee__track">
-          <ul class="marquee__list"><li>Cumpleaños</li><li class="sep" aria-hidden="true"></li><li>Baby showers</li><li class="sep" aria-hidden="true"></li><li>Bautizos</li><li class="sep" aria-hidden="true"></li><li>XV años</li><li class="sep" aria-hidden="true"></li><li>Reuniones</li><li class="sep" aria-hidden="true"></li><li>Bodas</li><li class="sep" aria-hidden="true"></li></ul>
-          <ul class="marquee__list" aria-hidden="true"><li>Cumpleaños</li><li class="sep" aria-hidden="true"></li><li>Baby showers</li><li class="sep" aria-hidden="true"></li><li>Bautizos</li><li class="sep" aria-hidden="true"></li><li>XV años</li><li class="sep" aria-hidden="true"></li><li>Reuniones</li><li class="sep" aria-hidden="true"></li><li>Bodas</li><li class="sep" aria-hidden="true"></li></ul>
+    <section class="cats" aria-label="Categorías">
+      <ul class="cats__list">
+        <li><button class="cat is-active" type="button" data-cat="todas" aria-pressed="true"><span class="cat__icon"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg></span><span>Todas</span></button></li>
+        <li><button class="cat" type="button" data-cat="frutales" aria-pressed="false"><span class="cat__icon"><svg class="icon" aria-hidden="true"><use href="#i-fruit"/></svg></span><span>Frutales</span></button></li>
+        <li><button class="cat" type="button" data-cat="cremosas" aria-pressed="false"><span class="cat__icon"><svg class="icon" aria-hidden="true"><use href="#i-bowl"/></svg></span><span>Cremosas</span></button></li>
+        <li><button class="cat" type="button" data-cat="especiales" aria-pressed="false"><span class="cat__icon"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg></span><span>Especiales</span></button></li>
+        <li><button class="cat" type="button" data-cat="individuales" aria-pressed="false"><span class="cat__icon"><svg class="icon" aria-hidden="true"><use href="#i-glass"/></svg></span><span>Individuales</span></button></li>
+        <li><button class="cat" type="button" data-cat="mini" aria-pressed="false"><span class="cat__icon"><svg class="icon" aria-hidden="true"><use href="#i-cake"/></svg></span><span>Mini gelatinas</span></button></li>
+        <li><button class="cat" type="button" data-cat="eventos" aria-pressed="false"><span class="cat__icon"><svg class="icon" aria-hidden="true"><use href="#i-gift"/></svg></span><span>Eventos</span></button></li>
+        <li><button class="cat" type="button" data-cat="personalizadas" aria-pressed="false"><span class="cat__icon"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></span><span>Personalizadas</span></button></li>
+      </ul>
+    </section>
+
+    <section class="flavors" id="sabores" aria-labelledby="sabores-title">
+      <div class="section-head">
+        <h2 id="sabores-title" class="script">Nuestros sabores <svg class="icon heading-heart" aria-hidden="true"><use href="#i-heart-fill"/></svg></h2>
+        <p>Gelatinas artesanales con ingredientes de calidad.</p>
+        <div class="carousel-nav">
+          <button class="round js-prev" type="button" aria-label="Sabores anteriores"><svg class="icon" aria-hidden="true"><use href="#i-prev"/></svg></button>
+          <button class="round js-next" type="button" aria-label="Más sabores"><svg class="icon" aria-hidden="true"><use href="#i-next"/></svg></button>
+        </div>
+      </div>
+      <div class="flavors__track" tabindex="0" aria-label="Sabores disponibles">
+          <article class="flavor" data-id="fresa-crema" data-name="Fresa con crema" data-price="45" data-cats="frutales cremosas" data-img="assets/gelatina-fresa-leche-800.webp" data-desc="Gelatina cremosa con fresas naturales, el equilibrio perfecto entre frescura y dulzura.">
+            <button class="flavor__fav" type="button" aria-label="Guardar Fresa con crema en favoritos" aria-pressed="false"><svg class="icon icon--off" aria-hidden="true"><use href="#i-heart"/></svg><svg class="icon icon--on" aria-hidden="true"><use href="#i-heart-fill"/></svg></button>
+            <button class="flavor__media" type="button" aria-label="Ver detalles de Fresa con crema">
+              <img src="assets/gelatina-fresa-leche-800.webp" width="800" height="533" loading="lazy" alt="Gelatina de fresa con crema" style="object-position:55% 60%">
+            </button>
+            <div class="flavor__body">
+              <h3>Fresa con crema</h3>
+              <p>Clásica y siempre deliciosa.</p>
+              <div class="flavor__buy">
+                <span class="price">$45</span>
+                <button class="btn btn--sm js-add" type="button">Agregar</button>
+              </div>
+            </div>
+          </article>
+          <article class="flavor" data-id="uva" data-name="Uva" data-price="45" data-cats="frutales" data-img="assets/temp/sabor-uva.webp" data-desc="Gelatina de uva brillante con uvas frescas encima, intensa y refrescante.">
+            <button class="flavor__fav" type="button" aria-label="Guardar Uva en favoritos" aria-pressed="false"><svg class="icon icon--off" aria-hidden="true"><use href="#i-heart"/></svg><svg class="icon icon--on" aria-hidden="true"><use href="#i-heart-fill"/></svg></button>
+            <button class="flavor__media" type="button" aria-label="Ver detalles de Uva">
+              <img src="assets/temp/sabor-uva.webp" width="380" height="240" loading="lazy" alt="Gelatina de uva" style="object-position:50% 50%">
+            </button>
+            <div class="flavor__body">
+              <h3>Uva</h3>
+              <p>Sabor intenso y refrescante.</p>
+              <div class="flavor__buy">
+                <span class="price">$45</span>
+                <button class="btn btn--sm js-add" type="button">Agregar</button>
+              </div>
+            </div>
+          </article>
+          <article class="flavor" data-id="mango" data-name="Mango" data-price="45" data-cats="frutales" data-img="assets/temp/sabor-mango.webp" data-desc="Gelatina de mango con cubitos de fruta, dulce y tropical.">
+            <button class="flavor__fav" type="button" aria-label="Guardar Mango en favoritos" aria-pressed="false"><svg class="icon icon--off" aria-hidden="true"><use href="#i-heart"/></svg><svg class="icon icon--on" aria-hidden="true"><use href="#i-heart-fill"/></svg></button>
+            <button class="flavor__media" type="button" aria-label="Ver detalles de Mango">
+              <img src="assets/temp/sabor-mango.webp" width="380" height="240" loading="lazy" alt="Gelatina de mango" style="object-position:50% 50%">
+            </button>
+            <div class="flavor__body">
+              <h3>Mango</h3>
+              <p>Dulce, tropical y único.</p>
+              <div class="flavor__buy">
+                <span class="price">$45</span>
+                <button class="btn btn--sm js-add" type="button">Agregar</button>
+              </div>
+            </div>
+          </article>
+          <article class="flavor" data-id="fresa-natural" data-name="Fresa natural" data-price="45" data-cats="frutales cremosas" data-img="assets/temp/sabor-fresa-natural.webp" data-desc="Gelatina de leche rosada con trozos reales de fresa y una fresa entera encima.">
+            <button class="flavor__fav" type="button" aria-label="Guardar Fresa natural en favoritos" aria-pressed="false"><svg class="icon icon--off" aria-hidden="true"><use href="#i-heart"/></svg><svg class="icon icon--on" aria-hidden="true"><use href="#i-heart-fill"/></svg></button>
+            <button class="flavor__media" type="button" aria-label="Ver detalles de Fresa natural">
+              <img src="assets/temp/sabor-fresa-natural.webp" width="380" height="240" loading="lazy" alt="Gelatina de fresa natural" style="object-position:50% 50%">
+            </button>
+            <div class="flavor__body">
+              <h3>Fresa natural</h3>
+              <p>Con trozos reales de fruta.</p>
+              <div class="flavor__buy">
+                <span class="price">$45</span>
+                <button class="btn btn--sm js-add" type="button">Agregar</button>
+              </div>
+            </div>
+          </article>
+        <div class="flavor flavor--empty" hidden>
+          <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>
+          <h3>Pronto en esta categoría</h3>
+          <p>Mientras tanto, cuéntanos qué se te antoja y la preparamos sobre pedido.</p>
+          <a class="btn btn--sm" data-wa="Hola Las Chinas, quiero cotizar una gelatina personalizada." href="#">Cotizar por WhatsApp</a>
         </div>
       </div>
     </section>
 
-    <!-- Deconstrucción en video (assets/video/). Cada etapa marca en data-t
-         el segundo del video en que empieza. -->
+    <section class="special" id="pedidos" aria-labelledby="pedidos-title">
+      <div class="special__img" data-parallax><img src="assets/temp/pedidos-especiales.webp" width="520" height="240" loading="lazy" alt="Gelatina de cumpleaños decorada con flores y la leyenda Feliz cumpleaños"></div>
+      <div class="special__icon"><svg class="icon" aria-hidden="true"><use href="#i-gift"/></svg></div>
+      <div class="special__text">
+        <h2 id="pedidos-title" class="script">Pedidos especiales</h2>
+        <p class="special__lead">Hacemos tus ideas realidad <svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></p>
+        <p>Cumpleaños, eventos, detalles o lo que imagines. Personalizamos sabores, colores y presentaciones.</p>
+        <a class="btn btn--light" data-wa="Hola Las Chinas, quiero cotizar un pedido especial." href="#">Solicitar pedido <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+    </section>
+
     <section class="deco" aria-labelledby="deco-title" hidden>
       <div class="deco__inner">
         <div class="deco__stage">
@@ -125,147 +235,199 @@
           <div class="deco__progress" aria-hidden="true"><span></span></div>
         </div>
         <div class="deco__text">
-          <h2 id="deco-title">Una gelatina, <em>capa por capa</em></h2>
+          <h2 id="deco-title" class="script">Una gelatina, capa por capa</h2>
           <ol class="deco__steps">
-            <li class="deco__step" data-t="0"><span class="deco__num" aria-hidden="true">1</span><h3>Completa y brillante</h3></li>
-            <li class="deco__step" data-t="1.0"><span class="deco__num" aria-hidden="true">2</span><h3>Se abre con un toque de leche</h3></li>
-            <li class="deco__step" data-t="1.6"><span class="deco__num" aria-hidden="true">3</span><h3>Las capas se separan</h3></li>
-            <li class="deco__step" data-t="2.6"><span class="deco__num" aria-hidden="true">4</span><h3>Todo flota alrededor</h3></li>
-            <li class="deco__step" data-t="5.2"><span class="deco__num" aria-hidden="true">5</span><h3>Se vuelve a unir, capa por capa</h3></li>
-            <li class="deco__step" data-t="6.8"><span class="deco__num" aria-hidden="true">6</span><h3>Se reconstruye y brilla</h3></li>
-            <li class="deco__step" data-t="8.4"><span class="deco__num" aria-hidden="true">7</span><h3>Una rebanada por dentro</h3></li>
+            <li class="deco__step" data-t="0"><span class="deco__num">1</span><h3>Completa y brillante</h3></li>
+            <li class="deco__step" data-t="1.0"><span class="deco__num">2</span><h3>Se abre con un toque de leche</h3></li>
+            <li class="deco__step" data-t="1.6"><span class="deco__num">3</span><h3>Las capas se separan</h3></li>
+            <li class="deco__step" data-t="2.6"><span class="deco__num">4</span><h3>Todo flota alrededor</h3></li>
+            <li class="deco__step" data-t="5.2"><span class="deco__num">5</span><h3>Se vuelve a unir, capa por capa</h3></li>
+            <li class="deco__step" data-t="6.8"><span class="deco__num">6</span><h3>Se reconstruye y brilla</h3></li>
+            <li class="deco__step" data-t="8.4"><span class="deco__num">7</span><h3>Una rebanada por dentro</h3></li>
           </ol>
         </div>
       </div>
     </section>
 
-    <section class="sisters" id="nosotras" aria-labelledby="nosotras-title">
-      <div class="sisters__intro">
-        <h2 id="nosotras-title">Tres hermanas, <em>una cocina</em></h2>
-        <p>Las Chinas nació en casa, entre moldes, sabores y festejos de la familia. Hoy preparamos gelatinas personalizadas para que tu mesa de postres se vea tan bonita como sabe.</p>
+    <section class="quality" aria-labelledby="calidad-title">
+      <div class="quality__img" data-parallax><img src="assets/temp/calidad.webp" width="330" height="350" loading="lazy" alt="Gelatina de fresa líquida cayendo sobre una gelatina con fresas"></div>
+      <div class="quality__text">
+        <h2 id="calidad-title" class="script">Calidad en cada detalle</h2>
+        <p>Ingredientes seleccionados, sin conservadores artificiales y con mucho amor.</p>
+        <a class="btn btn--outline-light" href="#como-pedir">Conoce nuestro proceso <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
       </div>
-      <ul class="polaroids">
-        <li class="polaroid reveal" style="--tilt:-3deg">
-          <div class="polaroid__photo"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg><span>Foto pendiente</span></div>
-          <p class="polaroid__name">La mayor</p>
-        </li>
-        <li class="polaroid reveal" style="--tilt:2deg">
-          <div class="polaroid__photo"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg><span>Foto pendiente</span></div>
-          <p class="polaroid__name">La de en medio</p>
-        </li>
-        <li class="polaroid reveal" style="--tilt:-1.5deg">
-          <div class="polaroid__photo"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg><span>Foto pendiente</span></div>
-          <p class="polaroid__name">La más chica</p>
-        </li>
+      <ul class="quality__list">
+        <li><svg class="icon" aria-hidden="true"><use href="#i-leaf"/></svg><span>Ingredientes naturales</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-flask"/></svg><span>Sin conservadores</span></li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg><span>Hechas con amor</span></li>
       </ul>
     </section>
 
-    <section class="vitrina" id="gelatinas" aria-labelledby="gelatinas-title">
-      <div class="vitrina__sticky">
-        <div class="vitrina__track">
-          <div class="vitrina__intro">
-            <h2 id="gelatinas-title">Nuestra <em>vitrina</em></h2>
-            <p>Gelatinas personalizadas: elige una idea y la adaptamos a tu fiesta. Todas se cotizan por WhatsApp según tamaño y decoración.</p>
-            <span class="vitrina__hint" aria-hidden="true">Sigue bajando <svg class="icon"><use href="#i-arrow-down"/></svg></span>
-          </div>
-          <article class="pcard pcard--star">
-            <div class="pcard__photo">
-              <img src="assets/gelatina-fresa-leche-800.webp"
-                   srcset="assets/gelatina-fresa-leche-800.webp 800w, assets/gelatina-fresa-leche-1400.webp 1400w"
-                   sizes="(max-width: 860px) 80vw, 420px"
-                   width="800" height="533" loading="lazy"
-                   alt="Gelatina de fresa con leche con rebanadas de fresa">
-            </div>
-            <div class="pcard__body">
-              <h3>Fresa con leche</h3>
-              <p>Base cremosa de leche con trocitos de fresa y una capa brillante de gelatina de fresa con fruta natural.</p>
-              <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar una gelatina de fresa con leche." href="#">Cotizar</a>
-            </div>
-          </article>
-        <article class="pcard" style="--tone:#B08D57">
-          <div class="pcard__photo pcard__photo--pending">
-            <svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg>
-            <span>Foto próximamente</span>
-          </div>
-          <div class="pcard__body">
-            <h3>De cumpleaños con nombre</h3>
-            <p>Con el nombre o la edad de quien festeja, en sus sabores favoritos.</p>
-            <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar una gelatina de cumpleaños con nombre." href="#">Cotizar</a>
-          </div>
-        </article>
-        <article class="pcard" style="--tone:#8A5A7A">
-          <div class="pcard__photo pcard__photo--pending">
-            <svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg>
-            <span>Foto próximamente</span>
-          </div>
-          <div class="pcard__body">
-            <h3>Mosaico de colores</h3>
-            <p>Cubitos de sabores con los colores de tu fiesta.</p>
-            <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar una gelatina mosaico." href="#">Cotizar</a>
-          </div>
-        </article>
-        <article class="pcard" style="--tone:#5B0F1F">
-          <div class="pcard__photo pcard__photo--pending">
-            <svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg>
-            <span>Foto próximamente</span>
-          </div>
-          <div class="pcard__body">
-            <h3>Mini gelatinas en vasito</h3>
-            <p>Porciones individuales para mesa de postres, recuerditos o fiestas infantiles.</p>
-            <a class="btn btn--ghost" data-wa="Hola Las Chinas, quiero cotizar mini gelatinas en vasito." href="#">Cotizar</a>
-          </div>
-        </article>
+    <section class="about" id="nosotras" aria-labelledby="nosotras-title">
+      <div class="about__text">
+        <h2 id="nosotras-title" class="script">Nosotras <svg class="icon heading-heart" aria-hidden="true"><use href="#i-heart-fill"/></svg></h2>
+        <p class="about__lead">Tres hermanas, un mismo sabor.</p>
+        <p>Somos Las Chinas, un emprendimiento familiar que nació del amor por las gelatinas y el deseo de compartir momentos especiales. Cada detalle que hacemos lleva un pedacito de nosotras.</p>
+        <a class="btn btn--sm" href="#contacto">Conoce más <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+      <figure class="about__photo">
+        <img src="assets/temp/nosotras.webp" width="300" height="316" loading="lazy" alt="Las tres hermanas de Las Chinas sonriendo con sus mandiles rosas">
+        <figcaption class="about__note">Gracias por ser parte de nuestra historia <svg class="icon" aria-hidden="true"><use href="#i-heart-fill"/></svg></figcaption>
+      </figure>
+    </section>
+
+    <section class="how" id="como-pedir" aria-labelledby="pedir-title">
+      <h2 id="pedir-title" class="script">Así de fácil se pide</h2>
+      <ol class="how__list">
+        <li><span class="how__num">1</span><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg><h3>Escríbenos</h3><p>Cuéntanos la fecha, para cuántas personas y qué idea tienes.</p></li>
+        <li><span class="how__num">2</span><svg class="icon" aria-hidden="true"><use href="#i-palette"/></svg><h3>La diseñamos juntas</h3><p>Elegimos sabores, colores, tamaño y si lleva nombre o decoración.</p></li>
+        <li><span class="how__num">3</span><svg class="icon" aria-hidden="true"><use href="#i-confetti"/></svg><h3>Lista para tu festejo</h3><p>La preparamos fresca para el día que la necesitas.</p></li>
+      </ol>
+    </section>
+
+    <section class="insta" aria-labelledby="insta-title">
+      <div class="section-head">
+        <h2 id="insta-title" class="script">Síguenos en Instagram <svg class="icon heading-heart" aria-hidden="true"><use href="#i-heart-fill"/></svg></h2>
+        <p>Nuevos sabores, promociones y más.</p>
+        <a class="round round--brand js-social" data-social="instagram" href="#" aria-label="Instagram de Las Chinas"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a>
+      </div>
+      <div class="insta__grid">
+        <a class="insta__item js-social" data-social="instagram" href="#"><img src="assets/temp/insta-1.webp" width="174" height="234" loading="lazy" alt="Publicación de Instagram de Las Chinas 1"></a>
+        <a class="insta__item js-social" data-social="instagram" href="#"><img src="assets/temp/insta-2.webp" width="174" height="234" loading="lazy" alt="Publicación de Instagram de Las Chinas 2"></a>
+        <a class="insta__item js-social" data-social="instagram" href="#"><img src="assets/temp/insta-3.webp" width="174" height="234" loading="lazy" alt="Publicación de Instagram de Las Chinas 3"></a>
+        <a class="insta__item js-social" data-social="instagram" href="#"><img src="assets/temp/insta-4.webp" width="174" height="234" loading="lazy" alt="Publicación de Instagram de Las Chinas 4"></a>
+        <a class="insta__item js-social" data-social="instagram" href="#"><img src="assets/temp/insta-5.webp" width="174" height="234" loading="lazy" alt="Publicación de Instagram de Las Chinas 5"></a>
+        <a class="insta__item js-social" data-social="instagram" href="#"><img src="assets/temp/insta-6.webp" width="174" height="234" loading="lazy" alt="Publicación de Instagram de Las Chinas 6"></a>
+      </div>
+    </section>
+
+    <section class="visit" id="ubicacion" aria-label="Ubicación y horario">
+      <div class="visit__card visit__card--map">
+        <div>
+          <h2><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg> Ubicación</h2>
+          <p>Monterrey, N.L.</p>
+          <a class="btn btn--sm js-maps" href="#" target="_blank" rel="noopener">Cómo llegar</a>
+        </div>
+        <div class="map" aria-hidden="true">
+          <svg viewBox="0 0 240 160" preserveAspectRatio="xMidYMid slice">
+            <rect width="240" height="160" fill="#FBEFF4"/>
+            <g stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round">
+              <path d="M-10 40 L250 70"/><path d="M-10 120 L250 95"/><path d="M60 -10 L90 170"/><path d="M170 -10 L140 170"/><path d="M0 80 C60 60 120 120 240 30"/>
+            </g>
+            <g stroke="#F3D3E0" stroke-width="2" fill="none"><path d="M20 -10 L40 170"/><path d="M210 -10 L200 170"/><path d="M-10 150 L250 140"/></g>
+          </svg>
+          <span class="map__pin"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span>
         </div>
       </div>
-    </section>
-
-    <section class="steps" id="como-pedir" aria-labelledby="pedir-title">
-      <div class="steps__bg" aria-hidden="true"></div>
-      <div class="steps__inner">
-        <h2 id="pedir-title">Así de fácil <em>se pide</em></h2>
-        <div class="steps__line" aria-hidden="true"><span></span></div>
-        <ol class="steps__list">
-          <li class="step reveal">
-            <span class="step__num" aria-hidden="true">1</span>
-            <h3>Escríbenos</h3>
-            <p>Cuéntanos la fecha, para cuántas personas y qué idea tienes.</p>
-          </li>
-          <li class="step reveal">
-            <span class="step__num" aria-hidden="true">2</span>
-            <h3>La diseñamos juntas</h3>
-            <p>Elegimos sabores, colores, tamaño y si lleva nombre o decoración.</p>
-          </li>
-          <li class="step reveal">
-            <span class="step__num" aria-hidden="true">3</span>
-            <h3>Lista para tu festejo</h3>
-            <p>La preparamos fresca para el día que la necesitas.</p>
-          </li>
-        </ol>
+      <div class="visit__card">
+        <h2><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg> Horario de atención</h2>
+        <dl class="hours">
+          <div><dt>Lunes a sábado</dt><dd>10:00 a 20:00 h</dd></div>
+          <div><dt>Domingo</dt><dd>10:00 a 18:00 h</dd></div>
+        </dl>
       </div>
     </section>
 
-    <section class="cta" aria-labelledby="cta-title">
-      <h2 id="cta-title">¿Tienes un festejo <em>en puerta?</em></h2>
-      <p>Cuéntanos la fecha y tu idea. Te respondemos por WhatsApp.</p>
-      <div class="magnet">
-        <a class="btn btn--big btn--shine" data-wa="Hola Las Chinas, quiero hacer un pedido." href="#">
-          <svg class="icon" aria-hidden="true"><use href="#i-whatsapp-logo"/></svg> Escribir por WhatsApp
-        </a>
+    <section class="cta" id="contacto" aria-labelledby="cta-title">
+      <div class="cta__text">
+        <h2 id="cta-title" class="script">¿Quieres un pedido especial?</h2>
+        <p>Cuéntanos tu idea y la hacemos realidad.</p>
+        <a class="btn btn--light btn--big" data-wa="Hola Las Chinas, quiero hacer un pedido especial." href="#"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Enviar mensaje</a>
       </div>
+      <img class="cta__img" src="assets/gelatina-fresa-leche-800.webp" width="800" height="533" loading="lazy" alt="">
     </section>
   </main>
 
   <footer class="footer">
-    <img class="footer__logo" src="assets/logo-480.webp" width="180" height="180" alt="Logo de Las Chinas" loading="lazy">
-    <p class="footer__name">Las Chinas</p>
-    <p>Gelatinas personalizadas hechas a mano por tres hermanas.</p>
+    <img class="footer__logo" src="assets/logo-480.webp" width="140" height="140" alt="Logo de Las Chinas" loading="lazy">
+    <p>Gelatinas artesanales hechas con mucho amor por tres hermanas en Monterrey.</p>
+    <div class="social">
+      <a class="round round--ghost js-social" data-social="instagram" href="#" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a>
+      <a class="round round--ghost js-social" data-social="facebook" href="#" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="#i-facebook"/></svg></a>
+      <a class="round round--ghost js-social" data-social="tiktok" href="#" aria-label="TikTok"><svg class="icon" aria-hidden="true"><use href="#i-tiktok"/></svg></a>
+      <a class="round round--ghost" data-wa="Hola Las Chinas" href="#" aria-label="WhatsApp"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg></a>
+    </div>
     <p class="footer__small">© 2026 Las Chinas</p>
   </footer>
 
-  <a class="fab" data-wa="Hola Las Chinas, quiero información sobre sus gelatinas." href="#" aria-label="Escribir por WhatsApp">
-    <svg class="icon" aria-hidden="true"><use href="#i-whatsapp-fill"/></svg>
-  </a>
+  <!-- Menú en celular -->
+  <div class="drawer drawer--menu" id="menu" hidden>
+    <div class="drawer__scrim js-close"></div>
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Menú">
+      <div class="drawer__head">
+        <img src="assets/logo-160.webp" width="64" height="64" alt="Las Chinas">
+        <button class="round round--plain js-close" type="button" aria-label="Cerrar menú"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+      </div>
+      <nav class="drawer__nav" aria-label="Secciones">
+        <a href="#inicio"><svg class="icon" aria-hidden="true"><use href="#i-house"/></svg> Inicio</a>
+        <a href="#sabores"><svg class="icon" aria-hidden="true"><use href="#i-fruit"/></svg> Sabores</a>
+        <a href="#pedidos"><svg class="icon" aria-hidden="true"><use href="#i-gift"/></svg> Pedidos</a>
+        <a href="#nosotras"><svg class="icon" aria-hidden="true"><use href="#i-hand-heart"/></svg> Nosotras</a>
+        <a href="#ubicacion"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg> Ubicación</a>
+        <a href="#contacto"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg> Contacto</a>
+      </nav>
+      <img class="drawer__img" src="assets/gelatina-fresa-leche-800.webp" width="800" height="533" alt="" loading="lazy">
+    </div>
+  </div>
 
+  <!-- Carrito -->
+  <div class="drawer drawer--cart" id="cart" hidden>
+    <div class="drawer__scrim js-close"></div>
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+      <div class="drawer__head">
+        <h2 id="cart-title">Tu pedido</h2>
+        <button class="round round--plain js-close" type="button" aria-label="Cerrar carrito"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+      </div>
+      <ul class="cart__items"></ul>
+      <div class="cart__empty">
+        <svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg>
+        <p>Tu pedido está vacío.</p>
+        <a class="btn btn--sm js-close" href="#sabores">Ver sabores</a>
+      </div>
+      <div class="cart__foot">
+        <div class="cart__total"><span>Total</span><strong class="js-total">$0</strong></div>
+        <p class="cart__hint">Te enviamos a WhatsApp con tu pedido listo para confirmar fecha y entrega.</p>
+        <a class="btn btn--wa btn--block js-checkout" href="#" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Enviar pedido por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detalle de sabor -->
+  <div class="modal" id="detalle" hidden>
+    <div class="drawer__scrim js-close"></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="detalle-title">
+      <button class="round round--plain modal__close js-close" type="button" aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+      <div class="modal__media jelly-host"><img class="js-detail-img" src="" alt=""></div>
+      <div class="modal__body">
+        <h2 id="detalle-title" class="script js-detail-name"></h2>
+        <p class="price js-detail-price"></p>
+        <p class="js-detail-desc"></p>
+        <div class="qty">
+          <button class="round round--plain js-qty-minus" type="button" aria-label="Quitar uno"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></button>
+          <output class="js-qty" aria-live="polite">1</output>
+          <button class="round round--plain js-qty-plus" type="button" aria-label="Agregar uno"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+        </div>
+        <button class="btn btn--block js-detail-add" type="button">Agregar al pedido</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Búsqueda -->
+  <div class="modal modal--search" id="buscar" hidden>
+    <div class="drawer__scrim js-close"></div>
+    <div class="search__panel" role="dialog" aria-modal="true" aria-label="Buscar sabores">
+      <label class="search__field"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input id="buscar-input" type="search" placeholder="Busca un sabor: fresa, mango…" autocomplete="off"></label>
+      <ul class="search__results"></ul>
+    </div>
+  </div>
+
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <a class="fab" data-wa="Hola Las Chinas, quiero información sobre sus gelatinas." href="#" aria-label="Escribir por WhatsApp"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp-fill"/></svg></a>
+
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/js/jelly.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

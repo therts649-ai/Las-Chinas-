@@ -1,38 +1,35 @@
 # Diseño de Las Chinas
 
 ## Mundo visual
-Pastelería fina: **marfil y vino**. Fondo marfil con un toque rosado y luz cálida que respira, títulos en Bodoni Moda con palabras en itálica vino, líneas finas doradas y secciones oscuras en vino profundo. La fotografía y la gelatina 3D aportan el rojo fresa. Las fotos van dentro de arcos, como ventanas de vitrina.
+Rosa glamoroso, tal como el diseño de referencia del cliente: hero frambuesa oscuro con luces desenfocadas y corazones flotantes, fondo rosa muy claro, tarjetas blancas, rosa intenso para las acciones y títulos en letra script.
 
 ## Color
 | Token | Valor | Uso |
 |---|---|---|
-| `--marfil` | `#F7F0EA` | Fondo principal |
-| `--marfil-2` | `#EFE3DA` | Superficies secundarias |
-| `--blanco` | `#FFFDFB` | Tarjetas, marcos |
-| `--rosado` | `#F1DCD8` | Luz cálida del fondo |
-| `--vino` | `#5B0F1F` | Botones, itálicas, acentos |
-| `--vino-2` / `--vino-3` | `#3E0915` / `#2A0610` | Títulos, "Cómo pedir", pie |
-| `--dorado` / `--dorado-claro` | `#B08D57` / `#D9C29A` | Solo líneas y detalles (no texto pequeño sobre marfil) |
-| `--dorado-texto` | `#7A5A2E` | Etiquetas doradas legibles sobre marfil |
-| `--tinta` / `--tinta-suave` | `#2A1416` / `#6A4F4F` | Texto |
+| `--rosa-50` | `#FFF5F9` | Fondo de la página |
+| `--rosa-100` / `--rosa-200` | `#FDE8F0` / `#F9CFDF` | Superficies suaves, íconos |
+| `--rosa-500` / `--rosa-600` | `#E23A7E` / `#C81D63` | Botones y acentos |
+| `--rosa-700` | `#A3124D` | Títulos script y precios |
+| `--frambuesa` / `--frambuesa-2` | `#5A0F33` / `#3A0820` | Hero, "Calidad", pie y menú |
+| `--ciruela` / `--ciruela-suave` | `#3B1029` / `#7A4A60` | Texto |
 
 ## Tipografía
-- **Títulos:** Bodoni Moda (con itálica para las palabras clave).
-- **Texto:** Figtree.
+- **Títulos:** Lobster Two itálica.
+- **Notas a mano:** Caveat ("Tres hermanas, un mismo sabor").
+- **Texto:** Poppins.
 
-## Movimiento (taste-skill 8/10, reglas de impeccable y Emil Kowalski)
-- **Telón de entrada** (1 vez por visita, se salta con clic o tecla): logo, nombre y línea dorada; el telón sube.
-- **Inicio:** palabras que suben desde su máscara, el arco se abre desde el centro, la foto se asienta, cruza un destello y la gelatina tiembla. Con mouse, la vitrina se inclina en 3D y el brillo sigue al cursor.
-- **Deconstrucción en video** (`assets/video/deconstruccion.mp4` / `.webm`): video realista que se reproduce solo al verse, con las 8 etapas resaltándose al ritmo del video. A lo ancho en el celular. Sin video, la sección no se muestra.
-- **Franja de festejos** que corre sola y se adelanta con el scroll.
-- **Vitrina horizontal:** el catálogo se queda fijo y las gelatinas pasan de lado al bajar (en celular se deslizan con el dedo).
-- **Pasos:** números que suben de su máscara y una línea dorada que se dibuja.
-- **Llamado final** con botón imán; destello dorado en los botones.
-- **Reducir movimiento:** sin telón, sin fijados y el video no arranca solo (se muestran sus controles); la página aparece completa y quieta.
+## Movimiento y 3D (GSAP + WebGL)
+- **Presentación de entrada** (una vez por visita, se salta con clic): logo y la frase "Tres hermanas, un mismo sabor" palabra por palabra; luego se abre en círculo.
+- **Hero:** entrada coreografiada con GSAP; capas con profundidad que siguen al mouse; corazones y luces que flotan; al bajar, la foto se aleja y el texto sube.
+- **Gelatina 3D realista** (`assets/js/jelly.js`): la foto real de cada sabor se deforma como gelatina al pasar el mouse o tocarla, con brillo húmedo que sigue al cursor. Tiembla una vez al aparecer. Sin WebGL usa un temblor CSS.
+- **Tarjetas** con inclinación 3D; títulos script que se escriben al aparecer; banners con paralaje.
+- **Carrito:** la foto vuela al carrito al agregar; el contador rebota.
+- **Video** de la deconstrucción con etapas sincronizadas.
+- **Reducir movimiento:** sin presentación, sin GSAP ni efecto gelatina; todo aparece quieto.
 
-## Logo
-Logo oficial en `assets/logo-160.webp` y `assets/logo-480.webp`.
+## Pedidos
+Carrito guardado en el navegador; "Enviar pedido por WhatsApp" arma el mensaje con productos, cantidades y total.
 
-## Reglas de las skills que seguimos
-- Sin etiquetas pequeñas sobre los títulos, sin texto con degradado y sin nombres o testimonios inventados.
-- Íconos de Phosphor, no emojis. Una sola marquesina.
+## Archivos
+- `assets/temp/`: imágenes TEMPORALES recortadas del diseño de referencia. Reemplazarlas por fotos en alta resolución con el mismo nombre.
+- `assets/vendor/`: GSAP 3 y ScrollTrigger (licencia gratuita de GSAP).
