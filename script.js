@@ -349,8 +349,34 @@ results.addEventListener('click', (e) => {
 // ---------- Encabezado: fondo al bajar y sección actual ----------
 
 const header = $('.header');
-new IntersectionObserver(([e]) => header.classList.toggle('is-scrolled', !e.isIntersecting), { rootMargin: '-80px 0px 0px 0px' })
-  .observe($('.hero'));
+// Transparente sobre el hero; cápsula de vidrio en cuanto se empieza a bajar
+const heroEl = $('.hero');
+const onScrollHeader = () => {
+  const y = window.scrollY;
+  header.classList.toggle('is-scrolled', y > 24);
+  heroEl.classList.toggle('is-scrolled-past', y > 40);
+};
+window.addEventListener('scroll', onScrollHeader, { passive: true });
+onScrollHeader();
+
+// ---------- Gelatinas del hero: etiqueta del sabor y salto a la vitrina ----------
+
+function goToFlavor(id) {
+  const card = cards.find((c) => c.dataset.id === id);
+  if (card) selectFlavor(card, 1);
+  $('#sabores').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+}
+const jellies = $$('.jelly');
+jellies.forEach((j) => j.addEventListener('click', (e) => {
+  // En pantallas táctiles el primer toque muestra la etiqueta y el segundo lleva al sabor
+  if (!finePointer && !j.classList.contains('is-open')) {
+    e.preventDefault();
+    jellies.forEach((o) => o.classList.toggle('is-open', o === j));
+    return;
+  }
+  goToFlavor(j.dataset.sabor);
+}));
+document.addEventListener('pointerdown', (e) => { if (!e.target.closest('.jelly')) jellies.forEach((o) => o.classList.remove('is-open')); });
 const navLinks = $$('.header__nav a');
 const spy = new IntersectionObserver((entries) => {
   entries.forEach((e) => {
@@ -368,8 +394,6 @@ new IntersectionObserver(([e]) => $('.hero').classList.toggle('is-offscreen', !e
 // ---------- Coreografía con GSAP ----------
 
 const root = document.documentElement;
-const introShown = !root.classList.contains('no-intro') && !reduceMotion && !!window.gsap;
-if (!window.gsap || reduceMotion) root.classList.add('no-intro');
 
 // Corazones que salen al agregar al pedido
 function burst(x, y, n = 8) {
@@ -393,56 +417,50 @@ function burst(x, y, n = 8) {
 if (window.gsap && !reduceMotion) {
   gsap.registerPlugin(ScrollTrigger);
 
-  // ---- Entrada: la frase se revela línea por línea, aparece el logo y la
-  //      cortina se levanta como un molde, estirándose antes de soltarse ----
-  let start = 0.1;
-  if (introShown) {
-    const edge = $('.intro__edge path');
-    const pull = { v: 1 };
-    const drawEdge = () => edge.setAttribute('d', `M0 0 H1200 V1 Q600 ${pull.v.toFixed(1)} 0 1 Z`);
-    const intro = gsap.timeline({ onComplete: () => root.classList.add('no-intro') });
-    intro
-      .from('.intro__line > span', { yPercent: 115, duration: 1.1, stagger: 0.18, ease: 'power4.out' }, 0.25)
-      .from('.intro__rule', { scaleX: 0, duration: 0.9, ease: 'power3.inOut' }, 0.9)
-      .from('.intro__logo', { opacity: 0, y: 16, scale: 0.92, duration: 0.9, ease: 'power3.out' }, 1.05)
-      .addLabel('out', 2.3)
-      .to('.intro__panel > *', { y: -24, opacity: 0, duration: 0.45, stagger: 0.04, ease: 'power2.in' }, 'out')
-      .to('.intro', { yPercent: -100, duration: 1.15, ease: 'power3.inOut' }, 'out+=0.3')
-      .to(pull, { v: 120, duration: 0.6, ease: 'power2.in', onUpdate: drawEdge }, 'out+=0.3')
-      .to(pull, { v: 1, duration: 1.1, ease: 'elastic.out(1, 0.32)', onUpdate: drawEdge }, '>');
-    start = intro.labels.out + 0.75;
-    const skip = () => { if (intro.time() < intro.labels.out) intro.seek('out'); };
-    window.addEventListener('pointerdown', skip, { once: true });
-    window.addEventListener('keydown', skip, { once: true });
-  }
-
-  // Entrada del hero: la foto se asienta y el título aparece línea por línea
-  const tl = gsap.timeline({ delay: start, defaults: { ease: 'power3.out' } });
-  tl.from('.header', { y: -30, opacity: 0, duration: 0.9 })
-    .from('.hero__photo', { opacity: 0, scale: 1.08, duration: 1.8, ease: 'power2.out' }, 0)
-    .fromTo('.hero__title .line', { clipPath: 'inset(-20% -10% 100% -10%)', y: 40 }, { clipPath: 'inset(-20% -10% -30% -10%)', y: 0, duration: 1.1, stagger: 0.14, ease: 'power4.out' }, 0.15)
-    .from('.hero__sub', { opacity: 0, y: 16, duration: 0.8 }, 0.55)
-    .from('.hero__list li', { opacity: 0, y: 14, duration: 0.7, stagger: 0.06 }, 0.65)
-    .from('.hero__actions .btn', { opacity: 0, y: 16, duration: 0.7, stagger: 0.08 }, 0.8)
-    .from('.hero__note', { opacity: 0, y: 10, duration: 0.9 }, 1)
-    .from('.cats__list', { y: 40, opacity: 0, duration: 0.9 }, 0.9);
+  // ---- Entrada del hero: cada capa a su tiempo, sin pantalla de carga ----
+  // 0.0 fondo y halo · 0.2 partículas · 0.4 hermanas · 0.70/0.82/0.94 gelatinas ·
+  // 1.0 «Las», «Chinas» y el corazón · 1.3 frase · 1.5 subtítulo · 1.7 botones · 2.0 «Descubre»
+  const soft = 'power3.out';
+  gsap.timeline({ defaults: { ease: soft } })
+    .from('.hero__halos', { opacity: 0, duration: 1.4, ease: 'power1.out' }, 0)
+    .from('.header', { opacity: 0, y: -16, duration: 0.9 }, 0.1)
+    .from('.pt', { opacity: 0, y: 10, duration: 1, stagger: 0.04 }, 0.2)
+    .from('.hero__luces', { opacity: 0, duration: 1.2 }, 0.2)
+    .from('.hero__hermanas', { opacity: 0, y: 20, scale: 0.97, duration: 1.1, transformOrigin: '50% 100%' }, 0.4)
+    .fromTo('.jelly', { opacity: 0 }, { opacity: 1, duration: 0.6, stagger: 0.12 }, 0.7)
+    .from('.hero__las', { opacity: 0, scale: 0.92, y: 8, duration: 0.6 }, 1.0)
+    .from('.hero__chinas', { opacity: 0, scale: 0.92, duration: 0.7, transformOrigin: '0% 70%' }, 1.12)
+    .from('.hero__corazon', { opacity: 0, scale: 0.6, duration: 0.5, ease: 'back.out(1.6)' }, 1.45)
+    .from('.hero__lema', { opacity: 0, y: 14, duration: 0.8 }, 1.3)
+    .from('.hero__sub', { opacity: 0, y: 12, duration: 0.8 }, 1.5)
+    .from('.hero__ctas .btn', { opacity: 0, y: 14, duration: 0.7, stagger: 0.08 }, 1.7)
+    .from('.hero__descubre', { opacity: 0, y: 10, duration: 0.8 }, 2.0)
+    .from('.cats__list', { y: 30, opacity: 0, duration: 0.9 }, 1.6);
 
   // ---- La gelatina capa por capa, controlada con el scroll ----
   setupCapas();
 
-  // Profundidad del hero: la foto sigue al mouse muy poco
+  // Profundidad con el mouse: cada capa se desplaza según su distancia (data-depth en px)
   if (finePointer) {
-    const px = gsap.quickTo('.hero__photo', 'x', { duration: 1.2, ease: 'power3' });
-    const py = gsap.quickTo('.hero__photo', 'y', { duration: 1.2, ease: 'power3' });
-    $('.hero').addEventListener('pointermove', (e) => {
-      px((e.clientX / window.innerWidth - 0.5) * -18);
-      py((e.clientY / window.innerHeight - 0.5) * -12);
+    const capas = $$('.hero [data-depth]').map((el) => ({
+      d: parseFloat(el.dataset.depth),
+      x: gsap.quickTo(el, 'x', { duration: 1.1, ease: 'power3' }),
+      y: gsap.quickTo(el, 'y', { duration: 1.1, ease: 'power3' }),
+    }));
+    heroEl.addEventListener('pointermove', (e) => {
+      const nx = e.clientX / window.innerWidth - 0.5, ny = e.clientY / window.innerHeight - 0.5;
+      capas.forEach((c) => { c.x(-nx * 2 * c.d); c.y(-ny * 2 * c.d); });
     });
+    heroEl.addEventListener('pointerleave', () => capas.forEach((c) => { c.x(0); c.y(0); }));
   }
 
-  // Al bajar, la foto del hero se aleja y el texto sube más rápido
-  gsap.to('.hero__photo', { yPercent: 10, scale: 1.04, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-  gsap.to('.hero__content', { y: -70, opacity: 0.3, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+  // Profundidad con el scroll (en celular es la única): el fondo casi no se mueve,
+  // las hermanas un poco más y el texto se adelanta
+  const sc = { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true };
+  gsap.to('.hero__halos', { yPercent: 6, ease: 'none', scrollTrigger: sc });
+  gsap.to('.hero__escena', { yPercent: 9, ease: 'none', scrollTrigger: sc });
+  gsap.to('.hero__particulas', { yPercent: -12, ease: 'none', scrollTrigger: sc });
+  gsap.to('.hero__texto', { yPercent: -6, opacity: 0, ease: 'none', scrollTrigger: { ...sc, end: '55% top' } });
 
   // Entradas de las secciones: todas iguales, suaves y cortas
   const rise = (targets, trigger, extra = {}) => gsap.from(targets, {
