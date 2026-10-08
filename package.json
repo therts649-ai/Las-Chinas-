@@ -5,10 +5,12 @@
   "scripts": {
     "texturas": "python3 3d/texturas.py",
     "modelo": "python3 3d/modelo.py",
-    "build:3d": "esbuild 3d/escena.js --bundle --minify --format=esm --target=es2020 --outfile=assets/js/escena3d.js"
+    "build:3d": "esbuild 3d/escena.js --bundle --minify --format=esm --target=es2020 --outfile=assets/js/escena3d.js",
+    "build:inmersivo": "esbuild 3d/inmersivo.js --bundle --minify --format=esm --target=es2020 --outfile=assets/js/inmersivo.js"
   },
   "devDependencies": {
     "esbuild": "0.24.2",
+    "lenis": "^1.3.26",
     "three": "0.186.1"
   }
 }
