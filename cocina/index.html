@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>La cocina de Las Chinas</title>
+  <meta name="description" content="Entra a la cocina de Las Chinas: toca la vitrina para ver los sabores, el celular para pedir por WhatsApp y las fotos para conocer a las tres hermanas.">
+  <meta name="theme-color" content="#2B1410">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Lobster+Two:ital,wght@1,700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="../assets/cocina/escena-1920.webp" imagesrcset="../assets/cocina/escena-1280.webp 1280w, ../assets/cocina/escena-1920.webp 1920w" imagesizes="max(100vw, 177.8svh)">
+  <link rel="stylesheet" href="cocina.css">
+</head>
+<body>
+  <!-- Íconos (Phosphor, MIT) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-arrow-left" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"/></symbol>
+      <symbol id="i-whatsapp" viewBox="0 0 256 256"><path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88,40,40,0,0,0,40-40A8,8,0,0,0,187.58,144.84ZM152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155l14.61-9.74,23,11.48A24,24,0,0,1,152,176ZM128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z"/></symbol>
+      <symbol id="i-x" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="veil" aria-hidden="true"></div>
+
+  <header class="ui-top">
+    <a class="marca" href="../index.html"><span class="marca__las">Las</span> Chinas</a>
+    <nav class="ui-nav" aria-label="Atajos">
+      <button type="button" data-ir="vitrina">Sabores</button>
+      <button type="button" data-ir="pared">Nosotras</button>
+      <button type="button" data-ir="celular">Pedir</button>
+    </nav>
+  </header>
+
+  <main class="escena" aria-label="La cocina de Las Chinas. Cada objeto es una parte de la página.">
+    <div class="cam">
+      <div class="frame" data-pan>
+        <img class="frame__img" src="../assets/cocina/escena-1920.webp" srcset="../assets/cocina/escena-1280.webp 1280w, ../assets/cocina/escena-1920.webp 1920w" sizes="max(100vw, 177.8svh)" width="1920" height="1080" alt="Cocina de Las Chinas al atardecer: vitrina con gelatinas, pizarrón con el menú, fotos en la pared, un recetario y un celular sobre la barra; por la ventana se ve el Cerro de la Silla.">
+        <span class="sol" aria-hidden="true"></span>
+        <span class="lampara-luz" aria-hidden="true"></span>
+        <div class="polvo" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <!-- Fotos de las hermanas dentro de las polaroids -->
+        <img class="polaroid" style="--l:2.75;--t:17.4;--w:5.9;--h:9.7;--r:-4deg" src="../assets/cocina/hermana-1.webp" alt="" width="240" height="240">
+        <img class="polaroid" style="--l:11.7;--t:20.8;--w:5.05;--h:9.7;--r:1.5deg" src="../assets/cocina/hermana-2.webp" alt="" width="240" height="240">
+        <img class="polaroid" style="--l:19.9;--t:20.2;--w:5.45;--h:9.6;--r:-4.5deg" src="../assets/cocina/hermana-3.webp" alt="" width="240" height="240">
+        <span class="apagon" aria-hidden="true"></span>
+
+        <button class="obj" type="button" data-obj="vitrina" style="--l:24.5;--t:55.6;--w:59.9;--h:26.9;--px:56;--py:52"><span class="obj__punto"></span><span class="obj__tag">La vitrina <small>Nuestros sabores</small></span></button>
+        <button class="obj" type="button" data-obj="celular" style="--l:76.6;--t:77.5;--w:13;--h:8.6;--px:50;--py:40"><span class="obj__punto"></span><span class="obj__tag">El celular <small>Pide por WhatsApp</small></span></button>
+        <button class="obj" type="button" data-obj="pared" style="--l:2;--t:14.8;--w:24;--h:19.4;--px:50;--py:40"><span class="obj__punto"></span><span class="obj__tag">Las fotos <small>Conoce a Las Chinas</small></span></button>
+        <button class="obj" type="button" data-obj="pizarron" style="--l:38;--t:8.3;--w:17.4;--h:45.4;--px:50;--py:50"><span class="obj__punto"></span><span class="obj__tag">El pizarrón <small>El menú</small></span></button>
+        <button class="obj" type="button" data-obj="libro" style="--l:0;--t:78.7;--w:30.2;--h:14.8;--px:55;--py:45"><span class="obj__punto"></span><span class="obj__tag">El recetario <small>Arma tu gelatina</small></span></button>
+        <button class="obj" type="button" data-obj="ventana" style="--l:69.3;--t:0;--w:30.7;--h:51.9;--px:45;--py:45"><span class="obj__punto"></span><span class="obj__tag">La ventana <small>Dónde estamos</small></span></button>
+        <button class="obj obj--lampara" type="button" data-obj="lampara" style="--l:25.8;--t:5.6;--w:10.4;--h:16.7;--px:50;--py:62" aria-pressed="true"><span class="obj__punto"></span><span class="obj__tag">La lámpara <small>Prender o apagar</small></span></button>
+      </div>
+    </div>
+
+    <!-- Acercamientos con su propia foto -->
+    <section class="close" id="close-vitrina" aria-label="La vitrina: nuestros sabores" hidden>
+      <div class="frame frame--close" data-pan>
+        <img class="frame__img" src="../assets/cocina/vitrina-1920.webp" srcset="../assets/cocina/vitrina-1280.webp 1280w, ../assets/cocina/vitrina-1920.webp 1920w" sizes="max(100vw, 177.8svh)" width="1920" height="1080" alt="Vitrina de vidrio con cuatro gelatinas: fresa con crema, uva, mango y fresa natural.">
+        <span class="sol sol--close" aria-hidden="true"></span>
+        <button class="gel" type="button" data-sabor="fresa-crema" style="--l:12.9;--t:52;--w:20;--h:24.5"><span class="obj__punto"></span><span class="sr">Fresa con crema</span></button>
+        <button class="gel" type="button" data-sabor="uva" style="--l:35.6;--t:50;--w:18.3;--h:21.6"><span class="obj__punto"></span><span class="sr">Uva</span></button>
+        <button class="gel" type="button" data-sabor="mango" style="--l:55.5;--t:48.6;--w:18.7;--h:20.8"><span class="obj__punto"></span><span class="sr">Mango</span></button>
+        <button class="gel" type="button" data-sabor="fresa-natural" style="--l:73;--t:45.8;--w:16;--h:20.2"><span class="obj__punto"></span><span class="sr">Fresa natural</span></button>
+      </div>
+      <p class="close__hint">Toca una gelatina</p>
+    </section>
+
+    <section class="close" id="close-celular" aria-label="El celular: pide por WhatsApp" hidden>
+      <div class="frame frame--close" data-pan>
+        <img class="frame__img" src="../assets/cocina/celular-1920.webp" srcset="../assets/cocina/celular-1280.webp 1280w, ../assets/cocina/celular-1920.webp 1920w" sizes="max(100vw, 177.8svh)" width="1920" height="1080" alt="Celular sobre la barra de mármol junto a unas fresas.">
+        <span class="pantalla" aria-hidden="true"></span>
+      </div>
+      <div class="chat" role="group" aria-label="Pedir por WhatsApp">
+        <div class="chat__head"><img src="../assets/logo-160.webp" alt="" width="36" height="36"><div><b>Las Chinas</b><small>en línea</small></div></div>
+        <p class="chat__msg">¡Hola! 🍓 ¿Qué gelatina se te antoja hoy?</p>
+        <div class="chat__chips">
+          <a class="chip" data-wa="Hola Las Chinas, quiero pedir una gelatina de fresa con crema." href="#">Fresa con crema</a>
+          <a class="chip" data-wa="Hola Las Chinas, quiero pedir una gelatina de uva." href="#">Uva</a>
+          <a class="chip" data-wa="Hola Las Chinas, quiero pedir una gelatina de mango." href="#">Mango</a>
+          <a class="chip" data-wa="Hola Las Chinas, quiero pedir una gelatina de fresa natural." href="#">Fresa natural</a>
+          <a class="chip" data-wa="Hola Las Chinas, quiero hacer un pedido especial." href="#">Pedido especial ✨</a>
+        </div>
+        <a class="chat__abrir" data-wa="Hola Las Chinas, quiero información sobre sus gelatinas." href="#"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg> Abrir WhatsApp</a>
+      </div>
+    </section>
+
+    <!-- Tarjetas que aparecen al acercarse a un objeto de la escena -->
+    <article class="nota" id="nota-pared" hidden>
+      <p class="nota__kicker">Conoce a Las Chinas</p>
+      <h2>Tres hermanas, un mismo sabor.</h2>
+      <p>Somos Las Chinas, un emprendimiento familiar que nació del amor por las gelatinas y el deseo de compartir momentos especiales. Cada detalle que hacemos lleva un pedacito de nosotras.</p>
+      <a class="nota__link" href="../index.html#nosotras">Nuestra historia →</a>
+    </article>
+    <article class="nota" id="nota-pizarron" hidden>
+      <p class="nota__kicker">El menú</p>
+      <h2>Fresa con leche, uva, mango y mosaico.</h2>
+      <p>También hacemos corazones, vasitos para fiestas y pedidos especiales. Los precios de cada tamaño llegan muy pronto.</p>
+      <a class="nota__link" href="../index.html#sabores">Ver todos los sabores →</a>
+    </article>
+    <article class="nota" id="nota-libro" hidden>
+      <p class="nota__kicker">El recetario</p>
+      <h2>Arma tu gelatina, capa por capa.</h2>
+      <p>Muy pronto podrás elegir la forma, los sabores de cada capa, la fruta y la decoración, y mandarnos tu receta por WhatsApp.</p>
+      <a class="nota__link" href="#" data-ir="celular">Mientras, pídela por WhatsApp →</a>
+    </article>
+    <article class="nota" id="nota-ventana" hidden>
+      <p class="nota__kicker">Dónde estamos</p>
+      <h2>Desde Monterrey, con el Cerro de la Silla de fondo.</h2>
+      <p>Hacemos entregas en la ciudad. Pronto publicaremos las zonas y horarios.</p>
+      <a class="nota__link" href="https://www.google.com/maps/search/?api=1&query=Monterrey%2C%20N.L." target="_blank" rel="noopener">Ver en el mapa →</a>
+    </article>
+
+    <!-- Detalle de un sabor (desde la vitrina) -->
+    <article class="sabor" id="sabor" hidden aria-live="polite">
+      <button class="sabor__cerrar" type="button" aria-label="Cerrar"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
+      <p class="sabor__kicker">Nuestros sabores</p>
+      <h2 class="sabor__nombre"></h2>
+      <p class="sabor__desc"></p>
+      <p class="sabor__precio"></p>
+      <div class="sabor__acciones">
+        <a class="btn btn--wa sabor__pedir" href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg> Pedir por WhatsApp</a>
+        <a class="btn btn--line" href="../index.html#sabores">Ver en la tienda</a>
+      </div>
+    </article>
+
+    <button class="volver" type="button" hidden><svg aria-hidden="true"><use href="#i-arrow-left"/></svg> Volver a la cocina <kbd>Esc</kbd></button>
+  </main>
+
+  <footer class="ui-bottom" aria-hidden="true">
+    <p class="pista">Explora la cocina · toca la vitrina, el celular o las fotos</p>
+    <p class="teclas">V vitrina · W WhatsApp · N nosotras · L lámpara</p>
+  </footer>
+
+  <script src="../assets/vendor/gsap.min.js"></script>
+  <script src="cocina.js"></script>
+</body>
+</html>
