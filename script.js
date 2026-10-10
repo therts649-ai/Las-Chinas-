@@ -254,21 +254,22 @@ function saveCart() {
   store.set('lc-cart', cart);
   renderCart();
 }
-function addToCart(id, qty = 1, fromImg) {
+function addToCart(id, qty = 1, fromImg, fromRect) {
   const r = document.activeElement?.getBoundingClientRect?.();
   if (r && r.width) burst(r.left + r.width / 2, r.top + r.height / 2, 6);
   cart[id] = (cart[id] || 0) + qty;
   saveCart();
-  flyToCart(fromImg);
+  flyToCart(fromImg, fromRect);
   countEl.classList.remove('is-bump');
   void countEl.offsetWidth;
   countEl.classList.add('is-bump');
   toast(`${products[id].name} agregada a tu pedido`);
 }
 // La foto vuela hasta el carrito
-function flyToCart(img) {
+function flyToCart(img, rect) {
   if (!img || reduceMotion || !window.gsap) return;
-  const a = img.getBoundingClientRect();
+  const a = rect || img.getBoundingClientRect();
+  if (!a.width) return;
   const b = $('.js-cart-open').getBoundingClientRect();
   const clone = img.cloneNode();
   clone.className = 'fly';
@@ -349,34 +350,29 @@ results.addEventListener('click', (e) => {
 // ---------- Encabezado: fondo al bajar y sección actual ----------
 
 const header = $('.header');
-// Transparente sobre el hero; cápsula de vidrio en cuanto se empieza a bajar
-const heroEl = $('.hero');
-const onScrollHeader = () => {
-  const y = window.scrollY;
-  header.classList.toggle('is-scrolled', y > 24);
-  heroEl.classList.toggle('is-scrolled-past', y > 40);
-};
+// Transparente sobre la cocina; cápsula de vidrio en cuanto se empieza a bajar
+const onScrollHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 24);
 window.addEventListener('scroll', onScrollHeader, { passive: true });
 onScrollHeader();
 
-// ---------- Gelatinas del hero: etiqueta del sabor y salto a la vitrina ----------
+// ---------- Desde la cocina: ver un sabor en la tienda o agregarlo al pedido ----------
 
 function goToFlavor(id) {
   const card = cards.find((c) => c.dataset.id === id);
-  if (card) selectFlavor(card, 1);
+  if (card) {
+    if (card.hidden) $('.cat[data-cat="todas"]')?.click();
+    selectFlavor(card, 1);
+  }
   $('#sabores').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
 }
-const jellies = $$('.jelly');
-jellies.forEach((j) => j.addEventListener('click', (e) => {
-  // En pantallas táctiles el primer toque muestra la etiqueta y el segundo lleva al sabor
-  if (!finePointer && !j.classList.contains('is-open')) {
-    e.preventDefault();
-    jellies.forEach((o) => o.classList.toggle('is-open', o === j));
-    return;
-  }
-  goToFlavor(j.dataset.sabor);
-}));
-document.addEventListener('pointerdown', (e) => { if (!e.target.closest('.jelly')) jellies.forEach((o) => o.classList.remove('is-open')); });
+document.addEventListener('lc:ver-sabor', (e) => goToFlavor(e.detail.id));
+document.addEventListener('lc:agregar', (e) => {
+  const { id, rect } = e.detail;
+  if (!products[id]) return;
+  const img = new Image();
+  img.src = products[id].img;
+  addToCart(id, 1, img, rect);
+});
 const navLinks = $$('.header__nav a');
 const spy = new IntersectionObserver((entries) => {
   entries.forEach((e) => {
@@ -388,8 +384,6 @@ const spy = new IntersectionObserver((entries) => {
   .map((id) => document.getElementById(id)).filter(Boolean)
   .forEach((el) => spy.observe(el));
 
-// El hero pausa sus luces y corazones cuando no se ve
-new IntersectionObserver(([e]) => $('.hero').classList.toggle('is-offscreen', !e.isIntersecting)).observe($('.hero'));
 
 // ---------- Coreografía con GSAP ----------
 
@@ -417,50 +411,11 @@ function burst(x, y, n = 8) {
 if (window.gsap && !reduceMotion) {
   gsap.registerPlugin(ScrollTrigger);
 
-  // ---- Entrada del hero: cada capa a su tiempo, sin pantalla de carga ----
-  // 0.0 fondo y halo · 0.2 partículas · 0.4 hermanas · 0.70/0.82/0.94 gelatinas ·
-  // 1.0 «Las», «Chinas» y el corazón · 1.3 frase · 1.5 subtítulo · 1.7 botones · 2.0 «Descubre»
-  const soft = 'power3.out';
-  gsap.timeline({ defaults: { ease: soft } })
-    .from('.hero__halos', { opacity: 0, duration: 1.4, ease: 'power1.out' }, 0)
-    .from('.header', { opacity: 0, y: -16, duration: 0.9 }, 0.1)
-    .from('.pt', { opacity: 0, y: 10, duration: 1, stagger: 0.04 }, 0.2)
-    .from('.hero__luces', { opacity: 0, duration: 1.2 }, 0.2)
-    .from('.hero__hermanas', { opacity: 0, y: 20, scale: 0.97, duration: 1.1, transformOrigin: '50% 100%' }, 0.4)
-    .fromTo('.jelly', { opacity: 0 }, { opacity: 1, duration: 0.6, stagger: 0.12 }, 0.7)
-    .from('.hero__las', { opacity: 0, scale: 0.92, y: 8, duration: 0.6 }, 1.0)
-    .from('.hero__chinas', { opacity: 0, scale: 0.92, duration: 0.7, transformOrigin: '0% 70%' }, 1.12)
-    .from('.hero__corazon', { opacity: 0, scale: 0.6, duration: 0.5, ease: 'back.out(1.6)' }, 1.45)
-    .from('.hero__lema', { opacity: 0, y: 14, duration: 0.8 }, 1.3)
-    .from('.hero__sub', { opacity: 0, y: 12, duration: 0.8 }, 1.5)
-    .from('.hero__ctas .btn', { opacity: 0, y: 14, duration: 0.7, stagger: 0.08 }, 1.7)
-    .from('.hero__descubre', { opacity: 0, y: 10, duration: 0.8 }, 2.0)
-    .from('.cats__list', { y: 30, opacity: 0, duration: 0.9 }, 1.6);
+  // La entrada de la cocina vive en assets/js/cocina.js
+  gsap.from('.cats__list', { y: 30, opacity: 0, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: '.cats', start: 'top 92%' } });
 
   // ---- La gelatina capa por capa, controlada con el scroll ----
   setupCapas();
-
-  // Profundidad con el mouse: cada capa se desplaza según su distancia (data-depth en px)
-  if (finePointer) {
-    const capas = $$('.hero [data-depth]').map((el) => ({
-      d: parseFloat(el.dataset.depth),
-      x: gsap.quickTo(el, 'x', { duration: 1.1, ease: 'power3' }),
-      y: gsap.quickTo(el, 'y', { duration: 1.1, ease: 'power3' }),
-    }));
-    heroEl.addEventListener('pointermove', (e) => {
-      const nx = e.clientX / window.innerWidth - 0.5, ny = e.clientY / window.innerHeight - 0.5;
-      capas.forEach((c) => { c.x(-nx * 2 * c.d); c.y(-ny * 2 * c.d); });
-    });
-    heroEl.addEventListener('pointerleave', () => capas.forEach((c) => { c.x(0); c.y(0); }));
-  }
-
-  // Profundidad con el scroll (en celular es la única): el fondo casi no se mueve,
-  // las hermanas un poco más y el texto se adelanta
-  const sc = { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true };
-  gsap.to('.hero__halos', { yPercent: 6, ease: 'none', scrollTrigger: sc });
-  gsap.to('.hero__escena', { yPercent: 9, ease: 'none', scrollTrigger: sc });
-  gsap.to('.hero__particulas', { yPercent: -12, ease: 'none', scrollTrigger: sc });
-  gsap.to('.hero__texto', { yPercent: -6, opacity: 0, ease: 'none', scrollTrigger: { ...sc, end: '55% top' } });
 
   // Entradas de las secciones: todas iguales, suaves y cortas
   const rise = (targets, trigger, extra = {}) => gsap.from(targets, {
@@ -473,7 +428,8 @@ if (window.gsap && !reduceMotion) {
   rise('.flavor[data-id]', '.flavors__track');
   rise('.special', '.special');
   rise('.quality__list li', '.quality');
-  rise('.about__photo img', '.about');
+  rise('.about__ilus', '.about');
+  rise('.recetario__hoja', '.recetario', { stagger: 0.15 });
   rise('.how__list li', '.how__list');
   rise('.insta__item', '.insta__grid', { stagger: 0.05 });
   rise('.cta', '.cta');
@@ -581,3 +537,77 @@ function setupCapas() {
 
 // Sin GSAP o con movimiento reducido: la gelatina completa y las tres notas a la vista
 if (!window.gsap || reduceMotion) $('.capas').classList.add('capas--static');
+
+// ---------- Recetario: arma tu gelatina y mándala por WhatsApp ----------
+// La receta se escribe a mano en la hoja derecha mientras eliges; las capas
+// se ven como una franja de colores, de abajo hacia arriba.
+
+(() => {
+  const form = $('.js-recetario');
+  if (!form) return;
+  const receta = $('.js-receta', form);
+  const franja = $('.js-r-capas', form);
+  const COLORES = { Leche: '#FFF4EC', Fresa: '#E0313F', Uva: '#5E1B63', Mango: '#F6A21E', 'Maracuyá': '#F2C230' };
+  const fecha = $('[name="fecha"]', form);
+  const hoy = new Date();
+  fecha.min = `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, '0')}-${String(hoy.getDate()).padStart(2, '0')}`;
+
+  function leer() {
+    const d = new FormData(form);
+    const capas = ['capa1', 'capa2', 'capa3'].map((k) => d.get(k)).filter(Boolean);
+    const fruta = d.getAll('fruta');
+    const f = d.get('fecha');
+    return {
+      forma: d.get('forma'),
+      capas,
+      fruta: fruta.length ? fruta.join(', ') : 'Sin fruta',
+      personas: d.get('personas') ? `${d.get('personas')} personas` : 'Por definir',
+      fecha: f ? new Date(`${f}T12:00`).toLocaleDateString('es-MX', { weekday: 'long', day: 'numeric', month: 'long' }) : 'Por definir',
+      mensaje: (d.get('mensaje') || '').trim(),
+    };
+  }
+  function pintar() {
+    const r = leer();
+    const filas = [
+      ['Forma', r.forma],
+      ['Capas', r.capas.join(' · ')],
+      ['Fruta', r.fruta],
+      ['Para', r.personas],
+      ['Fecha', r.fecha],
+    ];
+    if (r.mensaje) filas.push(['Decoración', `«${r.mensaje}»`]);
+    receta.replaceChildren(...filas.flatMap(([k, v]) => {
+      const dt = document.createElement('dt');
+      const dd = document.createElement('dd');
+      dt.textContent = k;
+      dd.textContent = v;
+      return [dt, dd];
+    }));
+    franja.replaceChildren(...[...r.capas].reverse().map((c) => {
+      const b = document.createElement('span');
+      b.style.background = COLORES[c] || '#eee';
+      b.title = c;
+      return b;
+    }));
+  }
+  form.addEventListener('input', pintar);
+  form.addEventListener('change', pintar);
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const r = leer();
+    const texto = [
+      'Hola Las Chinas, armé esta gelatina en su recetario:',
+      `• Forma: ${r.forma}`,
+      `• Capas (de abajo hacia arriba): ${r.capas.join(', ')}`,
+      `• Fruta: ${r.fruta}`,
+      `• Para: ${r.personas}`,
+      `• Fecha: ${r.fecha}`,
+      r.mensaje ? `• Decoración o mensaje: ${r.mensaje}` : '',
+      '',
+      '¿Me confirman disponibilidad y precio?',
+    ].filter((l, i, a) => l || a[i - 1]).join('\n');
+    window.open(waLink(texto), '_blank', 'noopener');
+    toast('Abriendo WhatsApp con tu receta');
+  });
+  pintar();
+})();

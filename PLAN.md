@@ -204,3 +204,11 @@ Mismo estilo en todas: luz natural suave, fondo rosa claro, mármol blanco, frut
 - [ ] Zonas de entrega, costo de envío y horario.
 - [ ] Anticipación mínima para pedidos (por ejemplo, 2 días).
 - [ ] Opiniones reales de clientas (con permiso).
+
+## La cocina como entrada (inicio)
+- `#inicio` es ahora la cocina (`assets/cocina.css`, `assets/js/cocina.js`). Cada objeto acerca la cámara y abre una tarjeta que lleva a su sección: vitrina → sabores (con «Agregar al pedido»), celular → WhatsApp, fotos → `#nosotras`, pizarrón → menú completo, recetario → `#arma`, ventana → `#ubicacion`.
+- La marca es un letrero de neón en la pared; el `h1` queda para lectores de pantalla.
+- La ilustración de las hermanas pasó a «Conoce a Las Chinas».
+- `#arma`: recetario que arma la receta y la manda por WhatsApp.
+- `/cocina/` redirige al inicio.
+- PENDIENTE: número de WhatsApp, precios reales, zonas de entrega.
