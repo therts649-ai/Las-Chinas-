@@ -185,7 +185,7 @@ Mismo estilo en todas: luz natural suave, fondo rosa claro, mármol blanco, frut
   - imagen al compartir en WhatsApp y redes.
 - **Velocidad:** que cargue en menos de 2.5 s en el celular con datos móviles.
 - **Accesibilidad:** contraste, teclado y lectores de pantalla.
-- **Publicación:** GitHub Pages o Netlify, con dominio propio cuando lo tengan.
+- **Publicación:** por ahora en un enlace privado de Claude; después, hosting con dominio propio cuando lo tengan.
 
 ## Fases
 | Fase | Qué sale | Depende de |

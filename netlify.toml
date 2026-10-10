@@ -1,9 +1,0 @@
-# Sitio estático: se publica tal cual, sin compilar nada.
-[build]
-  publish = "."
-  command = "echo 'sitio estático'"
-
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=604800"
