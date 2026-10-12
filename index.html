@@ -79,23 +79,26 @@
   <!-- ============ Intro de marca (≈3.5 s, una vez por sesión; cualquier toque o tecla la adelanta) ============ -->
   <div class="intro" aria-hidden="true">
     <span class="intro__luz"></span>
-    <div class="intro__marco">
-      <img class="intro__panel intro__panel--1" data-src="assets/intro/hermanas-1672.webp" data-srcset="assets/intro/hermanas-960.webp 960w, assets/intro/hermanas-1672.webp 1672w" sizes="100vw" width="1672" height="941" alt="">
-      <img class="intro__panel intro__panel--2" data-src="assets/intro/hermanas-1672.webp" data-srcset="assets/intro/hermanas-960.webp 960w, assets/intro/hermanas-1672.webp 1672w" sizes="100vw" width="1672" height="941" alt="">
-      <img class="intro__panel intro__panel--3" data-src="assets/intro/hermanas-1672.webp" data-srcset="assets/intro/hermanas-960.webp 960w, assets/intro/hermanas-1672.webp 1672w" sizes="100vw" width="1672" height="941" alt="">
-      <span class="intro__destello" style="--x:14%;--y:62%"></span>
-      <span class="intro__destello" style="--x:46%;--y:46%"></span>
-      <span class="intro__destello" style="--x:86%;--y:60%"></span>
+    <div class="intro__escena">
+      <img class="intro__hermana intro__hermana--rizos" data-src="assets/hermanas/rizos.webp" width="690" height="723" alt="">
+      <img class="intro__hermana intro__hermana--lacio" data-src="assets/hermanas/lacio.webp" width="725" height="716" alt="">
+      <img class="intro__hermana intro__hermana--centro" data-src="assets/hermanas/centro.webp" width="660" height="724" alt="">
+      <img class="intro__gel intro__gel--1" data-src="assets/entrada/fresa-natural-700.webp" width="700" height="450" alt="">
+      <img class="intro__gel intro__gel--3" data-src="assets/entrada/mango-maracuya-700.webp" width="700" height="450" alt="">
+      <img class="intro__gel intro__gel--2" data-src="assets/entrada/fresa-crema-700.webp" width="700" height="450" alt="">
+      <span class="intro__destello" style="--x:20%;--y:76%"></span>
+      <span class="intro__destello" style="--x:50%;--y:72%"></span>
+      <span class="intro__destello" style="--x:80%;--y:76%"></span>
     </div>
     <div class="intro__firma">
-      <img class="intro__logo" data-src="assets/entrada/logo-520.webp" data-srcset="assets/entrada/logo-520.webp 520w, assets/entrada/logo-1000.webp 1000w" sizes="(max-width: 760px) 52vw, 24vw" width="520" height="520" alt="">
+      <img class="intro__logo" data-src="assets/entrada/logo-520.webp" data-srcset="assets/entrada/logo-520.webp 520w, assets/entrada/logo-1000.webp 1000w" sizes="(max-width: 760px) 56vw, 26vw" width="520" height="520" alt="">
       <p class="intro__lema">Tres hermanas, <em>un mismo sabor.</em></p>
     </div>
     <button class="intro__saltar" type="button" tabindex="-1">Saltar intro</button>
   </div>
   <script>
     if (document.documentElement.classList.contains('con-intro')) {
-      document.querySelectorAll('.intro [data-src]').forEach(function (img) { img.srcset = img.dataset.srcset; img.src = img.dataset.src; });
+      document.querySelectorAll('.intro [data-src]').forEach(function (img) { if (img.dataset.srcset) img.srcset = img.dataset.srcset; img.src = img.dataset.src; });
     }
   </script>
 
@@ -326,9 +329,9 @@
         <p>Somos Las Chinas, un emprendimiento familiar que nació del amor por las gelatinas y el deseo de compartir momentos especiales. Cada detalle que hacemos lleva un pedacito de nosotras.</p>
       </header>
       <ol class="hermanas">
-        <li class="hermana"><figure><div class="hermana__foto"><img src="assets/historia/rizos.webp" width="450" height="600" loading="lazy" alt="Una de las tres hermanas de Las Chinas, de cabello rizado, junto a una gelatina de uva"></div><figcaption><span>01</span>Con su gelatina de uva</figcaption></figure></li>
-        <li class="hermana"><figure><div class="hermana__foto"><img src="assets/historia/centro.webp" width="400" height="530" loading="lazy" alt="Una de las tres hermanas de Las Chinas, con una fresa en la mano, junto a una gelatina de fresa"></div><figcaption><span>02</span>Con su gelatina de fresa</figcaption></figure></li>
-        <li class="hermana"><figure><div class="hermana__foto"><img src="assets/historia/lacio.webp" width="450" height="600" loading="lazy" alt="Una de las tres hermanas de Las Chinas, de cabello lacio, junto a una gelatina de mango"></div><figcaption><span>03</span>Con su gelatina de mango</figcaption></figure></li>
+        <li class="hermana hermana--uva"><figure><div class="hermana__foto"><img src="assets/hermanas/rizos.webp" width="690" height="723" loading="lazy" alt="Una de las tres hermanas de Las Chinas, de cabello rizado con una flor lila"></div><figcaption><span>01</span>La de los rizos</figcaption></figure></li>
+        <li class="hermana hermana--fresa"><figure><div class="hermana__foto"><img src="assets/hermanas/centro.webp" width="660" height="724" loading="lazy" alt="Una de las tres hermanas de Las Chinas, de cabello ondulado, con una fresa en la mano"></div><figcaption><span>02</span>La de la fresa</figcaption></figure></li>
+        <li class="hermana hermana--mango"><figure><div class="hermana__foto"><img src="assets/hermanas/lacio.webp" width="725" height="716" loading="lazy" alt="Una de las tres hermanas de Las Chinas, de cabello lacio"></div><figcaption><span>03</span>La del cabello lacio</figcaption></figure></li>
       </ol>
       <div class="historia__firma">
         <img src="assets/entrada/logo-520.webp" width="520" height="520" loading="lazy" alt="Logo de Las Chinas">

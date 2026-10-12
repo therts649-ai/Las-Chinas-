@@ -26,9 +26,10 @@ El hero cambia de color con cada sabor (`MUNDOS` en `assets/js/hero.js`).
 5. Historia de las tres hermanas · 6. Mesas para eventos · 7. Recetario · 8. Cómo pedir · 9. Pie.
 
 ## Movimiento
-- **Intro (≈3.5 s escritorio, ≈2.8 s celular):** luz → las hermanas aparecen por su panel
-  original (rizos, centro, lacio) con máscaras → destellos en las gelatinas → logo y lema →
-  la cortina sube hacia el hero. Cualquier toque, tecla o scroll la adelanta.
+- **Intro (≈3.6 s escritorio, ≈2.9 s celular):** luz → cada hermana aparece por separado
+  (rizos, centro, lacio; recortes originales en `assets/hermanas/`) con una máscara → las
+  gelatinas llegan al frente con un destello → el escenario se atenúa y aparecen el logo y el
+  lema → la cortina sube hacia el hero. Cualquier toque, tecla o scroll la adelanta.
 - **Hero:** cambio de sabor con cambio de color de todo el escenario; el postre entra
   enfocándose y un reflejo lo recorre. Flotación suave. Nunca se deforma el producto.
 - **Catálogo:** tarjetas que entran por grupos; filtros por categoría.

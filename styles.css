@@ -129,23 +129,35 @@ button { font: inherit; color: inherit; }
 }
 .sin-intro .intro { display: none !important; }
 .intro__luz { position: absolute; left: 50%; top: 42%; width: 120vmax; height: 120vmax; translate: -50% -50%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255, 170, 205, .35), transparent 70%); }
-.intro__marco { position: absolute; left: 50%; top: 0; width: min(100vw, 177.78vh); width: min(100vw, 177.78svh); aspect-ratio: 1672 / 941; translate: -50% 0; }
-/* Cada hermana es la misma imagen recortada por su panel original (sin reconstruir rostros) */
-.intro__panel { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; }
-.intro__panel--1 { clip-path: polygon(0 0, 34.8% 0, 28% 74.4%, 26.3% 81.8%, 0 81.8%); }
-.intro__panel--2 { clip-path: polygon(35.2% 0, 72% 0, 67.6% 59.5%, 29.4% 59.5%); }
-.intro__panel--3 { clip-path: polygon(72.2% 0, 100% 0, 100% 82.9%, 67.6% 82.9%, 66.4% 59.5%, 67.5% 55.3%); }
-.intro__destello { position: absolute; left: var(--x); top: var(--y); width: 9%; aspect-ratio: 1; translate: -50% -50%; background: radial-gradient(closest-side, rgba(255, 255, 255, .95), rgba(255, 220, 235, .35) 40%, transparent); mix-blend-mode: screen; opacity: 0; }
-.intro__firma { position: absolute; left: 50%; bottom: 3vh; translate: -50% 0; display: grid; justify-items: center; gap: 14px; width: min(90vw, 760px); text-align: center; }
-.intro__logo { width: min(26vw, 46vh); height: auto; border-radius: 50%; box-shadow: 0 30px 70px -20px rgba(0, 0, 0, .7), 0 0 0 1px rgba(255, 255, 255, .4); }
+/* Escenario de la intro: las tres hermanas por separado y sus gelatinas al frente */
+.intro__escena { position: absolute; left: 50%; top: 50%; width: min(100vw, 160vh); width: min(100vw, 160svh); aspect-ratio: 16 / 9; translate: -50% -54%; }
+.intro__hermana { position: absolute; bottom: 14%; height: auto; max-width: none; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .35)); }
+.intro__hermana--rizos { left: 6%; width: 31%; }
+.intro__hermana--lacio { right: 6%; width: 32%; }
+.intro__hermana--centro { left: 50%; width: 31%; bottom: 12%; translate: -50% 0; }
+.intro__gel { position: absolute; bottom: -2%; height: auto; max-width: none; filter: drop-shadow(0 24px 30px rgba(0, 0, 0, .45)); }
+.intro__gel--1 { left: 5%; width: 30%; }
+.intro__gel--2 { left: 50%; width: 34%; translate: -50% 0; bottom: -4%; }
+.intro__gel--3 { right: 5%; width: 28%; }
+.intro__destello { position: absolute; z-index: 2; left: var(--x); top: var(--y); width: 9%; aspect-ratio: 1; translate: -50% -50%; background: radial-gradient(closest-side, rgba(255, 255, 255, .95), rgba(255, 220, 235, .35) 40%, transparent); mix-blend-mode: screen; opacity: 0; }
+.intro__firma { position: absolute; z-index: 3; left: 50%; top: 50%; translate: -50% -50%; display: grid; justify-items: center; gap: 14px; width: min(90vw, 760px); text-align: center; }
+.intro__logo { width: min(30vw, 52vh); height: auto; border-radius: 50%; box-shadow: 0 30px 70px -20px rgba(0, 0, 0, .7), 0 0 0 1px rgba(255, 255, 255, .4); }
 .intro__lema { font-family: var(--f-titulo); font-weight: 600; font-size: clamp(1.4rem, 2.6vw, 2.4rem); letter-spacing: -.02em; color: var(--marfil); text-shadow: 0 2px 30px rgba(0, 0, 0, .5); }
 .intro__lema em { font-style: normal; color: var(--rosa); }
 .intro__saltar { position: absolute; right: var(--gutter); top: calc(18px + env(safe-area-inset-top, 0px)); min-height: 40px; padding: 0 14px; border: 0; border-radius: var(--r-full); font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: .1em; text-transform: uppercase; color: var(--marfil); background: rgba(255, 255, 255, .12); pointer-events: auto; cursor: pointer; }
 /* Pantallas verticales: la escena arriba, la firma abajo */
 @media (max-aspect-ratio: 1/1) {
-  .intro__marco { top: 9vh; width: 150vw; }
-  .intro__firma { top: calc(9vh + 84.4vw + 28px); bottom: auto; }
-  .intro__logo { width: min(54vw, 34vh); }
+  .intro__escena { width: 100vw; height: 100svh; aspect-ratio: auto; top: 0; translate: -50% 0; }
+  .intro__hermana, .intro__gel { filter: none; }
+  .intro__hermana { bottom: 30%; }
+  .intro__hermana--rizos { left: -8%; width: 58%; }
+  .intro__hermana--lacio { right: -8%; width: 58%; }
+  .intro__hermana--centro { width: 62%; bottom: 26%; }
+  .intro__gel { bottom: 12%; }
+  .intro__gel--1 { left: -6%; width: 50%; }
+  .intro__gel--2 { width: 64%; bottom: 9%; }
+  .intro__gel--3 { right: -6%; width: 48%; }
+  .intro__logo { width: min(60vw, 40vh); }
 }
 
 /* ---------- Encabezado ---------- */
@@ -270,8 +282,11 @@ button { font: inherit; color: inherit; }
 .hermanas { list-style: none; max-width: 1100px; margin: var(--e-8) auto 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 3vw, 40px); align-items: start; }
 .hermana:nth-child(2) { margin-top: var(--e-8); }
 .hermana figure { margin: 0; display: grid; gap: var(--e-3); }
-.hermana__foto { position: relative; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 200px 200px var(--r-lg) var(--r-lg); background: var(--rosa-claro); box-shadow: var(--sombra-2); }
-.hermana__foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
+.hermana { --fondo: #F3D6F1; --luz: #D9A6F0; }
+.hermana--fresa { --fondo: #FCD5E2; --luz: #F7A0C1; }
+.hermana--mango { --fondo: #FFE6C2; --luz: #FFC46B; }
+.hermana__foto { position: relative; aspect-ratio: 3 / 4; overflow: hidden; border-radius: 200px 200px var(--r-lg) var(--r-lg); background: radial-gradient(80% 60% at 50% 35%, var(--luz), var(--fondo) 70%); box-shadow: var(--sombra-2); }
+.hermana__foto img { position: absolute; left: 50%; bottom: 0; width: 112%; max-width: none; height: auto; translate: -50% 0; }
 .hermana figcaption { display: flex; gap: var(--e-3); align-items: baseline; font-size: var(--t-sm); color: var(--tinta-suave); }
 .hermana figcaption span { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--magenta); }
 .historia__firma { max-width: 760px; margin: var(--e-8) auto 0; display: grid; justify-items: center; gap: var(--e-4); text-align: center; }

@@ -1,15 +1,9 @@
-// Intro de marca (≈3.5 s en escritorio, ≈2.8 s en celular), una vez por sesión.
-// 1 Luz · 2 las hermanas aparecen por su panel (rizos, centro, lacio) · 3 destellos en las gelatinas
-// · 4 logo oficial y lema · la cortina sube hacia el hero. Cualquier toque, tecla o scroll la adelanta.
+// Intro de marca (≈3.6 s en escritorio, ≈2.9 s en celular), una vez por sesión.
+// 1 Luz · 2 cada hermana aparece por separado (rizos, centro, lacio) con una máscara
+// · 3 llegan las gelatinas al frente con un destello · 4 el escenario se atenúa y aparecen
+// el logo oficial y el lema · la cortina sube hacia el hero. Cualquier gesto la adelanta.
 import { gsap, anima, esCelular } from './config.js';
-import { $, $$ } from './util.js';
-
-// Mismos polígonos que en styles.css; "cerrado" pega todos los puntos al borde superior
-const PANELES = [
-  ['0% 0%, 34.8% 0%, 28% 74.4%, 26.3% 81.8%, 0% 81.8%', '0% 0%, 34.8% 0%, 34.8% 0%, 34.8% 0%, 0% 0%'],
-  ['35.2% 0%, 72% 0%, 67.6% 59.5%, 29.4% 59.5%', '35.2% 0%, 72% 0%, 72% 0%, 35.2% 0%'],
-  ['72.2% 0%, 100% 0%, 100% 82.9%, 67.6% 82.9%, 66.4% 59.5%, 67.5% 55.3%', '72.2% 0%, 100% 0%, 100% 0%, 72.2% 0%, 72.2% 0%, 72.2% 0%'],
-];
+import { $ } from './util.js';
 
 export function intro() {
   const raiz = document.documentElement;
@@ -20,30 +14,34 @@ export function intro() {
       return listo(false);
     }
     try { sessionStorage.setItem('lc-intro', '1'); } catch (e) { /* sin almacenamiento: se verá de nuevo */ }
-    const cel = esCelular();
-    const paneles = $$('.intro__panel', el);
+    const k = esCelular() ? 0.8 : 1; // en celular todo un poco más corto
+    const t = (s) => s * k;
     const tl = gsap.timeline({
       defaults: { ease: 'power3.out' },
       onComplete: () => { raiz.classList.add('sin-intro'); raiz.classList.remove('con-intro'); quitar(); },
     });
-    tl.from('.intro__luz', { opacity: 0, scale: 0.6, duration: 1.2, ease: 'power2.out' }, 0);
-    // Fase 2: cada hermana se descubre de arriba hacia abajo, en orden
-    paneles.forEach((p, i) => {
-      const [abierto, cerrado] = PANELES[i];
-      tl.fromTo(p, { clipPath: `polygon(${cerrado})`, y: cel ? 0 : 24 }, {
-        clipPath: `polygon(${abierto})`, y: 0, duration: cel ? 0.6 : 0.9, ease: 'power3.inOut',
-      }, (cel ? 0.15 : 0.25) + i * (cel ? 0.25 : 0.45));
+    tl.from('.intro__luz', { opacity: 0, scale: 0.6, duration: t(1.2), ease: 'power2.out' }, 0);
+
+    // Fase 2: cada hermana se descubre de abajo hacia arriba, en orden
+    ['rizos', 'centro', 'lacio'].forEach((n, i) => {
+      tl.fromTo(`.intro__hermana--${n}`,
+        { clipPath: 'inset(100% 0% 0% 0%)', yPercent: 8, opacity: 0 },
+        { clipPath: 'inset(0% 0% 0% 0%)', yPercent: 0, opacity: 1, duration: t(0.9), ease: 'power3.inOut' },
+        t(0.25 + i * 0.38));
     });
-    // Fase 3: un destello en cada gelatina
-    tl.fromTo('.intro__destello', { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, stagger: 0.12, ease: 'power2.out' }, cel ? 1 : 1.55)
-      .to('.intro__destello', { opacity: 0, scale: 1.3, duration: 0.5, stagger: 0.12, ease: 'power2.in' }, cel ? 1.3 : 1.85);
-    // Fase 4: firma de marca
-    tl.from('.intro__logo', { opacity: 0, scale: 0.7, y: 30, duration: 0.8, ease: 'expo.out' }, cel ? 1.2 : 1.9)
-      .from('.intro__lema', { opacity: 0, y: 18, duration: 0.7 }, cel ? 1.45 : 2.2)
+
+    // Fase 3: las gelatinas llegan al frente; un destello en cada una
+    tl.from('.intro__gel', { yPercent: 40, opacity: 0, duration: t(0.8), stagger: t(0.1) }, t(1.25))
+      .fromTo('.intro__destello', { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: t(0.3), stagger: t(0.1), ease: 'power2.out' }, t(1.7))
+      .to('.intro__destello', { opacity: 0, scale: 1.3, duration: t(0.45), stagger: t(0.1), ease: 'power2.in' }, t(1.95));
+
+    // Fase 4: firma de marca al frente del escenario
+    tl.to('.intro__escena', { scale: 0.94, filter: 'brightness(.45)', duration: t(0.9), ease: 'power2.inOut' }, t(2.1))
+      .from('.intro__logo', { opacity: 0, scale: 0.7, duration: t(0.8), ease: 'expo.out' }, t(2.2))
+      .from('.intro__lema', { opacity: 0, y: 16, duration: t(0.6) }, t(2.45))
       // Transición: la cortina sube y deja ver el hero
-      .to('.intro__marco', { yPercent: -6, duration: 0.8, ease: 'power2.in' }, cel ? 2.2 : 2.9)
-      .to(el, { clipPath: 'inset(0 0 100% 0)', duration: 0.75, ease: 'power3.inOut' }, cel ? 2.25 : 2.95)
-      .add(() => listo(true), cel ? 2.3 : 3.0);
+      .to(el, { clipPath: 'inset(0 0 100% 0)', duration: t(0.75), ease: 'power3.inOut' }, t(3.05))
+      .add(() => listo(true), t(3.1));
 
     // Adelantar: cualquier gesto acelera el final (sin cortes bruscos)
     const adelantar = () => { if (tl.progress() < 1) tl.timeScale(5); };
