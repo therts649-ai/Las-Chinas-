@@ -468,18 +468,32 @@ $$('.mesa').forEach((mesa) => {
 })();
 
 // =========================================================
-// La entrada: la gelatina se arma, y al bajar se abre capa por capa
+// La entrada: cada sabor llega con su propio color
 // =========================================================
 
 const entrada = $('.entrada');
-const gel = $('.gel');
-const cuerpo = $('.gel__cuerpo');
+const escenario = $('.escenario');
+const postresBox = $('.escenario__postres');
+const postres = $$('.postre', entrada);
+const botonesSabor = $$('.sabor-btn', entrada);
+const SABORES = JSON.parse($('#sabores-entrada').textContent);
+// El mundo de color de cada sabor: fondo, luz y acento
+const MUNDOS = {
+  'fresa-crema': { c1: '#6A0B22', c2: '#1E0409', brillo: '255, 70, 110', acento: '#FFB3C1' },
+  'fresa-natural': { c1: '#8A2A52', c2: '#2A0816', brillo: '255, 150, 195', acento: '#FFC9DF' },
+  'mango-maracuya': { c1: '#8A4206', c2: '#220F03', brillo: '255, 175, 60', acento: '#FFD08A' },
+  'vasitos-capas': { c1: '#4A1A62', c2: '#13051C', brillo: '205, 130, 255', acento: '#E4C2FF' },
+};
+let saborActual = 'fresa-crema';
+const silueta = (img) => entrada.style.setProperty('--silueta', `url("${img.currentSrc || img.src}")`);
+silueta(postres[0]);
+postres[0].addEventListener('load', () => silueta(postres[0]));
 
-// Tocar la gelatina la hace temblar (como una gelatina de verdad)
+// Tocar el postre lo hace temblar (como una gelatina de verdad)
 function temblar(fuerza = 1) {
   if (!anima) return;
-  gsap.killTweensOf(cuerpo);
-  gsap.fromTo(cuerpo, { scaleX: 1, scaleY: 1, skewX: 0 }, {
+  gsap.killTweensOf(postresBox);
+  gsap.fromTo(postresBox, { scaleX: 1, scaleY: 1, skewX: 0 }, {
     keyframes: {
       scaleY: [1, 1 - 0.06 * fuerza, 1 + 0.035 * fuerza, 1 - 0.015 * fuerza, 1],
       scaleX: [1, 1 + 0.04 * fuerza, 1 - 0.02 * fuerza, 1 + 0.008 * fuerza, 1],
@@ -490,86 +504,290 @@ function temblar(fuerza = 1) {
     ease: 'none',
   });
 }
-gel.addEventListener('click', () => temblar(1));
+const destello = () => anima && gsap.fromTo('.escenario__brillo', { backgroundPosition: '130% 0' }, { backgroundPosition: '-60% 0', duration: 1.4, ease: 'power2.inOut' });
+
+// Barra de tiempo del sabor actual: al llenarse pasa al siguiente
+const ESPERA = 6;
+let barra = null;
+function correrBarra() {
+  barra?.kill();
+  $$('.sabor-btn__barra', entrada).forEach((b) => gsap?.set(b, { scaleX: 0 }));
+  if (!anima) return;
+  const b = $(`.sabor-btn[data-sabor="${saborActual}"] .sabor-btn__barra`, entrada);
+  barra = gsap.to(b, {
+    scaleX: 1, duration: ESPERA, ease: 'none',
+    onComplete: () => {
+      const i = botonesSabor.findIndex((x) => x.dataset.sabor === saborActual);
+      cambiarSabor(botonesSabor[(i + 1) % botonesSabor.length].dataset.sabor);
+    },
+  });
+}
+function cambiarSabor(id) {
+  if (id === saborActual) return;
+  const antes = postres.find((p) => p.dataset.sabor === saborActual);
+  const ahora = postres.find((p) => p.dataset.sabor === id);
+  saborActual = id;
+  botonesSabor.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.sabor === id)));
+  $('.js-sabor-nombre', entrada).textContent = SABORES[id].nombre;
+  $('.js-sabor-desc', entrada).textContent = SABORES[id].desc;
+  entrada.dataset.sabor = id;
+  silueta(ahora);
+  const m = MUNDOS[id];
+  if (!anima) {
+    antes.classList.remove('is-activa');
+    ahora.classList.add('is-activa');
+    Object.entries({ '--c1': m.c1, '--c2': m.c2, '--brillo': m.brillo, '--acento': m.acento }).forEach(([k, v]) => entrada.style.setProperty(k, v));
+    return;
+  }
+  gsap.timeline()
+    // El color de todo el escenario cambia, como cuando cambia la luz
+    .to(entrada, { '--c1': m.c1, '--c2': m.c2, '--acento': m.acento, duration: 1.4, ease: 'power2.inOut' }, 0)
+    .add(() => entrada.style.setProperty('--brillo', m.brillo), 0.5)
+    // El postre de antes se va hacia abajo y se desenfoca
+    .to(antes, { yPercent: 10, scale: 0.9, opacity: 0, filter: 'blur(10px)', duration: 0.6, ease: 'power2.in' }, 0)
+    .add(() => { antes.classList.remove('is-activa'); gsap.set(antes, { clearProps: 'all' }); })
+    // El nuevo llega desde arriba, enfocándose
+    .fromTo(ahora, { yPercent: -12, scale: 1.08, opacity: 0, filter: 'blur(12px)' }, {
+      yPercent: 0, scale: 1, opacity: 1, filter: 'blur(0px)', duration: 0.9, ease: 'power3.out', clearProps: 'filter',
+      onStart: () => ahora.classList.add('is-activa'),
+    }, 0.45)
+    .add(() => temblar(0.7), 1.1)
+    .add(destello, 1.2)
+    .fromTo('.entrada__actual', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, 0.5);
+  correrBarra();
+}
+botonesSabor.forEach((b) => b.addEventListener('click', () => cambiarSabor(b.dataset.sabor)));
+escenario.addEventListener('click', () => temblar(1));
 let ultimoTemblor = 0;
-gel.addEventListener('pointerenter', () => {
+escenario.addEventListener('pointerenter', () => {
   if (!finePointer || Date.now() - ultimoTemblor < 1500) return;
   ultimoTemblor = Date.now();
   temblar(0.5);
 });
 
+// Divide un texto en letras (respetando cursivas y saltos) para animarlas
+function partir(el) {
+  if (el.dataset.partido) return $$('.letra', el);
+  el.dataset.partido = '1';
+  el.classList.add('partido');
+  const recorrer = (nodo) => {
+    [...nodo.childNodes].forEach((n) => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach((parte) => {
+          if (!parte) return;
+          if (/^\s+$/.test(parte)) return frag.appendChild(document.createTextNode(' '));
+          const palabra = document.createElement('span');
+          palabra.className = 'palabra';
+          [...parte].forEach((ch) => {
+            const l = document.createElement('span');
+            l.className = 'letra';
+            l.textContent = ch;
+            palabra.appendChild(l);
+          });
+          frag.appendChild(palabra);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1 && n.matches('em, .script')) {
+        // Las cursivas con degradado se animan como una sola pieza
+        const palabra = document.createElement('span');
+        palabra.className = 'palabra';
+        const l = document.createElement('span');
+        l.className = 'letra';
+        n.replaceWith(palabra);
+        l.appendChild(n);
+        palabra.appendChild(l);
+      } else if (n.nodeType === 1 && !n.matches('svg')) recorrer(n);
+    });
+  };
+  recorrer(el);
+  el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim());
+  return $$('.letra', el);
+}
+
+// ---------- Fondo de la página: cambia de color al pasar de una sección a otra ----------
+const fondoVivo = $('.fondo-vivo');
+let seccionFondo = null;
+const fondoA = (color) => gsap ? gsap.to(fondoVivo, { backgroundColor: color, duration: anima ? 1.1 : 0, ease: 'power2.inOut', overwrite: true }) : (fondoVivo.style.background = color);
+// Al barajar la carta, el fondo toma el tono de la carta elegida
+const TONOS_CARTA = { familiares: '#F9E9EC', individuales: '#FBF1E1', temporada: '#FAE4E9', variados: '#F2EAF5', eventos: '#F4E6EA' };
+const cartaSec = $('#carta');
+const tintarCarta = (id) => {
+  cartaSec.dataset.fondo = TONOS_CARTA[id] || '#FBF6F1';
+  if (seccionFondo === cartaSec) fondoA(cartaSec.dataset.fondo);
+};
+naipes.forEach((n) => n.addEventListener('click', () => tintarCarta(n.dataset.menu)));
+tintarCarta(menuActual);
+
 if (anima) {
   gsap.registerPlugin(ScrollTrigger);
 
-  // ---- Entrada: ~2.4 s, sin pantalla de carga ----
-  gsap.timeline({ defaults: { ease: 'power3.out' } })
-    .from('.entrada__luz', { opacity: 0, scale: 0.6, duration: 1.8, ease: 'power2.out' }, 0)
-    .fromTo('.entrada__fondo', { clipPath: 'inset(0 100% 0 0)', opacity: 0.4 }, { clipPath: 'inset(0 0% 0 0)', opacity: 1, duration: 1.6, ease: 'power3.inOut' }, 0.1)
-    // La gelatina entera sale de la penumbra, como si la cámara la enfocara
-    .fromTo(gel, { opacity: 0, scale: 0.9, yPercent: 6, filter: 'blur(14px) brightness(.6)' }, { opacity: 1, scale: 1, yPercent: 0, filter: 'blur(0px) brightness(1)', duration: 1.6, ease: 'power3.out', clearProps: 'filter' }, 0.3)
-    .add(() => temblar(0.9), 1.5)
-    .fromTo('.gel__brillo', { backgroundPosition: '130% 0' }, { backgroundPosition: '-60% 0', duration: 1.4, ease: 'power2.inOut' }, 1.7)
-    .from('.header', { opacity: 0, y: -14, duration: 0.8, clearProps: 'opacity,transform' }, 1.2)
-    .from('.entrada__texto .kicker', { opacity: 0, y: 12, duration: 0.7 }, 1.3)
-    .from('.entrada h1 .linea > *', { yPercent: 110, duration: 1, stagger: 0.12, ease: 'power4.out' }, 1.35)
-    .from('.entrada__sub, .entrada__ctas', { opacity: 0, y: 16, duration: 0.8, stagger: 0.1 }, 1.7)
-    .from('.entrada__indice .kicker, .entrada__indice li', { opacity: 0, x: 20, duration: 0.7, stagger: 0.07 }, 1.7)
+  // ---- Entrada: el medallón del logo gira hacia la luz, el anillo lo abraza y llega el primer sabor ----
+  const intro = gsap.timeline({ defaults: { ease: 'power3.out' }, onComplete: correrBarra });
+  intro
+    .from('.entrada__ambiente', { opacity: 0, duration: 1.6, ease: 'power2.out' }, 0)
+    .from('.medalla__halo', { opacity: 0, scale: 0.4, duration: 1.6, ease: 'power2.out' }, 0.1)
+    .fromTo('.medalla__logo', { opacity: 0, scale: 0.55, rotation: -28, filter: 'blur(16px) brightness(.6)' }, { opacity: 1, scale: 1, rotation: 0, filter: 'blur(0px) brightness(1)', duration: 1.5, ease: 'expo.out', clearProps: 'filter' }, 0.2)
+    .from('.medalla__anillo', { opacity: 0, scale: 0.75, rotation: -120, duration: 1.8, ease: 'expo.out' }, 0.45)
+    .fromTo('.medalla__brillo', { backgroundPosition: '130% 0' }, { backgroundPosition: '-60% 0', duration: 1.3, ease: 'power2.inOut' }, 1.05)
+    .fromTo(postresBox, { opacity: 0, yPercent: -40, scale: 0.85, filter: 'blur(10px)' }, { opacity: 1, yPercent: 0, scale: 1, filter: 'blur(0px)', duration: 0.9, ease: 'power3.in', clearProps: 'filter' }, 1.0)
+    .from('.escenario__aura, .escenario__sombra', { opacity: 0, scale: 0.6, duration: 1 }, 1.6)
+    .add(() => temblar(1.1), 1.9)
+    .add(destello, 2.05)
+    .from('.header', { opacity: 0, y: -14, duration: 0.8, clearProps: 'opacity,transform' }, 1.1)
+    .from('.kicker__linea', { scaleX: 0, duration: 0.8 }, 1.2)
+    .from('.entrada__texto .kicker', { opacity: 0, x: -12, duration: 0.8 }, 1.25)
+    .from('.entrada h1 .linea > *', { yPercent: 115, rotate: 3, duration: 1.1, stagger: 0.12, ease: 'power4.out' }, 1.3)
+    .from('.entrada__sub, .entrada__ctas', { opacity: 0, y: 18, duration: 0.8, stagger: 0.1 }, 1.65)
+    .from('.entrada__sabores', { opacity: 0, y: 20, duration: 0.9 }, 1.8)
+    .from('.sabor-btn', { opacity: 0, y: 14, duration: 0.6, stagger: 0.07 }, 1.9)
     .from('.entrada__baja', { opacity: 0, duration: 0.8 }, 2.3);
 
-  // ---- Profundidad con el mouse: luz, firma y gelatina se mueven distinto ----
+  // La barra se detiene si el mouse está sobre los sabores o la entrada no se ve
+  const pausar = (v) => barra && (v ? barra.pause() : barra.resume());
+  $('.entrada__sabores').addEventListener('pointerenter', () => pausar(true));
+  $('.entrada__sabores').addEventListener('pointerleave', () => pausar(false));
+  ScrollTrigger.create({ trigger: entrada, start: 'top top', end: 'bottom top', onToggle: (st) => { pausar(!st.isActive); entrada.classList.toggle('is-fuera', !st.isActive); } });
+
+  // ---- Profundidad con el mouse: luz, logo y postre a distintas velocidades ----
   if (finePointer) {
-    const luzX = gsap.quickTo('.entrada__luz', 'x', { duration: 1.6, ease: 'power3' });
-    const luzY = gsap.quickTo('.entrada__luz', 'y', { duration: 1.6, ease: 'power3' });
-    const fX = gsap.quickTo('.entrada__fondo', 'x', { duration: 1.4, ease: 'power3' });
-    const gX = gsap.quickTo(gel, 'x', { duration: 1.2, ease: 'power3' });
-    const gY = gsap.quickTo(gel, 'y', { duration: 1.2, ease: 'power3' });
+    const luzX = gsap.quickTo('.entrada__luz', 'x', { duration: 1.4, ease: 'power3' });
+    const luzY = gsap.quickTo('.entrada__luz', 'y', { duration: 1.4, ease: 'power3' });
+    const pX = gsap.quickTo('.medalla', 'x', { duration: 1.6, ease: 'power3' });
+    const pY = gsap.quickTo('.medalla', 'y', { duration: 1.6, ease: 'power3' });
+    const pR = gsap.quickTo('.medalla__logo', 'rotation', { duration: 1.6, ease: 'power3' });
+    const eX = gsap.quickTo(escenario, 'x', { duration: 1.2, ease: 'power3' });
+    const eY = gsap.quickTo(escenario, 'y', { duration: 1.2, ease: 'power3' });
+    const eR = gsap.quickTo(escenario, 'rotation', { duration: 1.2, ease: 'power3' });
     entrada.addEventListener('pointermove', (e) => {
       const r = entrada.getBoundingClientRect();
       const nx = (e.clientX - r.left) / r.width - 0.5, ny = (e.clientY - r.top) / r.height - 0.5;
-      luzX(nx * r.width * 0.5); luzY(ny * r.height * 0.4);
-      fX(-nx * 30);
-      gX(nx * 16); gY(ny * 10);
+      luzX(e.clientX - r.left); luzY(e.clientY - r.top);
+      pX(nx * 14); pY(ny * 10); pR(nx * 4);
+      eX(nx * 22); eY(ny * 14); eR(nx * 2.5);
     });
+    gsap.set('.entrada__luz', { x: innerWidth * 0.68, y: innerHeight * 0.45 });
   }
 
-  // ---- Al bajar: el texto se despide y la gelatina sube más lento que la página ----
+  // ---- Al bajar: el texto se despide, el logo se aleja y el postre sube más lento ----
   const salida = { trigger: entrada, start: 'top top', end: 'bottom top', scrub: true };
-  gsap.to('.entrada__texto, .entrada__indice, .entrada__baja', { opacity: 0, y: -40, ease: 'none', scrollTrigger: { ...salida, end: '45% top' } });
-  gsap.to('.entrada__escena', { yPercent: 16, ease: 'none', scrollTrigger: salida });
-  gsap.to('.entrada__fondo', { opacity: 0.3, ease: 'none', scrollTrigger: salida });
+  gsap.to('.entrada__texto, .entrada__sabores, .entrada__baja', { opacity: 0, y: -50, ease: 'none', scrollTrigger: { ...salida, end: '45% top' } });
+  gsap.to(escenario, { yPercent: 36, ease: 'none', scrollTrigger: salida });
+  gsap.to('.medalla', { yPercent: 14, rotation: 12, ease: 'none', scrollTrigger: salida });
+
+  // ---- Cinta: avanza sola y se acelera (e inclina) con la velocidad del scroll ----
+  const filas = $$('.cinta__fila');
+  const cintas = filas.map((f, i) => gsap.to(f, { xPercent: i ? 0 : -50, duration: 38, ease: 'none', repeat: -1, ...(i ? { startAt: { xPercent: -50 }, xPercent: 0 } : {}) }));
+  let inclinar = gsap.quickTo(filas, 'skewX', { duration: 0.6, ease: 'power3' });
+  ScrollTrigger.create({
+    trigger: '.cinta', start: 'top bottom', end: 'bottom top',
+    onUpdate: (st) => {
+      const v = st.getVelocity();
+      cintas.forEach((t) => gsap.to(t, { timeScale: 1 + Math.min(Math.abs(v) / 250, 6), duration: 0.2, overwrite: true, onComplete: () => gsap.to(t, { timeScale: 1, duration: 1.2 }) }));
+      inclinar(gsap.utils.clamp(-8, 8, v / -200));
+      clearTimeout(inclinar.t); inclinar.t = setTimeout(() => inclinar(0), 120);
+    },
+  });
+
+  // ---- Fondo vivo por sección ----
+  $$('[data-fondo]').forEach((sec) => ScrollTrigger.create({
+    trigger: sec, start: 'top 55%', end: 'bottom 55%',
+    onToggle: (st) => { if (st.isActive) { seccionFondo = sec; fondoA(sec.dataset.fondo); } },
+  }));
 
   // ---- La carta: el mazo se reparte al llegar ----
   gsap.from(naipes, {
-    xPercent: 0, yPercent: 30, rotation: 0, opacity: 0, duration: 1, stagger: 0.08, ease: 'power3.out',
+    yPercent: 40, rotation: 0, opacity: 0, duration: 1.1, stagger: 0.09, ease: 'power3.out',
     scrollTrigger: { trigger: mazo, start: 'top 80%' },
     onComplete: () => acomodar(naipes.find((n) => n.dataset.menu === menuActual), false),
   });
 
+  // ---- Títulos: las letras suben desde una línea invisible, desenfocadas ----
+  $$('.titular h2, .nosotras h2, .cocina__frase, .mesa__detalle h3').forEach((h) => {
+    const letras = partir(h);
+    gsap.from(letras, {
+      yPercent: 70, opacity: 0, filter: 'blur(8px)', rotate: 4, duration: 0.9, stagger: 0.022, ease: 'power3.out', clearProps: 'filter',
+      scrollTrigger: { trigger: h, start: 'top 85%' },
+    });
+  });
+
   // ---- Entradas de secciones: suaves y cortas ----
   const sube = (targets, trigger, extra = {}) => gsap.from(targets, {
-    y: 34, opacity: 0, duration: 1, ease: 'power3.out', stagger: 0.08,
+    y: 40, opacity: 0, duration: 1.1, ease: 'power3.out', stagger: 0.08,
     scrollTrigger: { trigger, start: 'top 85%' }, ...extra,
   });
-  $$('.titular').forEach((t) => sube(t.children, t));
+  $$('.titular').forEach((t) => sube($$('.kicker, p', t), t));
   sube('.hoja__pagina', '.hoja');
   sube('.montaje__selector .invitacion', '.montaje__selector');
-  sube('.mesa:not([hidden]) .mesa__foto', '.montaje__mesas');
   sube('.formas__lista li', '.formas', { stagger: 0.07 });
   sube('.recetario__hoja', '.recetario', { stagger: 0.15 });
-  sube('.nosotras__texto > *', '.nosotras__texto', { stagger: 0.06 });
+  sube('.nosotras__texto > *:not(h2)', '.nosotras__texto', { stagger: 0.06 });
   sube('.pasos__lista li', '.pasos__lista', { stagger: 0.12 });
+
+  // ---- Cortina rosa que descubre las fotos grandes ----
+  $$('.revela, .mesa:not([hidden]) .mesa__foto').forEach((box) => {
+    const c = document.createElement('span');
+    c.className = 'cortina';
+    box.appendChild(c);
+    const img = $('img', box);
+    gsap.timeline({ scrollTrigger: { trigger: box, start: 'top 80%' } })
+      .set(img, { opacity: 0 })
+      .to(c, { scaleX: 1, duration: 0.7, ease: 'power3.inOut' })
+      .set(img, { opacity: 1 })
+      .set(c, { transformOrigin: 'right' })
+      .to(c, { scaleX: 0, duration: 0.8, ease: 'power3.inOut' })
+      .from(img, { scale: 1.25, duration: 1.6, ease: 'power3.out' }, '-=0.8');
+  });
 
   // Los moldes se dibujan a línea al aparecer
   $$('.formas__lista path, .formas__lista ellipse, .formas__lista circle').forEach((p) => {
     const largo = p.getTotalLength?.() || 300;
-    gsap.fromTo(p, { strokeDasharray: largo, strokeDashoffset: largo }, { strokeDashoffset: 0, duration: 1.6, ease: 'power2.inOut', scrollTrigger: { trigger: '.formas', start: 'top 80%' } });
+    gsap.fromTo(p, { strokeDasharray: largo, strokeDashoffset: largo }, { strokeDashoffset: 0, duration: 1.8, ease: 'power2.inOut', scrollTrigger: { trigger: '.formas', start: 'top 80%' } });
   });
 
   // Fotos grandes que se mueven más lento que el scroll
-  gsap.fromTo('.cocina__foto', { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: '.cocina', start: 'top bottom', end: 'bottom top', scrub: true } });
-  gsap.from('.cocina__frase', { y: 40, opacity: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: '.cocina', start: 'top 60%' } });
-  gsap.fromTo('.nosotras__foto img', { scale: 1.12 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '.nosotras__foto', start: 'top bottom', end: 'bottom center', scrub: true } });
-  gsap.from('.nosotras__foto', { clipPath: 'inset(12% 8% 12% 8% round 20px)', duration: 1.4, ease: 'power3.inOut', scrollTrigger: { trigger: '.nosotras__foto', start: 'top 80%' } });
+  gsap.fromTo('.cocina__foto', { yPercent: -8, scale: 1.08 }, { yPercent: 8, scale: 1, ease: 'none', scrollTrigger: { trigger: '.cocina', start: 'top bottom', end: 'bottom top', scrub: true } });
+  gsap.fromTo('.nosotras__foto img', { yPercent: -4 }, { yPercent: 4, ease: 'none', scrollTrigger: { trigger: '.nosotras__foto', start: 'top bottom', end: 'bottom top', scrub: true } });
+
+  // ---- Botones magnéticos y cursor propio (solo con mouse) ----
+  if (finePointer) {
+    $$('.btn, .tool, .plato__mas, .round').forEach((el) => {
+      const x = gsap.quickTo(el, 'x', { duration: 0.5, ease: 'power3' });
+      const y = gsap.quickTo(el, 'y', { duration: 0.5, ease: 'power3' });
+      el.addEventListener('pointermove', (e) => {
+        const r = el.getBoundingClientRect();
+        x((e.clientX - r.left - r.width / 2) * 0.3);
+        y((e.clientY - r.top - r.height / 2) * 0.35);
+      });
+      el.addEventListener('pointerleave', () => { x(0); y(0); });
+    });
+
+    const cursor = $('.cursor');
+    const texto = $('.cursor__texto', cursor);
+    const cpX = gsap.quickTo('.cursor__punto', 'x', { duration: 0.08 });
+    const cpY = gsap.quickTo('.cursor__punto', 'y', { duration: 0.08 });
+    const caX = gsap.quickTo('.cursor__aro', 'x', { duration: 0.45, ease: 'power3' });
+    const caY = gsap.quickTo('.cursor__aro', 'y', { duration: 0.45, ease: 'power3' });
+    let ultimo = null;
+    const revisar = (x, y, objetivo) => {
+      const t = objetivo?.closest?.('[data-cursor], .naipe, .plato__nombre, .pin');
+      const etiqueta = t?.dataset.cursor || (t?.classList.contains('naipe') ? 'Abrir' : t?.classList.contains('plato__nombre') ? 'Ver' : '');
+      cursor.classList.toggle('is-grande', !!etiqueta);
+      if (etiqueta) texto.textContent = etiqueta;
+      cursor.classList.toggle('is-enlace', !etiqueta && !!objetivo?.closest?.('a, button, label, select, input, textarea'));
+    };
+    addEventListener('pointermove', (e) => {
+      cpX(e.clientX); cpY(e.clientY); caX(e.clientX); caY(e.clientY);
+      ultimo = [e.clientX, e.clientY];
+      revisar(e.clientX, e.clientY, e.target);
+    });
+    // Al hacer scroll lo que está bajo el cursor cambia aunque el mouse no se mueva
+    addEventListener('scroll', () => { if (ultimo) revisar(...ultimo, document.elementFromPoint(...ultimo)); }, { passive: true });
+    document.addEventListener('pointerleave', () => cursor.classList.add('is-oculto'));
+    document.addEventListener('pointerenter', () => cursor.classList.remove('is-oculto'));
+  }
 
   addEventListener('load', () => ScrollTrigger.refresh());
+} else {
+  fondoA('#FBF6F1');
 }
