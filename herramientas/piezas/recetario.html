@@ -1,0 +1,54 @@
+    <!-- ============ Recetario: arma tu gelatina ============ -->
+    <section class="arma" id="arma" aria-labelledby="arma-title">
+      <header class="titular">
+        <p class="kicker">El recetario</p>
+        <h2 id="arma-title">Arma tu <em>gelatina</em></h2>
+        <p>Escribe tu receta en nuestro recetario y nos llega por WhatsApp.</p>
+      </header>
+      <form class="recetario js-recetario" novalidate>
+        <div class="recetario__hoja recetario__hoja--izq">
+          <fieldset class="r-campo">
+            <legend>1 · La forma</legend>
+            <div class="r-opciones">
+              <label class="r-op"><input type="radio" name="forma" value="Rosca clásica" checked><span>Rosca</span></label>
+              <label class="r-op"><input type="radio" name="forma" value="Corazón"><span>Corazón</span></label>
+              <label class="r-op"><input type="radio" name="forma" value="Estrella"><span>Estrella</span></label>
+              <label class="r-op"><input type="radio" name="forma" value="Flor"><span>Flor</span></label>
+              <label class="r-op"><input type="radio" name="forma" value="Rectangular para rebanar"><span>Rectangular</span></label>
+              <label class="r-op"><input type="radio" name="forma" value="Número o letra"><span>Número o letra</span></label>
+              <label class="r-op"><input type="radio" name="forma" value="Vasitos individuales"><span>Vasitos</span></label>
+              <label class="r-op"><input type="radio" name="forma" value="Otra (la describo en el mensaje)"><span>Otra</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="r-campo">
+            <legend>2 · Las capas <small>(de abajo hacia arriba)</small></legend>
+            <div class="r-capas">
+              <label><span>Capa 1</span><select name="capa1"><option>Leche</option><option>Fresa</option><option>Uva</option><option>Mango</option><option>Maracuyá</option></select></label>
+              <label><span>Capa 2</span><select name="capa2"><option value="">Sin capa</option><option selected>Fresa</option><option>Leche</option><option>Uva</option><option>Mango</option><option>Maracuyá</option></select></label>
+              <label><span>Capa 3</span><select name="capa3"><option value="" selected>Sin capa</option><option>Leche</option><option>Fresa</option><option>Uva</option><option>Mango</option><option>Maracuyá</option></select></label>
+            </div>
+          </fieldset>
+          <fieldset class="r-campo">
+            <legend>3 · La fruta</legend>
+            <div class="r-opciones">
+              <label class="r-op"><input type="checkbox" name="fruta" value="Fresa" checked><span>Fresa</span></label>
+              <label class="r-op"><input type="checkbox" name="fruta" value="Uva"><span>Uva</span></label>
+              <label class="r-op"><input type="checkbox" name="fruta" value="Mango"><span>Mango</span></label>
+            </div>
+          </fieldset>
+          <div class="r-campo r-fila">
+            <label><span class="r-label">4 · Para cuántas personas</span><input type="number" name="personas" min="1" max="200" inputmode="numeric" placeholder="Ej. 12"></label>
+            <label><span class="r-label">Fecha</span><input type="date" name="fecha"></label>
+          </div>
+          <label class="r-campo"><span class="r-label">5 · Decoración o mensaje</span><textarea name="mensaje" rows="2" maxlength="160" placeholder="Ej. «Feliz cumple, Ana» con flores rosas"></textarea></label>
+        </div>
+        <div class="recetario__hoja recetario__hoja--der">
+          <p class="receta__titulo">Receta para Las Chinas</p>
+          <div class="receta__capas js-r-capas" aria-hidden="true"></div>
+          <dl class="receta js-receta" aria-live="polite"></dl>
+          <button class="btn btn--wa receta__enviar" type="submit"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Enviar receta por WhatsApp</button>
+          <p class="receta__nota">Las Chinas te confirman disponibilidad y precio.</p>
+        </div>
+      </form>
+    </section>
+

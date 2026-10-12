@@ -16,7 +16,7 @@ Personas que están organizando un festejo y buscan un postre bonito y hecho a m
 - Cada gelatina se hace sobre pedido, con los colores, sabores y nombre que el cliente quiera.
 
 ## Pedidos
-- Solo por WhatsApp. El carrito arma el mensaje con productos, cantidades y total. El número, las redes y el mapa se configuran en `CONFIG` al inicio de `script.js`.
+- Solo por WhatsApp. El pedido arma el mensaje con productos y cantidades (sin precios hasta que los confirmen). El número, las redes y el mapa se configuran en `CONFIG` de `assets/js/config.js`.
 - Cada tipo de gelatina abre WhatsApp con un mensaje ya escrito para ese tipo.
 
 ## Pendientes

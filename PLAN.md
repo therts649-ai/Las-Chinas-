@@ -220,3 +220,10 @@ Mismo estilo en todas: luz natural suave, fondo rosa claro, mármol blanco, frut
 - Muchas formas (moldes a línea), recetario con más formas, «Nosotras» con la imagen de las tres hermanas.
 - Sin precios publicados: se confirman por WhatsApp.
 - Se quitaron del sitio los prototipos 3D (/inmersivo, /prueba-3d); el código fuente sigue en `3d/`.
+
+## Rediseño premium (brief maestro)
+- Intro de marca con las tres hermanas separadas por sus paneles originales + logo oficial.
+- Hero con el producto al frente y color por sabor; «Descubrir sabores» lleva al catálogo real.
+- Catálogo en cuadrícula con filtros; sin precios inventados.
+- Escena capa por capa con las capas reales; historia con las tres hermanas por separado.
+- Tipografías Space Grotesk / IBM Plex; tokens en `styles.css`; JS en módulos.

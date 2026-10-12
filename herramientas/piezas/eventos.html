@@ -1,0 +1,100 @@
+    <!-- ============ Mesas para eventos: tres maneras de montarla ============ -->
+    <section class="eventos" id="eventos" aria-labelledby="eventos-title">
+      <header class="titular titular--claro">
+        <p class="kicker">Mesas para eventos</p>
+        <h2 id="eventos-title">Una mesa que se <em>recuerda</em></h2>
+        <p>Así podemos montar la mesa de postres de tu evento. Elige una celebración y toca cada número para ver qué lleva.</p>
+      </header>
+
+      <div class="montaje">
+        <div class="montaje__selector" role="tablist" aria-label="Tipos de evento">
+          <button class="invitacion" type="button" role="tab" id="tab-rosa" data-mesa="rosa" aria-controls="mesa-rosa" aria-selected="true"><span class="invitacion__num">I</span><b>Celebración en rosa</b><small>Baby shower · XV años · aniversario</small></button>
+          <button class="invitacion" type="button" role="tab" id="tab-boda" data-mesa="boda" aria-controls="mesa-boda" aria-selected="false"><span class="invitacion__num">II</span><b>Boda</b><small>Bodas · bautizos · primera comunión</small></button>
+          <button class="invitacion" type="button" role="tab" id="tab-infantil" data-mesa="infantil" aria-controls="mesa-infantil" aria-selected="false"><span class="invitacion__num">III</span><b>Cumpleaños infantil</b><small>Fiestas de colores</small></button>
+        </div>
+
+        <div class="montaje__mesas">
+          <div class="mesa" id="mesa-rosa" role="tabpanel" aria-labelledby="tab-rosa">
+            <div class="mesa__foto">
+              <img src="assets/eventos/mesa-1200.webp" srcset="assets/eventos/mesa-760.webp 760w, assets/eventos/mesa-1200.webp 1200w, assets/eventos/mesa-1920.webp 1920w" sizes="(max-width: 900px) 100vw, 64vw" width="1920" height="1080" loading="lazy" alt="Mesa de postres en tonos rosas: rosca de fresa en base alta, corazón de fresa, mosaico, vasitos de capas y mini gelatinas, con flores y velas.">
+              <button class="pin" type="button" style="--x:30;--y:28" data-pieza="1" aria-label="1: Rosca de fresa con crema">1</button>
+              <button class="pin" type="button" style="--x:32;--y:71" data-pieza="2" aria-label="2: Corazón de fresa">2</button>
+              <button class="pin" type="button" style="--x:63;--y:64" data-pieza="3" aria-label="3: Mosaico">3</button>
+              <button class="pin" type="button" style="--x:73;--y:43" data-pieza="4" aria-label="4: Vasitos de capas">4</button>
+              <button class="pin" type="button" style="--x:77;--y:80" data-pieza="5" aria-label="5: Mini gelatinas">5</button>
+            </div>
+            <div class="mesa__detalle">
+              <h3>Celebración en rosa</h3>
+              <ol class="piezas">
+                <li data-pieza="1"><span>1</span><b>Al centro</b>Rosca de fresa con crema en base alta de cristal.</li>
+                <li data-pieza="2"><span>2</span><b>Para lucir</b>Corazón de fresa sobre plato de cristal.</li>
+                <li data-pieza="3"><span>3</span><b>Para rebanar</b>Mosaico de colores en charola.</li>
+                <li data-pieza="4"><span>4</span><b>Para invitados</b>Vasitos de capas en fila, uno para cada quien.</li>
+                <li data-pieza="5"><span>5</span><b>Los detalles</b>Mini gelatinas, flores rosas y velas.</li>
+              </ol>
+              <a class="btn btn--rosa" data-wa="Hola Las Chinas, quiero cotizar una mesa de postres en rosa para mi evento." href="#"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Cotizar una mesa así</a>
+            </div>
+          </div>
+
+          <div class="mesa" id="mesa-boda" role="tabpanel" aria-labelledby="tab-boda" hidden>
+            <div class="mesa__foto">
+              <img src="assets/eventos/boda-1200.webp" srcset="assets/eventos/boda-760.webp 760w, assets/eventos/boda-1200.webp 1200w, assets/eventos/boda-1920.webp 1920w" sizes="(max-width: 900px) 100vw, 64vw" width="1920" height="1080" loading="lazy" alt="Mesa de postres para boda en blanco y dorado: gelatina de leche de tres pisos con fresas, domos con flores, rosca cristalina, vasitos de leche y fresa y mini corazones.">
+              <button class="pin" type="button" style="--x:52;--y:41" data-pieza="1" aria-label="1: Gelatina de tres pisos">1</button>
+              <button class="pin" type="button" style="--x:27;--y:27" data-pieza="2" aria-label="2: Domos con flores">2</button>
+              <button class="pin" type="button" style="--x:82;--y:38" data-pieza="3" aria-label="3: Rosca cristalina con fruta">3</button>
+              <button class="pin" type="button" style="--x:17;--y:74" data-pieza="4" aria-label="4: Vasitos de leche y fresa">4</button>
+              <button class="pin" type="button" style="--x:52;--y:89" data-pieza="5" aria-label="5: Mini corazones">5</button>
+            </div>
+            <div class="mesa__detalle">
+              <h3>Boda</h3>
+              <ol class="piezas">
+                <li data-pieza="1"><span>1</span><b>Al centro</b>Gelatina de leche de tres pisos, coronada con fresas.</li>
+                <li data-pieza="2"><span>2</span><b>Para lucir</b>Domos cristalinos con flores por dentro.</li>
+                <li data-pieza="3"><span>3</span><b>En lo alto</b>Rosca cristalina con fruta en base de cristal.</li>
+                <li data-pieza="4"><span>4</span><b>Para invitados</b>Vasitos de leche y fresa en charola dorada.</li>
+                <li data-pieza="5"><span>5</span><b>Los detalles</b>Mini corazones, rosas blancas y velas.</li>
+              </ol>
+              <a class="btn btn--rosa" data-wa="Hola Las Chinas, quiero cotizar una mesa de postres para una boda." href="#"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Cotizar una mesa así</a>
+            </div>
+          </div>
+
+          <div class="mesa" id="mesa-infantil" role="tabpanel" aria-labelledby="tab-infantil" hidden>
+            <div class="mesa__foto">
+              <img src="assets/eventos/infantil-1200.webp" srcset="assets/eventos/infantil-760.webp 760w, assets/eventos/infantil-1200.webp 1200w, assets/eventos/infantil-1920.webp 1920w" sizes="(max-width: 900px) 100vw, 64vw" width="1920" height="1080" loading="lazy" alt="Mesa de cumpleaños infantil: gelatina arcoíris en forma de número 5, estrellas de colores, mosaico, vasitos arcoíris con crema y corazones de colores, con globos pastel.">
+              <button class="pin" type="button" style="--x:50;--y:27" data-pieza="1" aria-label="1: Número arcoíris">1</button>
+              <button class="pin" type="button" style="--x:18;--y:41" data-pieza="2" aria-label="2: Estrellas de colores">2</button>
+              <button class="pin" type="button" style="--x:43;--y:74" data-pieza="3" aria-label="3: Mosaico">3</button>
+              <button class="pin" type="button" style="--x:80;--y:47" data-pieza="4" aria-label="4: Vasitos arcoíris">4</button>
+              <button class="pin" type="button" style="--x:78;--y:84" data-pieza="5" aria-label="5: Corazones de colores">5</button>
+            </div>
+            <div class="mesa__detalle">
+              <h3>Cumpleaños infantil</h3>
+              <ol class="piezas">
+                <li data-pieza="1"><span>1</span><b>Al centro</b>Gelatina arcoíris con la edad del festejado.</li>
+                <li data-pieza="2"><span>2</span><b>Para jugar</b>Estrellas de colores en base alta.</li>
+                <li data-pieza="3"><span>3</span><b>Para rebanar</b>Mosaico de colores en charola.</li>
+                <li data-pieza="4"><span>4</span><b>Para invitados</b>Vasitos arcoíris con crema y fresa.</li>
+                <li data-pieza="5"><span>5</span><b>Los detalles</b>Corazones de colores, globos y guirnalda.</li>
+              </ol>
+              <a class="btn btn--rosa" data-wa="Hola Las Chinas, quiero cotizar una mesa de postres para un cumpleaños infantil." href="#"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Cotizar una mesa así</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="montaje__ref">Imágenes de referencia: cada mesa se arma a la medida de tu evento, con los colores y formas que elijas.</p>
+
+      <div class="formas">
+        <p class="kicker">Muchas formas</p>
+        <ul class="formas__lista">
+          <li><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M14 66c0-14 16-26 36-26s36 12 36 26v6c0 4-16 10-36 10S14 76 14 72z"/><ellipse cx="50" cy="66" rx="36" ry="10"/><ellipse cx="50" cy="56" rx="10" ry="3.5"/><path d="M24 48c3 8 3 16 2 24M38 42c2 10 2 22 1 34M62 42c-2 10-2 22-1 34M76 48c-3 8-3 16-2 24"/></svg><span>Rosca</span></li>
+          <li><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 82C30 68 16 56 16 40c0-11 8-19 18-19 7 0 12 4 16 10 4-6 9-10 16-10 10 0 18 8 18 19 0 16-14 28-34 42z"/><path d="M50 82v-6c-16-10-26-20-27-32"/></svg><span>Corazón</span></li>
+          <li><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 14l10 22 24 3-18 16 5 24-21-12-21 12 5-24-18-16 24-3z"/><path d="M50 30l5 10 11 1-8 8 2 11-10-6-10 6 2-11-8-8 11-1z"/></svg><span>Estrella</span></li>
+          <li><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="9"/><path d="M50 41c-6-14 0-25 0-25s6 11 0 25M59 50c14-6 25 0 25 0s-11 6-25 0M50 59c6 14 0 25 0 25s-6-11 0-25M41 50c-14 6-25 0-25 0s11-6 25 0M56 44c8-12 20-12 20-12s0 12-14 18M56 56c12 8 12 20 12 20s-12 0-18-14M44 56c-8 12-20 12-20 12s0-12 14-18M44 44c-12-8-12-20-12-20s12 0 18 14"/></svg><span>Flor</span></li>
+          <li><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M12 42l22-12h54L66 42z"/><path d="M12 42v26h54V42M66 68l22-12V30"/><path d="M22 48h8v6h-8zM38 52h8v6h-8zM28 60h8v5h-8zM50 46h8v6h-8z"/></svg><span>Mosaico</span></li>
+          <li><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M32 22h36l-5 60H37z"/><path d="M33.5 40h33M35 56h30M36.3 70h27.4"/><path d="M44 18c2-6 10-6 12 0"/></svg><span>Vasito</span></li>
+          <li><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M30 30c0-10 8-16 18-16s18 6 18 16c0 12-10 18-20 30l-14 18h36"/></svg><span>Números</span></li>
+        </ul>
+        <p class="formas__pie">¿Otra forma? <a href="#arma">Diséñala en el recetario</a>.</p>
+      </div>
+    </section>
+

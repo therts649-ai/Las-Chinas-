@@ -3,20 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Las Chinas | Gelatinas artesanales y mesas de postres en Monterrey</title>
-  <meta name="description" content="Gelatinas artesanales hechas por tres hermanas en Monterrey: presentaciones familiares, individuales, de temporada y mesas de postres para eventos. Pide por WhatsApp.">
-  <meta name="theme-color" content="#22060F">
+  <title>Las Chinas | Gelatinas artesanales en Monterrey</title>
+  <meta name="description" content="Gelatinas artesanales de tres hermanas en Monterrey: familiares, individuales, de temporada y mesas de postres para eventos. Pide por WhatsApp.">
+  <meta name="theme-color" content="#35111F">
   <link rel="icon" href="assets/logo-160.webp">
   <meta property="og:title" content="Las Chinas | Gelatinas artesanales en Monterrey">
-  <meta property="og:description" content="Tres hermanas, un mismo sabor. Presentaciones familiares, individuales, de temporada y mesas de postres para eventos.">
+  <meta property="og:description" content="Tres hermanas, un mismo sabor. Gelatinas que enamoran a primera vista.">
   <meta property="og:image" content="assets/nosotras/compartir.jpg">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Lobster+Two:ital,wght@1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/entrada/logo-1000.webp" imagesrcset="assets/entrada/logo-520.webp 520w, assets/entrada/logo-1000.webp 1000w" imagesizes="(max-width: 760px) 70vw, 34vw">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" as="image" href="assets/entrada/fresa-crema-1400.webp" imagesrcset="assets/entrada/fresa-crema-700.webp 700w, assets/entrada/fresa-crema-1400.webp 1400w" imagesizes="(max-width: 760px) 92vw, 46vw">
   <link rel="stylesheet" href="styles.css">
-  <script>document.documentElement.classList.add('js');</script>
+  <script>
+    // La intro de marca se ve una vez por sesión y nunca con movimiento reducido.
+    // Si algo falla, a los 6.5 s se quita sola para no tapar la página.
+    (function () {
+      var d = document.documentElement, vista = false;
+      d.classList.add('js');
+      try { vista = sessionStorage.getItem('lc-intro') === '1'; } catch (e) {}
+      var reducir = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (vista || reducir) { d.classList.add('sin-intro'); return; }
+      d.classList.add('con-intro');
+      setTimeout(function () { d.classList.add('sin-intro'); }, 6500);
+    })();
+  </script>
 </head>
 <body>
   <!-- Íconos de Phosphor (MIT) -->
@@ -62,245 +76,269 @@
     </defs>
   </svg>
 
-  <div class="fondo-vivo" aria-hidden="true"></div>
-  <div class="cursor" aria-hidden="true"><span class="cursor__punto"></span><span class="cursor__aro"><b class="cursor__texto"></b></span></div>
-  <a class="skip" href="#carta">Saltar a la carta</a>
+  <!-- ============ Intro de marca (≈3.5 s, una vez por sesión; cualquier toque o tecla la adelanta) ============ -->
+  <div class="intro" aria-hidden="true">
+    <span class="intro__luz"></span>
+    <div class="intro__marco">
+      <img class="intro__panel intro__panel--1" data-src="assets/intro/hermanas-1672.webp" data-srcset="assets/intro/hermanas-960.webp 960w, assets/intro/hermanas-1672.webp 1672w" sizes="100vw" width="1672" height="941" alt="">
+      <img class="intro__panel intro__panel--2" data-src="assets/intro/hermanas-1672.webp" data-srcset="assets/intro/hermanas-960.webp 960w, assets/intro/hermanas-1672.webp 1672w" sizes="100vw" width="1672" height="941" alt="">
+      <img class="intro__panel intro__panel--3" data-src="assets/intro/hermanas-1672.webp" data-srcset="assets/intro/hermanas-960.webp 960w, assets/intro/hermanas-1672.webp 1672w" sizes="100vw" width="1672" height="941" alt="">
+      <span class="intro__destello" style="--x:14%;--y:62%"></span>
+      <span class="intro__destello" style="--x:46%;--y:46%"></span>
+      <span class="intro__destello" style="--x:86%;--y:60%"></span>
+    </div>
+    <div class="intro__firma">
+      <img class="intro__logo" data-src="assets/entrada/logo-520.webp" data-srcset="assets/entrada/logo-520.webp 520w, assets/entrada/logo-1000.webp 1000w" sizes="(max-width: 760px) 52vw, 24vw" width="520" height="520" alt="">
+      <p class="intro__lema">Tres hermanas, <em>un mismo sabor.</em></p>
+    </div>
+    <button class="intro__saltar" type="button" tabindex="-1">Saltar intro</button>
+  </div>
+  <script>
+    if (document.documentElement.classList.contains('con-intro')) {
+      document.querySelectorAll('.intro [data-src]').forEach(function (img) { img.srcset = img.dataset.srcset; img.src = img.dataset.src; });
+    }
+  </script>
+
+  <a class="skip" href="#catalogo">Saltar al catálogo</a>
 
   <header class="header">
-    <a class="marca" href="#inicio" aria-label="Las Chinas, inicio"><img src="assets/logo-160.webp" width="44" height="44" alt=""><span>Las Chinas</span></a>
+    <a class="marca" href="#inicio" aria-label="Las Chinas, inicio"><img src="assets/logo-160.webp" width="52" height="52" alt=""></a>
     <nav class="header__nav" aria-label="Secciones">
-      <a href="#carta">La carta</a>
+      <a href="#catalogo">Sabores</a>
+      <a href="#capa-por-capa">Capa por capa</a>
+      <a href="#historia">Historia</a>
       <a href="#eventos">Eventos</a>
       <a href="#arma">Arma la tuya</a>
-      <a href="#nosotras">Nosotras</a>
       <a href="#contacto">Contacto</a>
     </nav>
     <div class="header__tools">
-      <button class="tool js-search-open" type="button" aria-label="Buscar en la carta"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></button>
+      <button class="tool js-search-open" type="button" aria-label="Buscar en el catálogo"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></button>
       <button class="tool tool--cart js-cart-open" type="button" aria-label="Abrir tu pedido"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg><span class="cart-count" aria-live="polite">0</span></button>
       <button class="tool tool--menu js-menu-open" type="button" aria-label="Abrir menú"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button>
     </div>
   </header>
 
   <main>
-    <script type="application/json" id="sabores-entrada">{"fresa-crema": {"nombre": "Fresa con crema", "palabra": "Fresa", "desc": "Fresas naturales en gelatina brillante, sobre una capa de leche cremosa."}, "fresa-natural": {"nombre": "Fresa natural", "palabra": "Rosa", "desc": "Leche rosada con trozos reales de fresa y una fresa entera encima."}, "mango-maracuya": {"nombre": "Mango con maracuyá", "palabra": "Mango", "desc": "Maracuyá con cubos de mango y hierbabuena. Fresca y tropical."}, "vasitos-capas": {"nombre": "Vasitos de capas", "palabra": "Capas", "desc": "Capas de fresa, leche, mango y uva, una porción para cada quien."}}</script>
-    <!-- ============ La entrada: cada sabor trae su propio color ============ -->
-    <section class="entrada" id="inicio" aria-labelledby="entrada-title" data-sabor="fresa-crema">
-      <div class="entrada__ambiente" aria-hidden="true">
-        <span class="entrada__luz"></span>
-        <span class="orbe" style="--x:12%;--y:22%;--s:16vmax;--d:19s"></span>
-        <span class="orbe" style="--x:78%;--y:18%;--s:22vmax;--d:23s"></span>
-        <span class="orbe" style="--x:62%;--y:78%;--s:18vmax;--d:27s"></span>
-        <span class="orbe" style="--x:28%;--y:84%;--s:12vmax;--d:21s"></span>
-        <span class="chispa" style="--x:18%;--y:30%;--d:7s;--w:0s"></span><span class="chispa" style="--x:72%;--y:24%;--d:9s;--w:1.4s"></span><span class="chispa" style="--x:84%;--y:62%;--d:8s;--w:2.6s"></span><span class="chispa" style="--x:44%;--y:14%;--d:10s;--w:.8s"></span><span class="chispa" style="--x:58%;--y:70%;--d:7.5s;--w:3.2s"></span><span class="chispa" style="--x:92%;--y:40%;--d:11s;--w:1.9s"></span><span class="chispa" style="--x:36%;--y:58%;--d:9.5s;--w:4s"></span>
-      </div>
-      <div class="vitrina-entrada">
-        <div class="medalla">
-          <span class="medalla__halo" aria-hidden="true"></span>
-          <svg class="medalla__anillo" viewBox="0 0 400 400" aria-hidden="true"><defs><path id="anillo-texto" d="M200,200 m-186,0 a186,186 0 1,1 372,0 a186,186 0 1,1 -372,0"/></defs><text><textPath href="#anillo-texto" textLength="1150">Gelatinas artesanales ✦ Tres hermanas ✦ Un mismo sabor ✦ Monterrey ✦ </textPath></text></svg>
-          <img class="medalla__logo" src="assets/entrada/logo-1000.webp" srcset="assets/entrada/logo-520.webp 520w, assets/entrada/logo-1000.webp 1000w" sizes="(max-width: 760px) 70vw, 34vw" width="1000" height="1000" alt="Logo de Las Chinas: las tres hermanas con sus gelatinas" fetchpriority="high">
-          <span class="medalla__brillo" aria-hidden="true"></span>
-        </div>
-        <div class="escenario" data-cursor="Tócala">
-          <span class="escenario__aura" aria-hidden="true"></span>
-          <span class="escenario__sombra" aria-hidden="true"></span>
-          <div class="escenario__postres">
-            <img class="postre is-activa" data-sabor="fresa-crema" src="assets/entrada/fresa-crema-1400.webp" srcset="assets/entrada/fresa-crema-700.webp 700w, assets/entrada/fresa-crema-1400.webp 1400w" sizes="(max-width: 760px) 60vw, 28vw" width="1400" height="900" alt="Fresa con crema" fetchpriority="high">
-            <img class="postre" data-sabor="fresa-natural" src="assets/entrada/fresa-natural-1400.webp" srcset="assets/entrada/fresa-natural-700.webp 700w, assets/entrada/fresa-natural-1400.webp 1400w" sizes="(max-width: 760px) 60vw, 28vw" width="1400" height="900" alt="Fresa natural" loading="lazy">
-            <img class="postre" data-sabor="mango-maracuya" src="assets/entrada/mango-maracuya-1400.webp" srcset="assets/entrada/mango-maracuya-700.webp 700w, assets/entrada/mango-maracuya-1400.webp 1400w" sizes="(max-width: 760px) 60vw, 28vw" width="1400" height="900" alt="Mango con maracuyá" loading="lazy">
-            <img class="postre" data-sabor="vasitos-capas" src="assets/entrada/vasitos-capas-1400.webp" srcset="assets/entrada/vasitos-capas-700.webp 700w, assets/entrada/vasitos-capas-1400.webp 1400w" sizes="(max-width: 760px) 60vw, 28vw" width="1400" height="900" alt="Vasitos de capas" loading="lazy">
-          </div>
-          <span class="escenario__brillo" aria-hidden="true"></span>
+    <!-- ============ Hero: el producto al frente, cada sabor con su color ============ -->
+    <section class="hero" id="inicio" aria-labelledby="hero-title" data-sabor="fresa-crema">
+      <span class="hero__luz" aria-hidden="true"></span>
+      <div class="hero__texto">
+        <p class="kicker">Gelatinas artesanales — Monterrey</p>
+        <h1 id="hero-title"><span class="linea"><span>Tres hermanas,</span></span><span class="linea"><span class="hero__acento">un mismo sabor.</span></span></h1>
+        <p class="hero__sub">Gelatinas que enamoran a primera vista.</p>
+        <div class="hero__ctas">
+          <a class="btn btn--magenta" href="#catalogo">Descubrir sabores <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          <a class="btn btn--claro" href="#eventos">Mesas para eventos</a>
         </div>
       </div>
 
-      <div class="entrada__texto">
-        <p class="kicker"><span class="kicker__linea"></span>Gelatinas artesanales · Monterrey</p>
-        <h1 id="entrada-title"><span class="linea"><span>Tres hermanas,</span></span> <span class="linea"><em>un mismo sabor.</em></span></h1>
-        <p class="entrada__sub">Presentaciones para la familia, para un antojo, para cada temporada y para tus eventos, en todas las formas.</p>
-        <div class="entrada__ctas">
-          <a class="btn btn--rosa" href="#carta">Ver la carta <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-          <a class="btn btn--linea" href="#eventos">Mesas para eventos</a>
+      <div class="hero__producto">
+        <span class="hero__pedestal" aria-hidden="true"></span>
+        <div class="hero__postres">
+          <img class="postre is-activa" data-sabor="fresa-crema" src="assets/entrada/fresa-crema-1400.webp" srcset="assets/entrada/fresa-crema-700.webp 700w, assets/entrada/fresa-crema-1400.webp 1400w" sizes="(max-width: 760px) 92vw, 46vw" width="1400" height="900" alt="Gelatina de fresa con crema" fetchpriority="high">
+          <img class="postre" data-sabor="fresa-natural" data-src="assets/entrada/fresa-natural-1400.webp" data-srcset="assets/entrada/fresa-natural-700.webp 700w, assets/entrada/fresa-natural-1400.webp 1400w" sizes="(max-width: 760px) 92vw, 46vw" width="1400" height="900" alt="Gelatina de fresa natural">
+          <img class="postre" data-sabor="mango-maracuya" data-src="assets/entrada/mango-maracuya-1400.webp" data-srcset="assets/entrada/mango-maracuya-700.webp 700w, assets/entrada/mango-maracuya-1400.webp 1400w" sizes="(max-width: 760px) 92vw, 46vw" width="1400" height="900" alt="Gelatina de mango con maracuyá">
+          <img class="postre" data-sabor="vasitos-capas" data-src="assets/entrada/vasitos-capas-1400.webp" data-srcset="assets/entrada/vasitos-capas-700.webp 700w, assets/entrada/vasitos-capas-1400.webp 1400w" sizes="(max-width: 760px) 92vw, 46vw" width="1400" height="900" alt="Vasitos de gelatina de capas">
+          <span class="hero__reflejo" aria-hidden="true"></span>
         </div>
       </div>
 
-      <div class="entrada__sabores">
-        <p class="entrada__actual" aria-live="polite"><span class="js-sabor-nombre">Fresa con crema</span><small class="js-sabor-desc">Fresas naturales en gelatina brillante, sobre una capa de leche cremosa.</small></p>
-        <ol class="sabores-nav" aria-label="Sabores">
-          <li><button class="sabor-btn" type="button" data-sabor="fresa-crema" aria-pressed="true"><span class="sabor-btn__num">01</span><span class="sabor-btn__nombre">Fresa con crema</span><i class="sabor-btn__barra" aria-hidden="true"></i></button></li>
-          <li><button class="sabor-btn" type="button" data-sabor="fresa-natural" aria-pressed="false"><span class="sabor-btn__num">02</span><span class="sabor-btn__nombre">Fresa natural</span><i class="sabor-btn__barra" aria-hidden="true"></i></button></li>
-          <li><button class="sabor-btn" type="button" data-sabor="mango-maracuya" aria-pressed="false"><span class="sabor-btn__num">03</span><span class="sabor-btn__nombre">Mango con maracuyá</span><i class="sabor-btn__barra" aria-hidden="true"></i></button></li>
-          <li><button class="sabor-btn" type="button" data-sabor="vasitos-capas" aria-pressed="false"><span class="sabor-btn__num">04</span><span class="sabor-btn__nombre">Vasitos de capas</span><i class="sabor-btn__barra" aria-hidden="true"></i></button></li>
+      <div class="hero__sabores">
+        <ol class="sabores" aria-label="Sabores destacados">
+          <li><button class="sabor" type="button" data-sabor="fresa-crema" aria-pressed="true"><span class="sabor__num">01</span><span class="sabor__nombre">Fresa con crema</span><i class="sabor__barra" aria-hidden="true"></i></button></li>
+          <li><button class="sabor" type="button" data-sabor="fresa-natural" aria-pressed="false"><span class="sabor__num">02</span><span class="sabor__nombre">Fresa natural</span><i class="sabor__barra" aria-hidden="true"></i></button></li>
+          <li><button class="sabor" type="button" data-sabor="mango-maracuya" aria-pressed="false"><span class="sabor__num">03</span><span class="sabor__nombre">Mango con maracuyá</span><i class="sabor__barra" aria-hidden="true"></i></button></li>
+          <li><button class="sabor" type="button" data-sabor="vasitos-capas" aria-pressed="false"><span class="sabor__num">04</span><span class="sabor__nombre">Vasitos de capas</span><i class="sabor__barra" aria-hidden="true"></i></button></li>
         </ol>
+        <a class="hero__ver js-hero-ver" href="#catalogo">Ver en el catálogo <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
       </div>
-
-      <a class="entrada__baja" href="#carta"><span>Desliza</span><i aria-hidden="true"></i></a>
     </section>
 
-    <!-- Cinta: las cartas pasan como un letrero en movimiento -->
-    <div class="cinta" aria-hidden="true">
-      <div class="cinta__fila"><span>Familiares <i>✦</i> Individuales <i>✦</i> De temporada <i>✦</i> Postres variados <i>✦</i> Mesas para eventos <i>✦</i>&nbsp;</span><span>Familiares <i>✦</i> Individuales <i>✦</i> De temporada <i>✦</i> Postres variados <i>✦</i> Mesas para eventos <i>✦</i>&nbsp;</span></div>
-      <div class="cinta__fila cinta__fila--hueca"><span>Hecho a mano <i>♥</i> Tres hermanas <i>♥</i> Monterrey <i>♥</i> Todas las formas <i>♥</i>&nbsp;</span><span>Hecho a mano <i>♥</i> Tres hermanas <i>♥</i> Monterrey <i>♥</i> Todas las formas <i>♥</i>&nbsp;</span></div>
-    </div>
-
-    <!-- ============ La carta: cuatro cartas que se barajan ============ -->
-    <section class="carta" id="carta" data-fondo="#FBF6F1" aria-labelledby="carta-title">
+    <!-- ============ Catálogo ============ -->
+    <section class="catalogo" id="catalogo" aria-labelledby="catalogo-title">
       <header class="titular">
-        <p class="kicker">La carta</p>
-        <h2 id="carta-title">Elige tu <em>antojo</em></h2>
-        <p>Una carta para cada ocasión: toca una para abrirla.</p>
+        <p class="kicker">Catálogo</p>
+        <h2 id="catalogo-title">Sabores y <em>presentaciones</em></h2>
+        <p>Familiares, individuales, de temporada y para eventos. Agrega a tu pedido o cotiza por WhatsApp.</p>
       </header>
+      <div class="filtros" role="group" aria-label="Filtrar por categoría">
+          <button class="filtro" type="button" data-cat="todos" aria-pressed="true">Todos <span>15</span></button>
+          <button class="filtro" type="button" data-cat="familiares" aria-pressed="false">Familiares <span>04</span></button>
+          <button class="filtro" type="button" data-cat="individuales" aria-pressed="false">Individuales <span>02</span></button>
+          <button class="filtro" type="button" data-cat="temporada" aria-pressed="false">De temporada <span>03</span></button>
+          <button class="filtro" type="button" data-cat="variados" aria-pressed="false">Postres variados <span>03</span></button>
+          <button class="filtro" type="button" data-cat="eventos" aria-pressed="false">Eventos <span>03</span></button>
+      </div>
+      <ul class="productos">
+          <li class="producto" data-id="fresa-crema" data-cat="familiares" data-name="Fresa con crema" data-img="assets/sabores/fresa-crema-1200.webp" data-desc="Fresas naturales en gelatina brillante, sobre una capa de leche cremosa.">
+            <figure class="producto__foto"><img src="assets/sabores/fresa-crema-760.webp" srcset="assets/sabores/fresa-crema-760.webp 760w, assets/sabores/fresa-crema-1200.webp 1200w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" width="760" height="507" loading="lazy" alt="Fresa con crema"><span class="producto__cat">Familiar</span></figure>
+            <div class="producto__cuerpo">
+              <h3 class="producto__nombre">Fresa con crema</h3>
+              <p class="producto__desc">Fresas naturales en gelatina brillante, sobre una capa de leche cremosa.</p>
+              <div class="producto__pie"><span class="producto__precio">Precio a confirmar</span><div class="producto__acciones"><button class="btn-texto js-ver" type="button">Ver</button><button class="btn-mas js-agregar" type="button" aria-label="Agregar Fresa con crema a tu pedido"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div></div>
+            </div>
+          </li>
+          <li class="producto" data-id="uva" data-cat="familiares" data-name="Uva" data-img="assets/sabores/uva-1200.webp" data-desc="Uvas verdes y moradas en gelatina de uva, sobre una capa de leche cremosa.">
+            <figure class="producto__foto"><img src="assets/sabores/uva-760.webp" srcset="assets/sabores/uva-760.webp 760w, assets/sabores/uva-1200.webp 1200w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" width="760" height="507" loading="lazy" alt="Uva"><span class="producto__cat">Familiar</span></figure>
+            <div class="producto__cuerpo">
+              <h3 class="producto__nombre">Uva</h3>
+              <p class="producto__desc">Uvas verdes y moradas en gelatina de uva, sobre una capa de leche cremosa.</p>
+              <div class="producto__pie"><span class="producto__precio">Precio a confirmar</span><div class="producto__acciones"><button class="btn-texto js-ver" type="button">Ver</button><button class="btn-mas js-agregar" type="button" aria-label="Agregar Uva a tu pedido"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div></div>
+            </div>
+          </li>
+          <li class="producto" data-id="mango" data-cat="familiares" data-name="Mango" data-img="assets/sabores/mango-1200.webp" data-desc="Cubos de mango natural sobre una capa de leche cremosa. Dulce y tropical.">
+            <figure class="producto__foto"><img src="assets/sabores/mango-760.webp" srcset="assets/sabores/mango-760.webp 760w, assets/sabores/mango-1200.webp 1200w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" width="760" height="507" loading="lazy" alt="Mango"><span class="producto__cat">Familiar</span></figure>
+            <div class="producto__cuerpo">
+              <h3 class="producto__nombre">Mango</h3>
+              <p class="producto__desc">Cubos de mango natural sobre una capa de leche cremosa. Dulce y tropical.</p>
+              <div class="producto__pie"><span class="producto__precio">Precio a confirmar</span><div class="producto__acciones"><button class="btn-texto js-ver" type="button">Ver</button><button class="btn-mas js-agregar" type="button" aria-label="Agregar Mango a tu pedido"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div></div>
+            </div>
+          </li>
+          <li class="producto" data-id="fresa-natural" data-cat="familiares" data-name="Fresa natural" data-img="assets/sabores/fresa-natural-1200.webp" data-desc="Gelatina de leche rosada con trozos reales de fresa y una fresa entera encima.">
+            <figure class="producto__foto"><img src="assets/sabores/fresa-natural-760.webp" srcset="assets/sabores/fresa-natural-760.webp 760w, assets/sabores/fresa-natural-1200.webp 1200w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" width="760" height="507" loading="lazy" alt="Fresa natural"><span class="producto__cat">Familiar</span></figure>
+            <div class="producto__cuerpo">
+              <h3 class="producto__nombre">Fresa natural</h3>
+              <p class="producto__desc">Gelatina de leche rosada con trozos reales de fresa y una fresa entera encima.</p>
+              <div class="producto__pie"><span class="producto__precio">Precio a confirmar</span><div class="producto__acciones"><button class="btn-texto js-ver" type="button">Ver</button><button class="btn-mas js-agregar" type="button" aria-label="Agregar Fresa natural a tu pedido"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div></div>
+            </div>
+          </li>
+          <li class="producto" data-id="vasitos-capas" data-cat="individuales" data-name="Vasitos de capas" data-img="assets/sabores/vasitos-capas-1200.webp" data-desc="Capas de fresa, leche, mango y uva en vaso, con fruta fresca encima.">
+            <figure class="producto__foto"><img src="assets/sabores/vasitos-capas-760.webp" srcset="assets/sabores/vasitos-capas-760.webp 760w, assets/sabores/vasitos-capas-1200.webp 1200w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" width="760" height="507" loading="lazy" alt="Vasitos de capas"><span class="producto__cat">Individual</span></figure>
+            <div class="producto__cuerpo">
+              <h3 class="producto__nombre">Vasitos de capas</h3>
+              <p class="producto__desc">Capas de fresa, leche, mango y uva en vaso, con fruta fresca encima.</p>
+              <div class="producto__pie"><span class="producto__precio">Precio a confirmar</span><div class="producto__acciones"><button class="btn-texto js-ver" type="button">Ver</button><button class="btn-mas js-agregar" type="button" aria-label="Agregar Vasitos de capas a tu pedido"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div></div>
+            </div>
+          </li>
+          <li class="producto" data-id="mango-maracuya" data-cat="individuales" data-name="Mango con maracuyá" data-img="assets/sabores/mango-maracuya-1200.webp" data-desc="Maracuyá con cubos de mango y hierbabuena. Fresca y tropical.">
+            <figure class="producto__foto"><img src="assets/sabores/mango-maracuya-760.webp" srcset="assets/sabores/mango-maracuya-760.webp 760w, assets/sabores/mango-maracuya-1200.webp 1200w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" width="760" height="507" loading="lazy" alt="Mango con maracuyá"><span class="producto__cat">Individual</span></figure>
+            <div class="producto__cuerpo">
+              <h3 class="producto__nombre">Mango con maracuyá</h3>
+              <p class="producto__desc">Maracuyá con cubos de mango y hierbabuena. Fresca y tropical.</p>
+              <div class="producto__pie"><span class="producto__precio">Precio a confirmar</span><div class="producto__acciones"><button class="btn-texto js-ver" type="button">Ver</button><button class="btn-mas js-agregar" type="button" aria-label="Agregar Mango con maracuyá a tu pedido"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div></div>
+            </div>
+          </li>
+          <li class="producto" data-cat="temporada">
+            <figure class="producto__foto"><img src="assets/temporada/san-valentin-760.webp" srcset="assets/temporada/san-valentin-760.webp 760w, assets/temporada/san-valentin-1200.webp 1200w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" width="760" height="507" loading="lazy" alt="San Valentín"><span class="producto__cat">Temporada</span></figure>
+            <div class="producto__cuerpo">
+              <h3 class="producto__nombre">San Valentín</h3>
+              <p class="producto__desc">Corazones de fresa y mini corazones para regalar.</p>
+              <div class="producto__pie"><span class="producto__precio">Sobre pedido</span><div class="producto__acciones"><a class="btn-chico" data-wa="Hola Las Chinas, quiero pedir una gelatina de San Valentín." href="#">Cotizar</a></div></div>
+            </div>
+          </li>
+          <li class="producto" data-cat="temporada">
+            <figure class="producto__foto"><img src="assets/temporada/dia-madres-760.webp" srcset="assets/temporada/dia-madres-760.webp 760w, assets/temporada/dia-madres-1200.webp 1200w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" width="760" height="507" loading="lazy" alt="Día de las Madres"><span class="producto__cat">Temporada</span></figure>
+            <div class="producto__cuerpo">
+              <h3 class="producto__nombre">Día de las Madres</h3>
+              <p class="producto__desc">Gelatinas de flor en tonos pastel, para consentir a mamá.</p>
+              <div class="producto__pie"><span class="producto__precio">Sobre pedido</span><div class="producto__acciones"><a class="btn-chico" data-wa="Hola Las Chinas, quiero pedir una gelatina para el Día de las Madres." href="#">Cotizar</a></div></div>
+            </div>
+          </li>
+          <li class="producto" data-cat="temporada">
+            <figure class="producto__foto producto__foto--tipo" aria-hidden="true"><span class="producto__tipo">Navidad y fin de año</span><span class="producto__cat">Temporada</span></figure>
+            <div class="producto__cuerpo">
+              <h3 class="producto__nombre">Navidad y fin de año</h3>
+              <p class="producto__desc">Roscas para la cena, decoradas para la ocasión. Se apartan con anticipación.</p>
+              <div class="producto__pie"><span class="producto__precio">Sobre pedido</span><div class="producto__acciones"><a class="btn-chico" data-wa="Hola Las Chinas, quiero apartar una gelatina para Navidad." href="#">Cotizar</a></div></div>
+            </div>
+          </li>
+          <li class="producto" data-id="corazon-fresa" data-cat="variados" data-name="Corazón de fresa" data-img="assets/sabores/corazon-fresa-1200.webp" data-desc="En forma de corazón: fresas en gelatina brillante sobre capa de leche.">
+            <figure class="producto__foto"><img src="assets/sabores/corazon-fresa-760.webp" srcset="assets/sabores/corazon-fresa-760.webp 760w, assets/sabores/corazon-fresa-1200.webp 1200w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" width="760" height="507" loading="lazy" alt="Corazón de fresa"><span class="producto__cat">Variado</span></figure>
+            <div class="producto__cuerpo">
+              <h3 class="producto__nombre">Corazón de fresa</h3>
+              <p class="producto__desc">En forma de corazón: fresas en gelatina brillante sobre capa de leche.</p>
+              <div class="producto__pie"><span class="producto__precio">Precio a confirmar</span><div class="producto__acciones"><button class="btn-texto js-ver" type="button">Ver</button><button class="btn-mas js-agregar" type="button" aria-label="Agregar Corazón de fresa a tu pedido"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div></div>
+            </div>
+          </li>
+          <li class="producto" data-id="mosaico" data-cat="variados" data-name="Mosaico" data-img="assets/sabores/mosaico-1200.webp" data-desc="Cubos de colores en gelatina de leche, en molde rectangular para rebanar.">
+            <figure class="producto__foto"><img src="assets/sabores/mosaico-760.webp" srcset="assets/sabores/mosaico-760.webp 760w, assets/sabores/mosaico-1200.webp 1200w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" width="760" height="507" loading="lazy" alt="Mosaico"><span class="producto__cat">Variado</span></figure>
+            <div class="producto__cuerpo">
+              <h3 class="producto__nombre">Mosaico</h3>
+              <p class="producto__desc">Cubos de colores en gelatina de leche, en molde rectangular para rebanar.</p>
+              <div class="producto__pie"><span class="producto__precio">Precio a confirmar</span><div class="producto__acciones"><button class="btn-texto js-ver" type="button">Ver</button><button class="btn-mas js-agregar" type="button" aria-label="Agregar Mosaico a tu pedido"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button></div></div>
+            </div>
+          </li>
+          <li class="producto" data-cat="variados">
+            <figure class="producto__foto producto__foto--tipo" aria-hidden="true"><span class="producto__tipo">La forma que imagines</span><span class="producto__cat">Variado</span></figure>
+            <div class="producto__cuerpo">
+              <h3 class="producto__nombre">La forma que imagines</h3>
+              <p class="producto__desc">Estrella, flor, números o letras: diséñala en el recetario y te la cotizamos.</p>
+              <div class="producto__pie"><span class="producto__precio">Sobre pedido</span><div class="producto__acciones"><a class="btn-chico" href="#arma">Diseñar</a></div></div>
+            </div>
+          </li>
+          <li class="producto" data-cat="eventos">
+            <figure class="producto__foto"><img src="assets/eventos/mesa-760.webp" srcset="assets/eventos/mesa-760.webp 760w, assets/eventos/mesa-1200.webp 1200w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" width="760" height="507" loading="lazy" alt="Mesa de postres"><span class="producto__cat">Evento</span></figure>
+            <div class="producto__cuerpo">
+              <h3 class="producto__nombre">Mesa de postres</h3>
+              <p class="producto__desc">Gelatinas de varias formas, tamaños y sabores, montadas para tu evento.</p>
+              <div class="producto__pie"><span class="producto__precio">Sobre pedido</span><div class="producto__acciones"><a class="btn-chico" href="#eventos">Ver montajes</a></div></div>
+            </div>
+          </li>
+          <li class="producto" data-cat="eventos">
+            <figure class="producto__foto"><img src="assets/temp/pedidos-especiales.webp" width="520" height="240" loading="lazy" alt="Gelatina personalizada"><span class="producto__cat">Evento</span></figure>
+            <div class="producto__cuerpo">
+              <h3 class="producto__nombre">Gelatina personalizada</h3>
+              <p class="producto__desc">Con el nombre, los colores y la decoración de tu celebración.</p>
+              <div class="producto__pie"><span class="producto__precio">Sobre pedido</span><div class="producto__acciones"><a class="btn-chico" data-wa="Hola Las Chinas, quiero cotizar una gelatina personalizada." href="#">Cotizar</a></div></div>
+            </div>
+          </li>
+          <li class="producto" data-cat="eventos">
+            <figure class="producto__foto"><img src="assets/sabores/vasitos-capas-760.webp" srcset="assets/sabores/vasitos-capas-760.webp 760w, assets/sabores/vasitos-capas-1200.webp 1200w" sizes="(max-width: 700px) 92vw, (max-width: 1100px) 46vw, 30vw" width="760" height="507" loading="lazy" alt="Individuales por docena"><span class="producto__cat">Evento</span></figure>
+            <div class="producto__cuerpo">
+              <h3 class="producto__nombre">Individuales por docena</h3>
+              <p class="producto__desc">Vasitos y porciones individuales para tus invitados.</p>
+              <div class="producto__pie"><span class="producto__precio">Sobre pedido</span><div class="producto__acciones"><a class="btn-chico" data-wa="Hola Las Chinas, quiero cotizar gelatinas individuales por docena para un evento." href="#">Cotizar</a></div></div>
+            </div>
+          </li>
+      </ul>
+      <p class="catalogo__nota">Imágenes ilustrativas. Tamaños, presentación final y precio se confirman por WhatsApp al hacer tu pedido.</p>
+    </section>
 
-      <div class="carta__mesa">
-        <!-- El mazo: la carta de enfrente es la que está abierta -->
-        <div class="mazo" role="tablist" aria-label="Cartas">
-          <button class="naipe" type="button" role="tab" id="tab-familiares" data-menu="familiares" aria-controls="menu-familiares" aria-selected="true" style="--tinte:#F6D9DF;--acento:#A8102C">
-            <span class="naipe__num">I</span>
-            <span class="naipe__foto"><img src="assets/sabores/fresa-crema-760.webp" width="760" height="506" alt="" loading="lazy"></span>
-            <span class="naipe__titulo">Familiares</span>
-            <span class="naipe__sub">Para compartir en la mesa</span>
-            <span class="naipe__firma">Las Chinas</span>
-          </button>
-          <button class="naipe" type="button" role="tab" id="tab-individuales" data-menu="individuales" aria-controls="menu-individuales" aria-selected="false" style="--tinte:#FBE8C8;--acento:#A65400">
-            <span class="naipe__num">II</span>
-            <span class="naipe__foto"><img src="assets/sabores/vasitos-capas-760.webp" width="760" height="507" alt="" loading="lazy"></span>
-            <span class="naipe__titulo">Individuales</span>
-            <span class="naipe__sub">Una porción, un antojo</span>
-            <span class="naipe__firma">Las Chinas</span>
-          </button>
-          <button class="naipe" type="button" role="tab" id="tab-temporada" data-menu="temporada" aria-controls="menu-temporada" aria-selected="false" style="--tinte:#F9D6DC;--acento:#B0123E">
-            <span class="naipe__num">III</span>
-            <span class="naipe__foto"><img src="assets/temporada/san-valentin-760.webp" width="760" height="507" alt="" loading="lazy"></span>
-            <span class="naipe__titulo">De temporada</span>
-            <span class="naipe__sub">Para cada fecha del año</span>
-            <span class="naipe__firma">Las Chinas</span>
-          </button>
-          <button class="naipe" type="button" role="tab" id="tab-variados" data-menu="variados" aria-controls="menu-variados" aria-selected="false" style="--tinte:#ECDDF0;--acento:#5E1B63">
-            <span class="naipe__num">IV</span>
-            <span class="naipe__foto"><img src="assets/sabores/mosaico-760.webp" width="760" height="507" alt="" loading="lazy"></span>
-            <span class="naipe__titulo">Postres variados</span>
-            <span class="naipe__sub">Formas y combinaciones</span>
-            <span class="naipe__firma">Las Chinas</span>
-          </button>
-          <button class="naipe naipe--noche" type="button" role="tab" id="tab-eventos" data-menu="eventos" aria-controls="menu-eventos" aria-selected="false" style="--tinte:#3A0A1F;--acento:#F4B7CC">
-            <span class="naipe__num">V</span>
-            <span class="naipe__foto"><img src="assets/eventos/mesa-760.webp" width="760" height="428" alt="" loading="lazy"></span>
-            <span class="naipe__titulo">Eventos</span>
-            <span class="naipe__sub">Mesas de postres y pedidos</span>
-            <span class="naipe__firma">Las Chinas</span>
-          </button>
+    <!-- ============ Escena de producto: capa por capa ============ -->
+    <section class="capas" id="capa-por-capa" aria-labelledby="capas-title">
+      <div class="capas__escena">
+        <div class="capas__texto">
+          <p class="kicker">Capa por capa</p>
+          <h2 id="capas-title">Así se arma una <em>fresa con crema</em></h2>
+          <p>Fotografía real de una de nuestras gelatinas, separada en sus capas.</p>
         </div>
-
-        <!-- La hoja abierta: la lista de la carta elegida -->
-        <div class="hoja">
-          <div class="hoja__pagina">
-            <section class="menu" id="menu-familiares" role="tabpanel" aria-labelledby="tab-familiares">
-              <p class="menu__num">I</p>
-              <h3>Familiares</h3>
-              <p class="menu__intro">Moldes para compartir en la mesa, con fruta natural y capa de leche.</p>
-              <ul class="platos">
-                <li class="plato" data-id="fresa-crema" data-name="Fresa con crema" data-img="assets/sabores/fresa-crema-1200.webp" data-desc="Gelatina cremosa con fresas naturales, el equilibrio perfecto entre frescura y dulzura.">
-                  <button class="plato__nombre" type="button">Fresa con crema</button><span class="plato__linea"></span><button class="plato__mas" type="button" aria-label="Agregar Fresa con crema a tu pedido"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
-                  <p class="plato__desc">Fresas naturales en gelatina brillante sobre una capa de leche cremosa.</p>
-                </li>
-                <li class="plato" data-id="uva" data-name="Uva" data-img="assets/sabores/uva-1200.webp" data-desc="Gelatina de uva brillante con uvas verdes y moradas por dentro, sobre una capa de leche cremosa.">
-                  <button class="plato__nombre" type="button">Uva</button><span class="plato__linea"></span><button class="plato__mas" type="button" aria-label="Agregar Uva a tu pedido"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
-                  <p class="plato__desc">Uvas verdes y moradas en gelatina de uva, sobre capa de leche.</p>
-                </li>
-                <li class="plato" data-id="mango" data-name="Mango" data-img="assets/sabores/mango-1200.webp" data-desc="Gelatina de mango con cubos de fruta natural, sobre una capa de leche cremosa. Dulce y tropical.">
-                  <button class="plato__nombre" type="button">Mango</button><span class="plato__linea"></span><button class="plato__mas" type="button" aria-label="Agregar Mango a tu pedido"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
-                  <p class="plato__desc">Cubos de mango natural sobre capa de leche. Dulce y tropical.</p>
-                </li>
-                <li class="plato" data-id="fresa-natural" data-name="Fresa natural" data-img="assets/sabores/fresa-natural-1200.webp" data-desc="Gelatina de leche rosada con trozos reales de fresa y una fresa entera encima.">
-                  <button class="plato__nombre" type="button">Fresa natural</button><span class="plato__linea"></span><button class="plato__mas" type="button" aria-label="Agregar Fresa natural a tu pedido"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
-                  <p class="plato__desc">Leche rosada con trozos reales de fresa y una fresa entera encima.</p>
-                </li>
-              </ul>
-            </section>
-
-            <section class="menu" id="menu-individuales" role="tabpanel" aria-labelledby="tab-individuales" hidden>
-              <p class="menu__num">II</p>
-              <h3>Individuales</h3>
-              <p class="menu__intro">Una porción para cada quien: para un antojo, una fiesta o una mesa de postres.</p>
-              <ul class="platos">
-                <li class="plato" data-id="vasitos-capas" data-name="Vasitos de capas" data-img="assets/sabores/vasitos-capas-1200.webp" data-desc="Gelatinas individuales en vaso, con capas de fresa, leche, mango y uva, y fruta fresca encima. Perfectas para fiestas y mesas de postres.">
-                  <button class="plato__nombre" type="button">Vasitos de capas</button><span class="plato__linea"></span><button class="plato__mas" type="button" aria-label="Agregar Vasitos de capas a tu pedido"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
-                  <p class="plato__desc">Capas de fresa, leche, mango y uva, con fruta fresca encima.</p>
-                </li>
-                <li class="plato" data-id="mango-maracuya" data-name="Mango con maracuyá" data-img="assets/sabores/mango-maracuya-1200.webp" data-desc="Gelatina individual de maracuyá con cubos de mango y semillas de la fruta, decorada con hierbabuena. Fresca y tropical.">
-                  <button class="plato__nombre" type="button">Mango con maracuyá</button><span class="plato__linea"></span><button class="plato__mas" type="button" aria-label="Agregar Mango con maracuyá a tu pedido"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
-                  <p class="plato__desc">Maracuyá con cubos de mango y hierbabuena. Fresca y tropical.</p>
-                </li>
-              </ul>
-            </section>
-
-            <section class="menu" id="menu-temporada" role="tabpanel" aria-labelledby="tab-temporada" hidden>
-              <p class="menu__num">III</p>
-              <h3>De temporada</h3>
-              <p class="menu__intro">Presentaciones especiales para cada fecha: se piden con anticipación.</p>
-              <ul class="platos">
-                <li class="plato plato--cotizar" data-img="assets/temporada/san-valentin-1200.webp">
-                  <span class="plato__nombre">San Valentín</span><span class="plato__linea"></span><a class="plato__cotizar" data-wa="Hola Las Chinas, quiero pedir una gelatina de San Valentín." href="#">Apartar</a>
-                  <p class="plato__desc">Corazones de fresa y mini corazones para regalar.</p>
-                </li>
-                <li class="plato plato--cotizar" data-img="assets/temporada/dia-madres-1200.webp">
-                  <span class="plato__nombre">Día de las Madres</span><span class="plato__linea"></span><a class="plato__cotizar" data-wa="Hola Las Chinas, quiero pedir una gelatina para el Día de las Madres." href="#">Apartar</a>
-                  <p class="plato__desc">Gelatinas de flor en tonos pastel, para consentir a mamá.</p>
-                </li>
-                <li class="plato plato--cotizar" data-img="assets/sabores/fresa-crema-1200.webp">
-                  <span class="plato__nombre">Navidad y fin de año</span><span class="plato__linea"></span><a class="plato__cotizar" data-wa="Hola Las Chinas, quiero pedir una gelatina para Navidad." href="#">Apartar</a>
-                  <p class="plato__desc">Roscas de fresa y leche para la cena, decoradas para la ocasión.</p>
-                </li>
-              </ul>
-            </section>
-
-            <section class="menu" id="menu-variados" role="tabpanel" aria-labelledby="tab-variados" hidden>
-              <p class="menu__num">IV</p>
-              <h3>Postres variados</h3>
-              <p class="menu__intro">Otras formas y combinaciones. Si la imaginas, la hacemos.</p>
-              <ul class="platos">
-                <li class="plato" data-id="corazon-fresa" data-name="Corazón de fresa" data-img="assets/sabores/corazon-fresa-1200.webp" data-desc="Gelatina en forma de corazón: fresas naturales en gelatina brillante sobre una capa de leche. Ideal para aniversarios y fechas especiales.">
-                  <button class="plato__nombre" type="button">Corazón de fresa</button><span class="plato__linea"></span><button class="plato__mas" type="button" aria-label="Agregar Corazón de fresa a tu pedido"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
-                  <p class="plato__desc">En forma de corazón, para aniversarios y fechas especiales.</p>
-                </li>
-                <li class="plato" data-id="mosaico" data-name="Mosaico" data-img="assets/sabores/mosaico-1200.webp" data-desc="La clásica gelatina de mosaico: cubos de colores en gelatina de leche, en molde rectangular para rebanar.">
-                  <button class="plato__nombre" type="button">Mosaico</button><span class="plato__linea"></span><button class="plato__mas" type="button" aria-label="Agregar Mosaico a tu pedido"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
-                  <p class="plato__desc">Cubos de colores en gelatina de leche, en molde para rebanar.</p>
-                </li>
-                <li class="plato plato--cotizar" data-img="assets/eventos/mesa-1200.webp">
-                  <a class="plato__nombre" href="#arma">La forma que imagines</a><span class="plato__linea"></span><a class="plato__cotizar" href="#arma">Diséñala</a>
-                  <p class="plato__desc">Corazón, estrella, flor, números o letras: arma la tuya en el recetario.</p>
-                </li>
-              </ul>
-            </section>
-
-            <section class="menu" id="menu-eventos" role="tabpanel" aria-labelledby="tab-eventos" hidden>
-              <p class="menu__num">V</p>
-              <h3>Eventos</h3>
-              <p class="menu__intro">Cumpleaños, bodas, bautizos y reuniones. Te ayudamos a armar la mesa completa.</p>
-              <ul class="platos">
-                <li class="plato plato--cotizar" data-img="assets/eventos/mesa-1200.webp">
-                  <a class="plato__nombre" href="#eventos">Mesa de postres</a><span class="plato__linea"></span><a class="plato__cotizar" data-wa="Hola Las Chinas, quiero cotizar una mesa de postres para un evento." href="#">Cotizar</a>
-                  <p class="plato__desc">Gelatinas de varias formas, tamaños y sabores, montadas para tu evento.</p>
-                </li>
-                <li class="plato plato--cotizar" data-img="assets/temp/pedidos-especiales.webp">
-                  <span class="plato__nombre">Gelatina personalizada</span><span class="plato__linea"></span><a class="plato__cotizar" data-wa="Hola Las Chinas, quiero cotizar una gelatina personalizada." href="#">Cotizar</a>
-                  <p class="plato__desc">Con el nombre, los colores y la decoración de tu celebración.</p>
-                </li>
-                <li class="plato plato--cotizar" data-img="assets/sabores/vasitos-capas-1200.webp">
-                  <span class="plato__nombre">Individuales por docena</span><span class="plato__linea"></span><a class="plato__cotizar" data-wa="Hola Las Chinas, quiero cotizar gelatinas individuales por docena para un evento." href="#">Cotizar</a>
-                  <p class="plato__desc">Vasitos y porciones individuales para invitados.</p>
-                </li>
-              </ul>
-            </section>
-          </div>
-          <p class="hoja__nota">Precios según tamaño: te los confirmamos por WhatsApp.</p>
+        <div class="capas__gel" aria-hidden="true">
+          <span class="capas__sombra"></span>
+          <img class="capas__img capas__plato" src="assets/capas/plato.webp" srcset="assets/capas/plato-m.webp 750w, assets/capas/plato.webp 1500w" sizes="(max-width: 760px) 92vw, 52vw" width="1500" height="860" alt="" loading="lazy">
+          <img class="capas__img capas__leche" src="assets/capas/leche.webp" srcset="assets/capas/leche-m.webp 750w, assets/capas/leche.webp 1500w" sizes="(max-width: 760px) 92vw, 52vw" width="1500" height="860" alt="" loading="lazy">
+          <img class="capas__img capas__tapa" src="assets/capas/leche-tapa.webp" srcset="assets/capas/leche-tapa-m.webp 750w, assets/capas/leche-tapa.webp 1500w" sizes="(max-width: 760px) 92vw, 52vw" width="1500" height="860" alt="" loading="lazy">
+          <img class="capas__img capas__fresa" src="assets/capas/fresa.webp" srcset="assets/capas/fresa-m.webp 750w, assets/capas/fresa.webp 1500w" sizes="(max-width: 760px) 92vw, 52vw" width="1500" height="860" alt="" loading="lazy">
         </div>
+        <ol class="capas__notas">
+          <li class="capas__nota" data-nota="1"><span>01</span><b>Gelatina de fresa</b>Fresas naturales cortadas a mano, en gelatina brillante.</li>
+          <li class="capas__nota" data-nota="2"><span>02</span><b>Capa de leche</b>Cremosa y suave, con trocitos de fresa en cada cucharada.</li>
+          <li class="capas__nota" data-nota="3"><span>03</span><b>Hecha a mano</b>Por tres hermanas en Monterrey, capa por capa.</li>
+        </ol>
+        <a class="btn btn--magenta capas__cta" data-wa="Hola Las Chinas, quiero pedir una gelatina de fresa con crema." href="#"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Pedir esta gelatina</a>
+      </div>
+    </section>
+
+    <!-- ============ Historia: tres hermanas ============ -->
+    <section class="historia" id="historia" aria-labelledby="historia-title">
+      <header class="titular">
+        <p class="kicker">Nosotras</p>
+        <h2 id="historia-title">Tres hermanas. <em>Una historia.</em></h2>
+        <p>Somos Las Chinas, un emprendimiento familiar que nació del amor por las gelatinas y el deseo de compartir momentos especiales. Cada detalle que hacemos lleva un pedacito de nosotras.</p>
+      </header>
+      <ol class="hermanas">
+        <li class="hermana"><figure><div class="hermana__foto"><img src="assets/historia/rizos.webp" width="450" height="600" loading="lazy" alt="Una de las tres hermanas de Las Chinas, de cabello rizado, junto a una gelatina de uva"></div><figcaption><span>01</span>Con su gelatina de uva</figcaption></figure></li>
+        <li class="hermana"><figure><div class="hermana__foto"><img src="assets/historia/centro.webp" width="400" height="530" loading="lazy" alt="Una de las tres hermanas de Las Chinas, con una fresa en la mano, junto a una gelatina de fresa"></div><figcaption><span>02</span>Con su gelatina de fresa</figcaption></figure></li>
+        <li class="hermana"><figure><div class="hermana__foto"><img src="assets/historia/lacio.webp" width="450" height="600" loading="lazy" alt="Una de las tres hermanas de Las Chinas, de cabello lacio, junto a una gelatina de mango"></div><figcaption><span>03</span>Con su gelatina de mango</figcaption></figure></li>
+      </ol>
+      <div class="historia__firma">
+        <img src="assets/entrada/logo-520.webp" width="520" height="520" loading="lazy" alt="Logo de Las Chinas">
+        <p>Gracias por ser parte de nuestra historia.</p>
+        <a class="btn btn--magenta" href="#catalogo">Ver el catálogo <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
       </div>
     </section>
 
     <!-- ============ Mesas para eventos: tres maneras de montarla ============ -->
-    <section class="eventos" id="eventos" data-fondo="#22060F" aria-labelledby="eventos-title">
+    <section class="eventos" id="eventos" aria-labelledby="eventos-title">
       <header class="titular titular--claro">
         <p class="kicker">Mesas para eventos</p>
         <h2 id="eventos-title">Una mesa que se <em>recuerda</em></h2>
@@ -315,8 +353,8 @@
         </div>
 
         <div class="montaje__mesas">
-          <article class="mesa" id="mesa-rosa" role="tabpanel" aria-labelledby="tab-rosa">
-            <div class="mesa__foto" data-cursor="Explora">
+          <div class="mesa" id="mesa-rosa" role="tabpanel" aria-labelledby="tab-rosa">
+            <div class="mesa__foto">
               <img src="assets/eventos/mesa-1200.webp" srcset="assets/eventos/mesa-760.webp 760w, assets/eventos/mesa-1200.webp 1200w, assets/eventos/mesa-1920.webp 1920w" sizes="(max-width: 900px) 100vw, 64vw" width="1920" height="1080" loading="lazy" alt="Mesa de postres en tonos rosas: rosca de fresa en base alta, corazón de fresa, mosaico, vasitos de capas y mini gelatinas, con flores y velas.">
               <button class="pin" type="button" style="--x:30;--y:28" data-pieza="1" aria-label="1: Rosca de fresa con crema">1</button>
               <button class="pin" type="button" style="--x:32;--y:71" data-pieza="2" aria-label="2: Corazón de fresa">2</button>
@@ -335,10 +373,10 @@
               </ol>
               <a class="btn btn--rosa" data-wa="Hola Las Chinas, quiero cotizar una mesa de postres en rosa para mi evento." href="#"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Cotizar una mesa así</a>
             </div>
-          </article>
+          </div>
 
-          <article class="mesa" id="mesa-boda" role="tabpanel" aria-labelledby="tab-boda" hidden>
-            <div class="mesa__foto" data-cursor="Explora">
+          <div class="mesa" id="mesa-boda" role="tabpanel" aria-labelledby="tab-boda" hidden>
+            <div class="mesa__foto">
               <img src="assets/eventos/boda-1200.webp" srcset="assets/eventos/boda-760.webp 760w, assets/eventos/boda-1200.webp 1200w, assets/eventos/boda-1920.webp 1920w" sizes="(max-width: 900px) 100vw, 64vw" width="1920" height="1080" loading="lazy" alt="Mesa de postres para boda en blanco y dorado: gelatina de leche de tres pisos con fresas, domos con flores, rosca cristalina, vasitos de leche y fresa y mini corazones.">
               <button class="pin" type="button" style="--x:52;--y:41" data-pieza="1" aria-label="1: Gelatina de tres pisos">1</button>
               <button class="pin" type="button" style="--x:27;--y:27" data-pieza="2" aria-label="2: Domos con flores">2</button>
@@ -357,10 +395,10 @@
               </ol>
               <a class="btn btn--rosa" data-wa="Hola Las Chinas, quiero cotizar una mesa de postres para una boda." href="#"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Cotizar una mesa así</a>
             </div>
-          </article>
+          </div>
 
-          <article class="mesa" id="mesa-infantil" role="tabpanel" aria-labelledby="tab-infantil" hidden>
-            <div class="mesa__foto" data-cursor="Explora">
+          <div class="mesa" id="mesa-infantil" role="tabpanel" aria-labelledby="tab-infantil" hidden>
+            <div class="mesa__foto">
               <img src="assets/eventos/infantil-1200.webp" srcset="assets/eventos/infantil-760.webp 760w, assets/eventos/infantil-1200.webp 1200w, assets/eventos/infantil-1920.webp 1920w" sizes="(max-width: 900px) 100vw, 64vw" width="1920" height="1080" loading="lazy" alt="Mesa de cumpleaños infantil: gelatina arcoíris en forma de número 5, estrellas de colores, mosaico, vasitos arcoíris con crema y corazones de colores, con globos pastel.">
               <button class="pin" type="button" style="--x:50;--y:27" data-pieza="1" aria-label="1: Número arcoíris">1</button>
               <button class="pin" type="button" style="--x:18;--y:41" data-pieza="2" aria-label="2: Estrellas de colores">2</button>
@@ -379,7 +417,7 @@
               </ol>
               <a class="btn btn--rosa" data-wa="Hola Las Chinas, quiero cotizar una mesa de postres para un cumpleaños infantil." href="#"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Cotizar una mesa así</a>
             </div>
-          </article>
+          </div>
         </div>
       </div>
       <p class="montaje__ref">Imágenes de referencia: cada mesa se arma a la medida de tu evento, con los colores y formas que elijas.</p>
@@ -400,7 +438,7 @@
     </section>
 
     <!-- ============ Recetario: arma tu gelatina ============ -->
-    <section class="arma" id="arma" data-fondo="#F8E6EC" aria-labelledby="arma-title">
+    <section class="arma" id="arma" aria-labelledby="arma-title">
       <header class="titular">
         <p class="kicker">El recetario</p>
         <h2 id="arma-title">Arma tu <em>gelatina</em></h2>
@@ -453,27 +491,8 @@
       </form>
     </section>
 
-    <!-- ============ Nuestra cocina y nosotras ============ -->
-    <section class="cocina" aria-label="Nuestra cocina">
-      <img class="cocina__foto" src="assets/cocina/escena-1280.webp" srcset="assets/cocina/escena-1280.webp 1280w, assets/cocina/escena-1920.webp 1920w" sizes="100vw" width="1920" height="1080" loading="lazy" alt="La cocina de Las Chinas al atardecer, con la vitrina de gelatinas y el Cerro de la Silla por la ventana.">
-      <p class="cocina__frase">Todo sale de nuestra cocina en Monterrey, <em>hecho a mano.</em></p>
-    </section>
-
-    <section class="nosotras" id="nosotras" data-fondo="#FBF6F1" aria-labelledby="nosotras-title">
-      <figure class="nosotras__foto revela">
-        <img src="assets/nosotras/hermanas-1600.webp" srcset="assets/nosotras/hermanas-960.webp 960w, assets/nosotras/hermanas-1600.webp 1600w" sizes="(max-width: 1340px) 92vw, 1280px" width="1600" height="900" loading="lazy" alt="Las tres hermanas de Las Chinas, cada una con su gelatina: uva, fresa y mango, con el logo de Las Chinas al centro.">
-      </figure>
-      <div class="nosotras__texto">
-        <p class="kicker">Nosotras</p>
-        <h2 id="nosotras-title">Conoce a <span class="script">Las Chinas</span></h2>
-        <p class="nosotras__lema">Tres hermanas, un mismo sabor.</p>
-        <p>Somos Las Chinas, un emprendimiento familiar que nació del amor por las gelatinas y el deseo de compartir momentos especiales. Cada detalle que hacemos lleva un pedacito de nosotras.</p>
-        <p class="nosotras__firma">Gracias por ser parte de nuestra historia <svg class="icon" aria-hidden="true"><use href="#i-heart-fill"/></svg></p>
-      </div>
-    </section>
-
     <!-- ============ Cómo pedir ============ -->
-    <section class="pasos" id="como-pedir" data-fondo="#FBF6F1" aria-labelledby="pasos-title">
+    <section class="pasos" id="como-pedir" aria-labelledby="pasos-title">
       <header class="titular">
         <p class="kicker">Cómo pedir</p>
         <h2 id="pasos-title">Tres pasos, <em>sin complicaciones</em></h2>
@@ -521,15 +540,16 @@
     <div class="drawer__scrim js-close"></div>
     <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Menú">
       <div class="drawer__head">
-        <p class="drawer__marca">Las Chinas</p>
+        <img class="drawer__logo" src="assets/logo-160.webp" width="56" height="56" alt="Las Chinas">
         <button class="round js-close" type="button" aria-label="Cerrar menú"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
       </div>
       <nav class="drawer__nav" aria-label="Secciones">
         <a href="#inicio">Inicio</a>
-        <a href="#carta">La carta</a>
+        <a href="#catalogo">Sabores</a>
+        <a href="#capa-por-capa">Capa por capa</a>
+        <a href="#historia">Historia</a>
         <a href="#eventos">Eventos</a>
         <a href="#arma">Arma la tuya</a>
-        <a href="#nosotras">Nosotras</a>
         <a href="#contacto">Contacto</a>
       </nav>
     </div>
@@ -546,7 +566,7 @@
       <ul class="cart__items"></ul>
       <div class="cart__empty">
         <p>Tu pedido está vacío.</p>
-        <a class="btn btn--linea-oscura js-close" href="#carta">Ver la carta</a>
+        <a class="btn btn--linea-oscura js-close" href="#catalogo">Ver el catálogo</a>
       </div>
       <div class="cart__foot">
         <p class="cart__hint">Te enviamos a WhatsApp con tu pedido listo. Ahí te confirmamos tamaño, precio y entrega.</p>
@@ -579,8 +599,8 @@
   <!-- Búsqueda -->
   <div class="modal modal--search" id="buscar" hidden>
     <div class="drawer__scrim js-close"></div>
-    <div class="search__panel" role="dialog" aria-modal="true" aria-label="Buscar en la carta">
-      <label class="search__field"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input id="buscar-input" type="search" placeholder="Busca: fresa, corazón, vasitos…" autocomplete="off"></label>
+    <div class="search__panel" role="dialog" aria-modal="true" aria-label="Buscar en el catálogo">
+      <label class="search__field"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><input id="buscar-input" type="search" placeholder="Busca un sabor: fresa, mango, corazón…" autocomplete="off"></label>
       <ul class="search__results"></ul>
     </div>
   </div>
@@ -591,6 +611,6 @@
 
   <script src="assets/vendor/gsap.min.js"></script>
   <script src="assets/vendor/ScrollTrigger.min.js"></script>
-  <script src="script.js"></script>
+  <script type="module" src="assets/js/main.js"></script>
 </body>
 </html>
