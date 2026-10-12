@@ -212,3 +212,11 @@ Mismo estilo en todas: luz natural suave, fondo rosa claro, mármol blanco, frut
 - `#arma`: recetario que arma la receta y la manda por WhatsApp.
 - `/cocina/` redirige al inicio.
 - PENDIENTE: número de WhatsApp, precios reales, zonas de entrega.
+
+## Rediseño completo (elegante y animado)
+- Entrada oscura «terciopelo»: la gelatina completa aparece enfocándose, tiembla al tocarla y un brillo la recorre. Sin separar capas ni 3D por ahora (hasta tener el modelo 3D).
+- La carta: cinco cartas que se barajan (Familiares, Individuales, De temporada, Postres variados, Eventos); la hoja muestra la lista y la foto de la carta cambia al pasar por cada postre.
+- Mesas para eventos: tres ejemplos de montaje (rosa, boda, infantil) con números sobre la foto. Imágenes de referencia generadas en Canva (`fuentes/eventos`, `fuentes/temporada`).
+- Muchas formas (moldes a línea), recetario con más formas, «Nosotras» con la imagen de las tres hermanas.
+- Sin precios publicados: se confirman por WhatsApp.
+- Se quitaron del sitio los prototipos 3D (/inmersivo, /prueba-3d); el código fuente sigue en `3d/`.
